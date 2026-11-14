@@ -131,3 +131,8 @@ marks belong to their owners and are shown monochrome to identify tools only.
 - devops-hero 7988742 · devops-banner 7988116 · bc-hero 4484150 · bc-banner 4484047 · fabric-hero 5831259
 - health-hero 4266943 · health-banner 19957221 · bank-hero 7567556 · bank-banner 38246349 · mfg-hero 31336010 · mfg-banner 32399719
 - India blog images: from aptacloud.com/in/blogs (client's own); three posts without an image reuse the closest topic image.
+
+## UAE-only page photos (`public/images/photos/regions/uae/pages/`, Pexels licence)
+- devops-hero 5483165 · devops-banner 8939041 · bc-hero 8550497 · bc-banner 36733403 · fabric-hero 7988686 · fabric-banner 13256066
+- health-hero 32669711 · health-split 20335832 · bank-hero 10549886 · bank-split 28396657 · mfg-hero 32845682 · mfg-split 29411310
+- UAE blog images: from aptacloud.com/uae/blogs (client's own).

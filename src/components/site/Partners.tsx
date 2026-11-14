@@ -32,10 +32,13 @@ const ALL_PARTNERS = [
 ];
 
 // India's live site lists Microsoft and AWS only.
-const PARTNERS = ALL_PARTNERS.filter((p) => local({ us: true, in: p.name !== "Anthropic" }));
+// India's and the UAE's live sites list Microsoft and AWS only.
+const PARTNERS = ALL_PARTNERS.filter((p) => local({ us: true, in: p.name !== "Anthropic", uae: p.name !== "Anthropic" }));
+const TWO = { lines: ["We partner with", "Microsoft and AWS."], extra: " We add AWS where it fits the systems you already run." };
 const HEAD = local({
   us: { lines: ["We partner with Microsoft,", "Anthropic, and AWS."], extra: " We add Anthropic’s AI models and AWS where they fit the systems you already run." },
-  in: { lines: ["We partner with", "Microsoft and AWS."], extra: " We add AWS where it fits the systems you already run." },
+  in: TWO,
+  uae: TWO,
 });
 
 // Where each partnership shows up in our services (the primary CTA lives in the hero and workshop).

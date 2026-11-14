@@ -22,7 +22,7 @@ const COLUMNS: { title: string; links: FooterLink[] }[] = [
     links: [
       { label: "Home", href: home() },
       { label: "About us", href: asset("/about-us/") },
-      local({ us: { label: "AI Assessment Workshop", href: home("#workshop") }, in: { label: "How we work", href: home("#process") } }),
+      local({ us: { label: "AI Assessment Workshop", href: home("#workshop") }, in: { label: "How we work", href: home("#process") }, uae: { label: "How we work", href: home("#process") } }),
       { label: "Partners", href: home("#partners") },
     ],
   },
@@ -32,8 +32,8 @@ const COLUMNS: { title: string; links: FooterLink[] }[] = [
       { label: "AI Consulting", href: asset("/ai-consulting/") },
       { label: "Data Engineering", href: asset("/data-engineering/") },
       { label: "Application Modernisation", href: asset("/application-modernization/") },
-      { label: "Dynamics 365", href: home("#dynamics") },
-      { label: "Microsoft Azure", href: local({ us: home("#azure"), in: asset("/azure-migration/") }) },
+      { label: "Dynamics 365", href: local({ us: home("#dynamics"), uae: asset("/services/microsoft/microsoft-dynamics-365/") }) },
+      { label: "Microsoft Azure", href: local({ us: home("#azure"), in: asset("/azure-migration/"), uae: asset("/azure-migration/") }) },
     ],
   },
   {

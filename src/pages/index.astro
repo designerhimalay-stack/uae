@@ -20,6 +20,7 @@ import { Cases } from "../components/service/blocks/Cases";
 import { Split } from "../components/service/blocks/Split";
 import { Faq } from "../components/service/Faq";
 import { IN_AUDIENCE, IN_ENGAGEMENTS, IN_FAQS, IN_PROCESS, IN_SOLUTIONS, IN_WHY } from "../data/home";
+import { UAE_ENGAGEMENTS, UAE_FAQS, UAE_INDUSTRIES, UAE_PROCESS, UAE_SERVICES, UAE_WHY } from "../data/home";
 import { Hero } from "../components/site/Hero";
 import { Microsoft } from "../components/site/Microsoft";
 import { Partners } from "../components/site/Partners";
@@ -31,6 +32,10 @@ const META = local({
   us: {
     title: `${BRAND.name} | Microsoft Cloud, Data, and AI Consultancy`,
     description: "AptaCloud modernises the systems mid-sized insurance, oil and gas, and construction firms run on, and puts AI to work. Proven on your data first.",
+  },
+  uae: {
+    title: `${BRAND.name} UAE | Microsoft Cloud and AI Consulting`,
+    description: "Microsoft cloud and AI consulting for UAE businesses: Azure, AI agents, generative AI, Dynamics 365, and modernisation, built around PDPL and UAE rules.",
   },
   in: {
     title: `${BRAND.name} India | Cloud and AI Transformation for Indian Businesses`,
@@ -63,6 +68,20 @@ const india = REGION.id === "in";
         <IndiaHub client:visible />
         <CTA client:idle />
       </main>
+    ) : REGION.id === "uae" ? (
+      <main id="main" class="relative">
+        <Hero client:load />
+        <About client:visible />
+        <Cards client:visible block={UAE_SERVICES} tone="white" />
+        <Cards client:visible block={UAE_PROCESS} tone="dark" />
+        <Cards client:visible block={UAE_WHY} tone="tint" />
+        <UaeHub client:visible />
+        <Partners client:visible />
+        <Cases client:visible block={UAE_ENGAGEMENTS} tone="tint" />
+        <Cards client:visible block={UAE_INDUSTRIES} tone="white" />
+        <Faq client:visible faqs={UAE_FAQS} name="AptaCloud UAE" tone="tint" />
+        <CTA client:idle />
+      </main>
     ) : (
       <main id="main" class="relative">
         <Hero client:load />
@@ -74,7 +93,6 @@ const india = REGION.id === "in";
         <Microsoft client:visible />
         <Azure client:visible />
         {REGION.id === "us" && <GlobalPresence client:visible />}
-        {REGION.id === "uae" && <UaeHub client:visible />}
         <CTA client:idle />
       </main>
     )

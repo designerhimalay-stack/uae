@@ -88,14 +88,26 @@ export const IN_POSTS: Post[] = [
   { slug: "the-top-sharepoint-adoption-mistakes-cios-see-in-enterprises-30a3871c", title: "The Top SharePoint Adoption Mistakes CIOs See in Enterprises", category: "Microsoft SharePoint", date: "2026-09-11" },
 ];
 
+/** The UAE blog (aptacloud.com/uae/blogs/), crawled 2026-11-14. Left out: the WordPress
+ *  "hello world" post and a Business Central post written for India. */
+export const UAE_POSTS: Post[] = [
+  { slug: "ai-strategy-roadmap-for-your-uae-business-from-idea-to-implementation", title: "AI Strategy Roadmap for Your UAE Business: From Idea to Implementation", category: "AI Consulting", date: "2026-07-13" },
+  { slug: "top-10-features-of-business-central-that-every-erp-user-should-know", title: "Top 10 Features of Business Central That Every ERP User Should Know", category: "Dynamics 365", date: "2026-05-28" },
+  { slug: "the-future-of-erp-why-microsoft-dynamics-365-business-central-is-leading-the-way", title: "The Future of ERP: Why Microsoft Dynamics 365 Business Central Is Leading the Way", category: "Dynamics 365", date: "2026-05-21" },
+];
+
 /** The posts the blog index lists on this region's site. */
-export const INDEX_POSTS: Post[] = local({ us: POSTS, in: IN_POSTS });
+export const INDEX_POSTS: Post[] = local({ us: POSTS, in: IN_POSTS, uae: UAE_POSTS });
 
 export const postUrl = (slug: string) =>
-  IN_POSTS.some((p) => p.slug === slug) ? `https://aptacloud.com/in/blogs/${slug}/` : `https://aptacloud.com/blog/${slug}/`;
+  IN_POSTS.some((p) => p.slug === slug)
+    ? `https://aptacloud.com/in/blogs/${slug}/`
+    : UAE_POSTS.some((p) => p.slug === slug)
+      ? `https://aptacloud.com/uae/blogs/${slug}/`
+      : `https://aptacloud.com/blog/${slug}/`;
 export const postImage = (slug: string) => `/images/blog/posts/${slug}.jpg`;
 export const getPost = (slug: string) => {
-  const p = POSTS.find((x) => x.slug === slug) ?? IN_POSTS.find((x) => x.slug === slug);
+  const p = POSTS.find((x) => x.slug === slug) ?? IN_POSTS.find((x) => x.slug === slug) ?? UAE_POSTS.find((x) => x.slug === slug);
   if (!p) throw new Error(`Unknown post: ${slug}`);
   return p;
 };

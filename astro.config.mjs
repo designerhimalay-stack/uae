@@ -34,25 +34,26 @@ if (!(region in BASES)) throw new Error(`region.json: unknown region "${region}"
 
 // Old WordPress URLs that differ from the new routes, per region, so indexed
 // links keep working (static meta-refresh pages; the host can swap in 301s).
-/** @type {Record<string, Record<string, string>>} */
-const LEGACY = {
-  in: {
-    "/microsoft-365": "/services/microsoft/microsoft-365/",
-    "/microsoft-teams": "/services/microsoft/teams/",
-    "/identity-security": "/services/microsoft/identity-security/",
-    "/microsoft-copilot": "/services/microsoft/copilot-studio/",
-    "/microsoft-sharepoint": "/services/microsoft/sharepoint/",
-    "/microsoft-dynamics-365": "/services/microsoft/microsoft-dynamics-365/",
-    "/business-intelligence-visualization": "/data-visualization/",
-    "/systems-re-engineering": "/application-re-engineering/",
-    "/legacy-migration": "/legacy-application-migration/",
-    "/legacy-modernization": "/application-modernization/",
-    "/insurance": "/industry/insurance/",
-    "/oil-gas": "/industry/oil-gas/",
-    "/construction": "/industry/engineering-and-construction/construction/",
-    "/blogs": "/blog/",
-  },
+// India's and the UAE's live sites use the same URL scheme.
+/** @type {Record<string, string>} */
+const LEGACY_REGIONAL = {
+  "/microsoft-365": "/services/microsoft/microsoft-365/",
+  "/microsoft-teams": "/services/microsoft/teams/",
+  "/identity-security": "/services/microsoft/identity-security/",
+  "/microsoft-copilot": "/services/microsoft/copilot-studio/",
+  "/microsoft-sharepoint": "/services/microsoft/sharepoint/",
+  "/microsoft-dynamics-365": "/services/microsoft/microsoft-dynamics-365/",
+  "/business-intelligence-visualization": "/data-visualization/",
+  "/systems-re-engineering": "/application-re-engineering/",
+  "/legacy-migration": "/legacy-application-migration/",
+  "/legacy-modernization": "/application-modernization/",
+  "/insurance": "/industry/insurance/",
+  "/oil-gas": "/industry/oil-gas/",
+  "/construction": "/industry/engineering-and-construction/construction/",
+  "/blogs": "/blog/",
 };
+/** @type {Record<string, Record<string, string>>} */
+const LEGACY = { in: LEGACY_REGIONAL, uae: LEGACY_REGIONAL };
 const base = BASES[region].replace(/\/$/, "");
 const redirects = Object.fromEntries(Object.entries(LEGACY[region] ?? {}).map(([from, to]) => [from, `${base}${to}`]));
 

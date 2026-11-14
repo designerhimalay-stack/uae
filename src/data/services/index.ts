@@ -14,14 +14,16 @@ import { MS_EXTRAS } from "./microsoft-extras";
 import { CATEGORIES } from "./shared";
 import { REGIONAL_PAGES } from "./regional";
 import { IN_ONLY_LAYOUTS, IN_ONLY_PAGES } from "./regional/in-pages";
-import { REGION } from "@/brand/regions";
+import { REGION, local } from "@/brand/regions";
+import { UAE_ONLY_LAYOUTS, UAE_ONLY_PAGES } from "./regional/uae-pages";
 import type { CategoryId, ServicePage } from "./types";
 
 // Region-only pages (e.g. India's Fabric, Business Central, Healthcare) build on their region's site only.
 export const SERVICE_PAGES: ServicePage[] = [
-  ...AI_PAGES, ...DATA_PAGES, ...APPMOD_PAGES, ...MS_PAGES, ...AZURE_PAGES, ...AWS_PAGES, ...INDUSTRY_PAGES, ...COMPANY_PAGES, ...IN_ONLY_PAGES,
+  ...AI_PAGES, ...DATA_PAGES, ...APPMOD_PAGES, ...MS_PAGES, ...AZURE_PAGES, ...AWS_PAGES, ...INDUSTRY_PAGES, ...COMPANY_PAGES, ...IN_ONLY_PAGES, ...UAE_ONLY_PAGES,
 ].filter((p) => !p.regions || p.regions.includes(REGION.id));
-const ALL_LAYOUTS = { ...LAYOUTS, ...IN_ONLY_LAYOUTS };
+// India and the UAE share some region-only slugs, so the layouts are picked per region.
+const ALL_LAYOUTS = { ...LAYOUTS, ...local({ us: {}, in: IN_ONLY_LAYOUTS, uae: UAE_ONLY_LAYOUTS }) };
 
 /** URL of a service page (slug keeps US spelling to match the live site). */
 export const serviceHref = (slug: string) => asset(`/${slug}/`);

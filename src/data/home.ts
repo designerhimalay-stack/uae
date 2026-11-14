@@ -175,7 +175,129 @@ export const IN_FAQS: ServicePage["faqs"] = [
   },
 ];
 
+/* ───────────────────────────── UAE ───────────────────────────── */
+// Rebuilt from the live aptacloud.com/uae/ home (Nov 2026). The live trust strip
+// is merged into "Why"; its compliance points live in the UAE rules section
+// (UaeHub), so they are not repeated. No UAE office exists, so "local
+// presence" is left out.
+
+const UAE_HERO: HomeHero = {
+  lines: ["Innovation with", "flexible digital"],
+  accent: "solutions.",
+  lead: "Flexible, scalable cloud and AI that take the complexity out of operations for the UAE's growing businesses. We prove it on your data first.",
+  link: { label: "See how we work", href: "#process" },
+};
+
+const UAE_ABOUT: HomeAbout = {
+  heading: "Microsoft cloud and AI specialists for businesses across the UAE.",
+  lead: "We help small, medium, and large enterprises in the UAE simplify operations, automate workflows, and see their data clearly, with cloud, AI, and system upgrades that improve performance, secure data, and flex as you grow.",
+  photoText: "See where AI pays off in your business first.",
+  photoLink: { label: "How we work", href: "#process" },
+};
+
+export const UAE_SERVICES: Block = {
+  kind: "cards",
+  id: "solutions",
+  style: "icon",
+  tone: "white",
+  tag: "Our services",
+  icon: "layers",
+  heading: "Digital services for steady business growth.",
+  lead: "Eight services that cover AI, cloud, ERP, documents, data, and the applications you run on.",
+  cols: 4,
+  items: [
+    { title: "AI consulting", text: "Document handling, customer service, and data that teams can use, with better demand forecasts and lower risk.", icon: "spark", href: asset("/ai-consulting/") },
+    { title: "Cloud consulting", text: "Balanced workloads, simpler governance, and lower IT overhead through modernisation and central data.", icon: "cloud", href: asset("/azure-implementation/") },
+    { title: "Azure managed services", text: "A secure, scalable Azure environment with transparent operations and controlled costs.", icon: "shield", href: asset("/azure-managed-services/") },
+    { title: "AWS cloud hosting", text: "Load balancing, autoscaling, and DDoS protection on cost-effective AWS compute.", icon: "gauge", href: asset("/aws-compute/") },
+    { title: "Dynamics 365", text: "Reporting, finance, operations, and supply chain on Business Central, with real-time visibility.", icon: "chart", href: asset("/services/microsoft/microsoft-dynamics-365/") },
+    { title: "SharePoint development", text: "Document search, intranet, automation, and site management with audit trails built in.", icon: "doc", href: asset("/services/microsoft/sharepoint/") },
+    { title: "Data warehousing", text: "Data cleaned and restructured in central storage, ready for AI, forecasting, and growth analysis.", icon: "db", href: asset("/data-warehousing/") },
+    { title: "Application modernisation", text: "Cloud-first upgrades that integrate better, cut manual errors, and lower maintenance costs.", icon: "code", href: asset("/application-modernization/") },
+  ],
+};
+
+export const UAE_PROCESS: Block = {
+  kind: "cards",
+  id: "process",
+  style: "icon",
+  tone: "dark",
+  tag: "How we work",
+  icon: "flow",
+  heading: "Our process.",
+  lead: "Five steps, with a pilot before you commit.",
+  cols: 5,
+  items: [
+    { kicker: "Step 1", title: "Discuss your goal", text: "Your complexity, goals, and the issues holding growth back.", icon: "chat" },
+    { kicker: "Step 2", title: "Plan the roadmap", text: "A strategic roadmap with solutions built for your growth.", icon: "flow" },
+    { kicker: "Step 3", title: "Prove it in a pilot", text: "A pilot project to test the scope before the full build.", icon: "target" },
+    { kicker: "Step 4", title: "Build in agile stages", text: "Design to deployment without interrupting operations.", icon: "cog" },
+    { kicker: "Step 5", title: "Grow with support", text: "Staff training, adoption help, and dedicated technical support.", icon: "team" },
+  ],
+};
+
+export const UAE_WHY: Block = {
+  kind: "cards",
+  id: "why",
+  style: "icon",
+  tone: "tint",
+  tag: "Why AptaCloud",
+  icon: "target",
+  heading: "Why UAE businesses trust AptaCloud.",
+  lead: "Six reasons, from the first conversation to the support after go-live.",
+  cols: 3,
+  items: [
+    { title: "Certified cloud specialists", text: "A skilled team for Azure, Dynamics 365, SharePoint, and AI.", icon: "team" },
+    { title: "UAE market knowledge", text: "Solutions shaped to how businesses in the UAE operate and are regulated.", icon: "target" },
+    { title: "Enterprise-grade delivery", text: "Practices that stand up in large, regulated environments.", icon: "layers" },
+    { title: "Tailored at every stage", text: "Shaped to your processes, systems, and budget.", icon: "cog" },
+    { title: "Scales without overhead", text: "An elastic platform that grows as your business evolves.", icon: "gauge" },
+    { title: "Dedicated support", text: "Proactive monitoring, optimisation, and disaster recovery.", icon: "clock" },
+  ],
+};
+
+export const UAE_ENGAGEMENTS: Block = {
+  kind: "cases",
+  id: "engagements",
+  tone: "tint",
+  label: "Typical engagement",
+  tag: "Typical engagements",
+  icon: "chart",
+  heading: "What a typical engagement looks like.",
+  lead: "Three patterns we see with UAE businesses, and how we approach them.",
+  items: [
+    { client: "A retail group", text: "Stock ran out in peak seasons because inventory updates were unmanaged. We migrated the point-of-sale data, integrated SAP through secure APIs, and added role-based access in line with regional governance." },
+    { client: "An insurance provider", text: "Manual claims took days, with gaps in fraud detection. We added NLP document classification, moved data to the cloud, and built an AI tool for claims triage and underwriting." },
+    { client: "A heavy equipment manufacturer", text: "Frequent machine breakdowns delayed production. We built predictive maintenance models on a hybrid cloud with Azure IoT Hub and a Power BI dashboard." },
+  ],
+};
+
+export const UAE_INDUSTRIES: Block = {
+  kind: "cards",
+  id: "industries",
+  style: "icon",
+  tone: "white",
+  tag: "Industries",
+  icon: "target",
+  heading: "Solutions for your industry.",
+  cols: 3,
+  items: [
+    { title: "Healthcare", text: "Modern systems for hospitals, pharma, health insurers, and medical manufacturers, aligned with DHA, DOH Abu Dhabi, and MOH requirements.", icon: "eye", href: asset("/healthcare/") },
+    { title: "Banking and finance", text: "Document processing, data governance, and secure infrastructure for lenders, banks, investors, and insurers.", icon: "shield", href: asset("/financial-services/") },
+    { title: "Oil and gas", text: "High-performing, secure infrastructure for upstream, midstream, and downstream operations across the Emirates.", icon: "pipe", href: asset("/industry/oil-gas/") },
+    { title: "Retail and e-commerce", text: "Real-time inventory, high-traffic orders, demand forecasts, and personal marketing with Business Central and AI.", icon: "chart" },
+    { title: "Manufacturing", text: "Better coordination, daily workflows, and production lines with cloud, AI, and Business Central.", icon: "cog", href: asset("/manufacturing/") },
+    { title: "IT and SaaS", text: "Secure, scalable infrastructure, DevOps, and data engineering for software and digital companies.", icon: "code", href: asset("/azure-devops/") },
+  ],
+};
+
+export const UAE_FAQS: ServicePage["faqs"] = [
+  { q: "Are your solutions compliance-ready for UAE businesses?", a: "Yes. We follow standard practice for UAE businesses to make compliance audits easier, including FTA, WPS, MOHRE, PDPL, and GDPR requirements." },
+  { q: "Will new technology disrupt our workflow?", a: "No. We develop and roll out in agile stages alongside your work, without serious downtime." },
+  { q: "What support do we get after modernisation?", a: "A dedicated technical and project team monitors operations and security, tunes performance, and helps your people adopt the new ways of working." },
+];
+
 /* ───────────────────────────── By region ───────────────────────────── */
 
-export const HOME_HERO = local<HomeHero>({ us: AU_HERO, in: IN_HERO });
-export const HOME_ABOUT = local<HomeAbout>({ us: AU_ABOUT, in: IN_ABOUT });
+export const HOME_HERO = local<HomeHero>({ us: AU_HERO, in: IN_HERO, uae: UAE_HERO });
+export const HOME_ABOUT = local<HomeAbout>({ us: AU_ABOUT, in: IN_ABOUT, uae: UAE_ABOUT });

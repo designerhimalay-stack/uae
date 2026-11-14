@@ -47,7 +47,7 @@ export const CATEGORIES: Record<CategoryId, Category> = {
     id: "industries",
     name: "Industries",
     short: "Industries",
-    intro: local({ us: "Technology for the three industries we specialise in.", in: "Technology for the industries we serve across India." }),
+    intro: local({ us: "Technology for the three industries we specialise in.", in: "Technology for the industries we serve across India.", uae: "Technology for the industries we serve across the UAE." }),
   },
   insurance: {
     id: "insurance",
