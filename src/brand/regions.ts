@@ -66,6 +66,14 @@ export const REGIONS: Record<RegionId, RegionConfig> = {
     postal: HQ_POSTAL,
     badges: [ALLEN_CHAMBER],
     areaServed: ["United States", "Mexico"],
+    photos: {
+      "/images/photos/hero-developer.jpg": { src: "/images/photos/regions/us/hero.jpg", alt: "", position: "62% 50%" },
+      "/images/photos/hero-developer-2.jpg": { src: "/images/photos/regions/us/about.jpg", alt: "An AptaCloud engineer writing code at a desktop monitor", position: "60% 45%" },
+      "/images/photos/d365-implementation.jpg": { src: "/images/photos/regions/us/team.jpg", alt: "A project team reviewing a plan at a flipchart", position: "55% 50%" },
+      "/images/photos/d365-optimization.jpg": { src: "/images/photos/regions/us/room.jpg", alt: "", position: "60% 50%" },
+      "/images/photos/workshop-analysis.jpg": { src: "/images/photos/regions/us/workshop-analysis.jpg", alt: "A consultant presenting at a whiteboard to a team around a boardroom table", position: "50% 50%" },
+      "/images/photos/workshop-hands-on.jpg": { src: "/images/photos/regions/us/workshop-hands-on.jpg", alt: "Two colleagues working through a live example on a laptop", position: "45% 45%" },
+    },
     card: {
       place: "Richardson, Texas",
       text: "Our headquarters, with delivery teams in the United States and Mexico.",
@@ -115,6 +123,14 @@ export const REGIONS: Record<RegionId, RegionConfig> = {
     postal: { streetAddress: "Platinum Tower, Unit 1024", addressLocality: "Gurugram", addressRegion: "Haryana", postalCode: "122018", addressCountry: "IN" },
     badges: [],
     areaServed: ["India"],
+    photos: {
+      "/images/photos/hero-developer.jpg": { src: "/images/photos/regions/in/hero.jpg", alt: "", position: "60% 55%" },
+      "/images/photos/hero-developer-2.jpg": { src: "/images/photos/regions/in/about.jpg", alt: "An AptaCloud engineer working across two monitors", position: "40% 45%" },
+      "/images/photos/d365-implementation.jpg": { src: "/images/photos/regions/in/team.jpg", alt: "Colleagues gathered round a laptop, planning the next step together", position: "72% 45%" },
+      "/images/photos/d365-optimization.jpg": { src: "/images/photos/regions/in/room.jpg", alt: "", position: "45% 50%" },
+      "/images/photos/workshop-analysis.jpg": { src: "/images/photos/regions/in/workshop-analysis.jpg", alt: "A consultant leading a workshop with a team in a bright office", position: "65% 50%" },
+      "/images/photos/workshop-hands-on.jpg": { src: "/images/photos/regions/in/workshop-hands-on.jpg", alt: "Two colleagues smiling while working through an example on a laptop", position: "50% 40%" },
+    },
     card: {
       place: "Gurugram and Pune",
       text: "Engineering and delivery teams in two Indian offices.",
