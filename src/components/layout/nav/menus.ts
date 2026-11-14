@@ -5,6 +5,7 @@
 //   promo  — a highlighted card: logo, eyebrow, title, copy and a CTA
 
 import { BRAND, asset, home } from "@/brand/brand";
+import { local } from "@/brand/regions";
 
 /** Link to a service page on this site (slugs keep the live site's US spelling).
  *  Labels mirror src/data/services; kept here so the nav island stays light. */
@@ -57,7 +58,7 @@ export const MENUS: NavMenu[] = [
           eyebrow: "Flagship Programme",
           title: "AI Assessment Workshop",
           text: "A tailored workshop that shows where AI can automate your operations and what it should return.",
-          cta: { label: "See what the workshop covers", href: home("#workshop") },
+          cta: local({ us: { label: "See what the workshop covers", href: home("#workshop") }, in: { label: "See how we work", href: home("#process") } }),
         },
       },
       {
@@ -70,6 +71,7 @@ export const MENUS: NavMenu[] = [
             svc("Data Engineering", "data-engineering"),
             svc("Data Warehousing", "data-warehousing"),
             svc("Data Visualisation", "data-visualization"),
+            ...local({ us: [], in: [svc("Microsoft Fabric", "microsoft-fabric")] }),
           ],
         },
         promo: {
@@ -113,6 +115,7 @@ export const MENUS: NavMenu[] = [
             svc("Microsoft Teams", "services/microsoft/teams"),
             svc("Microsoft Copilot", "services/microsoft/copilot-studio"),
             svc("Microsoft Dynamics 365", "services/microsoft/microsoft-dynamics-365"),
+            ...local({ us: [], in: [svc("Dynamics 365 Business Central", "microsoft-dynamics-business-central")] }),
             svc("Microsoft Power BI", "services/microsoft/power-bi"),
             svc("Power Platform", "services/microsoft/power-platform"),
             svc("Microsoft SharePoint", "services/microsoft/sharepoint"),
@@ -142,6 +145,7 @@ export const MENUS: NavMenu[] = [
             svc("Azure Optimisation", "azure-optimization"),
             svc("Azure Managed Services", "azure-managed-services"),
             svc("Azure Security", "azure-security"),
+            ...local({ us: [], in: [svc("Azure DevOps", "azure-devops")] }),
           ],
         },
         promo: {
@@ -150,7 +154,7 @@ export const MENUS: NavMenu[] = [
           eyebrow: "Cloud Excellence",
           title: "Cloud That Costs What It Should",
           text: "Run more on Azure for less, with costs you can explain to finance.",
-          cta: { label: "Get your cloud cost review", href: home("#azure") },
+          cta: { label: "Get your cloud cost review", href: local({ us: home("#azure"), in: asset("/azure-optimization/") }) },
         },
       },
       {
@@ -216,6 +220,17 @@ export const MENUS: NavMenu[] = [
           svc("Field Services", "industry/engineering-and-construction/field-services"),
         ],
       },
+      // India's live site also serves these sectors.
+      ...local({
+        us: [],
+        in: [
+          {
+            title: "More industries",
+            text: "Cloud, data, and AI for healthcare, financial services, and manufacturing.",
+            links: [svc("Healthcare", "healthcare"), svc("Banking & Financial Services", "banking-financial-services"), svc("Manufacturing", "manufacturing")],
+          },
+        ],
+      }),
     ],
   },
   {

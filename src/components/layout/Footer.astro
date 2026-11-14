@@ -7,6 +7,7 @@
 import styles from "./Footer.module.css";
 import { BRAND, asset, home } from "../../brand/brand";
 import { SOCIAL_PATHS } from "../../brand/social";
+import { local } from "../../brand/regions";
 import { Logo, Wordmark } from "../../brand/Logo";
 import { Button } from "../ui/Button";
 
@@ -21,7 +22,7 @@ const COLUMNS: { title: string; links: FooterLink[] }[] = [
     links: [
       { label: "Home", href: home() },
       { label: "About us", href: asset("/about-us/") },
-      { label: "AI Assessment Workshop", href: home("#workshop") },
+      local({ us: { label: "AI Assessment Workshop", href: home("#workshop") }, in: { label: "How we work", href: home("#process") } }),
       { label: "Partners", href: home("#partners") },
     ],
   },
@@ -32,7 +33,7 @@ const COLUMNS: { title: string; links: FooterLink[] }[] = [
       { label: "Data Engineering", href: asset("/data-engineering/") },
       { label: "Application Modernisation", href: asset("/application-modernization/") },
       { label: "Dynamics 365", href: home("#dynamics") },
-      { label: "Microsoft Azure", href: home("#azure") },
+      { label: "Microsoft Azure", href: local({ us: home("#azure"), in: asset("/azure-migration/") }) },
     ],
   },
   {

@@ -8,8 +8,47 @@
 
 import type { ServiceLayout } from "../types";
 import { COMPANY_STATS } from "./shared";
+import { local } from "@/brand/regions";
 
 const I = "/images/photos/industry";
+
+// ── Regulators and national laws by region ───────────────────────────────
+// The live pages named US regulators only. Each regional site names its own;
+// international standards (ISO, SOC 2, PCI DSS, ACORD, NIST, ISA/IEC 62443,
+// API, ASME, NFPA) stay everywhere. `local()` falls back to the US wording.
+const INS_CHIPS_INTL = {
+  au: ["APRA CPS 234 (information security)", "APRA CPS 230 (operational risk)", "Privacy Act 1988 and the APPs", "Notifiable Data Breaches scheme", "General Insurance Code of Practice", "ASD Essential Eight", "SOC 2", "ISO 27001", "ACORD standards", "PCI DSS (premium payments)", "NIST CSF", "CIS Controls"],
+  in: ["IRDAI information and cyber security guidelines", "IRDAI outsourcing regulations", "DPDP Act, 2023", "CERT-In directions", "SOC 2", "ISO 27001", "ACORD standards", "PCI DSS (premium payments)", "NIST CSF", "CIS Controls"],
+  uae: ["CBUAE insurance regulations", "UAE PDPL", "UAE Information Assurance Regulation", "DIFC Data Protection Law", "ADGM Data Protection Regulations", "SOC 2", "ISO 27001", "ACORD standards", "PCI DSS (premium payments)", "NIST CSF", "CIS Controls"],
+};
+/** Chip icon by what the item is: privacy laws, security standards, payments, data standards, reporting, else a rule book. */
+const insIcon = (t: string) =>
+  /privacy|PDPL|DPDP|Data Protection|CCPA|GLBA/i.test(t) ? "eye"
+  : /PCI/.test(t) ? "db"
+  : /ACORD/.test(t) ? "layers"
+  : /report|Notifiable/i.test(t) ? "chart"
+  : /CIS Controls/.test(t) ? "search"
+  : /SOC 2|ISO|NIST|CPS 234|Information|Essential|cyber|CERT-In/i.test(t) ? "shield"
+  : "doc";
+const INS_REGULATOR = local({ us: "NAIC", au: "APRA", in: "IRDAI", uae: "CBUAE" });
+const INS_REPORTS = local({ us: "NAIC and state regulatory", au: "APRA and ASIC", in: "IRDAI", uae: "CBUAE" });
+/** "assemble X reports by hand" (oil and gas). */
+const OG_REPORTS = local({ us: "PHMSA and EPA", au: "regulator and NGER", in: "PNGRB and pollution control board", uae: "regulatory and environmental" });
+/** "Teams assemble X, and client compliance reports". */
+const OG_SAFETY_ENV = local({ us: "OSHA, EPA", au: "WHS, environmental", in: "OISD, pollution control board", uae: "OSHAD, environmental" });
+const OG_ENVIRONMENT = local({
+  us: "EPA regulations, the Clean Water Act, the Clean Air Act, and SPCC.",
+  au: "State environment protection licences and NGER greenhouse and energy reporting.",
+  in: "The Environment (Protection) Act, 1986, CPCB emission norms, and state pollution control board consents.",
+  uae: "Federal Law No. 24 of 1999 on environmental protection, and emirate environment agency permits.",
+});
+const CONSTRUCTION_SAFETY = local({
+  us: "OSHA construction safety standards",
+  au: "Work health and safety laws, the National Construction Code",
+  in: "The BOCW Act, 1996, the National Building Code of India",
+  uae: "OSHAD in Abu Dhabi, the Dubai Building Code",
+});
+const OG_COMMON_CHIPS = ["Microsoft cloud security benchmark", "Zero Trust", "Role-based access", "Encryption, audit logging, and data lineage"];
 
 export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
   /* ─────────────────────────── Insurance hub ─────────────────────────── */
@@ -498,7 +537,7 @@ export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
         heading: "Secure, compliant construction environments.",
         cols: 4,
         items: [
-          { title: "Safety and industry standards", text: "OSHA construction safety standards, ISO 45001 occupational health and safety, and ISO 9001 quality management.", icon: "shield" },
+          { title: "Safety and industry standards", text: `${CONSTRUCTION_SAFETY}, ISO 45001 occupational health and safety, and ISO 9001 quality management.`, icon: "shield" },
           { title: "Information management", text: "ISO 19650 BIM information management and common data environment (CDE) standards.", icon: "doc" },
           { title: "Cybersecurity and data protection", text: "The NIST Cybersecurity Framework, ISO 27001 information security, and Zero Trust architecture.", icon: "eye" },
           { title: "Cloud governance", text: "The Microsoft cloud security benchmark, role-based access, encryption, audit logging, and governance policies.", icon: "cloud" },
@@ -594,7 +633,7 @@ export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
         lead: "From cloud modernisation to AI automation, we help carriers solve complex operational problems with the right technology.",
         cols: 4,
         items: [
-          { title: "Azure cloud", text: "Secure, scalable Azure architecture for modern policy administration, API-first and highly available, ready for SOC 2 and NAIC requirements.", mark: "azure" },
+          { title: "Azure cloud", text: `Secure, scalable Azure architecture for modern policy administration, API-first and highly available, ready for SOC 2 and ${INS_REGULATOR} requirements.`, mark: "azure" },
           { title: "Dynamics 365", text: "Policyholder, broker, and service interactions in one place, for better engagement and retention.", mark: "dynamics" },
           { title: "AI consulting", text: "AI for underwriting risk analytics, fraud detection, document processing, and claims support.", icon: "spark" },
           { title: "Agentic AI", text: "AI agents that validate documents, route first notice of loss, and automate the claims lifecycle, with human oversight.", icon: "agent" },
@@ -671,7 +710,7 @@ export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
         photo: { src: `${I}/carriers-security.jpg`, alt: "Insurance analysts monitoring security dashboards in an operations room", position: "45% 40%" },
         chips: {
           heading: "Regulations and standards we design for",
-          items: ["NAIC model laws", "SOC 2", "GLBA", "NYDFS 23 NYCRR 500", "HIPAA (health insurers)", "CCPA and CPRA", "State insurance reporting", "ACORD standards", "PCI DSS (premium payments)", "NIST CSF", "CIS Controls", "IRS Publication 1075"],
+          items: local({ us: ["NAIC model laws", "SOC 2", "GLBA", "NYDFS 23 NYCRR 500", "HIPAA (health insurers)", "CCPA and CPRA", "State insurance reporting", "ACORD standards", "PCI DSS (premium payments)", "NIST CSF", "CIS Controls", "IRS Publication 1075"], ...INS_CHIPS_INTL }),
         },
       },
       {
@@ -716,7 +755,7 @@ export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
       { q: "How is AI used in underwriting and claims?", a: "Mainly for fraud detection, claims adjudication, and automated underwriting triage. It improves risk analytics, reduces manual analysis, and speeds decisions on high-volume business." },
       { q: "How do carriers make real-time underwriting and claims decisions?", a: "Cloud infrastructure, a unified data layer, and AI models feed data in real time, which supports dynamic pricing, claims automation, and real-time underwriting." },
       { q: "Which policy administration platforms do you work with?", a: "Guidewire, Duck Creek, Ingenium, and DXC Assure, which carriers use for policy, billing, and claims management." },
-      { q: "How does the cloud improve compliance and reporting?", a: "Centralised data, auditing, and storage make NAIC and state regulatory reports more accurate, with far less manual reconciliation." },
+      { q: "How does the cloud improve compliance and reporting?", a: `Centralised data, auditing, and storage make ${INS_REPORTS} reports more accurate, with far less manual reconciliation.` },
       { q: "What do modernisation and AI deliver for carriers?", a: "Lower operating costs, loss ratios, and processing times, with faster, data-driven decisions and a better customer experience." },
     ],
   },
@@ -827,18 +866,12 @@ export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
         icon: "shield",
         heading: "Security and compliance.",
         lead: "Every MGA solution is designed around the regulations and standards you work under.",
-        items: [
-          { title: "NAIC model laws", icon: "doc" },
-          { title: "SOC 2", icon: "shield" },
-          { title: "GLBA", icon: "eye" },
-          { title: "NYDFS 23 NYCRR 500", icon: "doc" },
-          { title: "CCPA and CPRA", icon: "team" },
-          { title: "State insurance reporting", icon: "chart" },
-          { title: "ACORD standards", icon: "layers" },
-          { title: "PCI DSS (premium payments)", icon: "db" },
-          { title: "NIST CSF", icon: "shield" },
-          { title: "CIS Controls", icon: "search" },
-        ],
+        items: local({
+          us: ["NAIC model laws", "SOC 2", "GLBA", "NYDFS 23 NYCRR 500", "CCPA and CPRA", "State insurance reporting", "ACORD standards", "PCI DSS (premium payments)", "NIST CSF", "CIS Controls"],
+          ...INS_CHIPS_INTL,
+        })
+          .slice(0, 10)
+          .map((title) => ({ title, icon: insIcon(title) })),
       },
       {
         kind: "banner",
@@ -992,7 +1025,7 @@ export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
         photo: { src: `${I}/tpa-security.jpg`, alt: "A digital shield protecting data, over a person working at a keyboard", position: "50% 45%" },
         chips: {
           heading: "Regulations and standards we design for",
-          items: ["NAIC model laws", "SOC 2", "GLBA", "NYDFS 23 NYCRR 500", "HIPAA (health and workers' compensation claims)", "CCPA and CPRA", "State insurance reporting", "ACORD standards", "PCI DSS (payments)", "NIST CSF", "CIS Controls"],
+          items: local({ us: ["NAIC model laws", "SOC 2", "GLBA", "NYDFS 23 NYCRR 500", "HIPAA (health and workers' compensation claims)", "CCPA and CPRA", "State insurance reporting", "ACORD standards", "PCI DSS (payments)", "NIST CSF", "CIS Controls"], ...INS_CHIPS_INTL }),
         },
       },
       {
@@ -1148,7 +1181,7 @@ export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
         photo: { src: `${I}/agents-security.jpg`, alt: "An agency specialist working securely at a laptop and monitor", position: "45% 40%" },
         chips: {
           heading: "Regulations and standards we design for",
-          items: ["SOC 2", "GLBA", "CCPA and CPRA", "NAIC model laws", "ACORD standards", "PCI DSS (payments)", "NIST CSF", "CIS Controls", "Microsoft security best practice"],
+          items: local({ us: ["SOC 2", "GLBA", "CCPA and CPRA", "NAIC model laws", "ACORD standards", "PCI DSS (payments)", "NIST CSF", "CIS Controls", "Microsoft security best practice"], ...INS_CHIPS_INTL }),
         },
       },
       {
@@ -1304,9 +1337,31 @@ export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
         heading: "Regulatory compliance built into every solution.",
         cols: 3,
         items: [
-          { title: "Pipeline and transportation", text: "PHMSA pipeline safety regulations (49 CFR Parts 190 to 199).", icon: "pipe" },
-          { title: "Environmental compliance", text: "EPA regulations, the Clean Air Act, the Clean Water Act, SPCC, and the Greenhouse Gas Reporting Program.", icon: "cloud" },
-          { title: "Offshore operations", text: "BOEM and BSEE requirements.", icon: "target" },
+          {
+            title: "Pipeline and transportation",
+            text: local({
+              us: "PHMSA pipeline safety regulations (49 CFR Parts 190 to 199).",
+              au: "AS 2885 pipeline standards and state pipeline safety regulations.",
+              in: "PNGRB technical standards and safety regulations, and OISD standards.",
+              uae: "Federal and emirate pipeline safety requirements, built on ASME B31.4 and B31.8.",
+            }),
+            icon: "pipe",
+          },
+          {
+            title: "Environmental compliance",
+            text: local({ us: "EPA regulations, the Clean Air Act, the Clean Water Act, SPCC, and the Greenhouse Gas Reporting Program.", au: OG_ENVIRONMENT, in: OG_ENVIRONMENT, uae: OG_ENVIRONMENT }),
+            icon: "cloud",
+          },
+          {
+            title: "Offshore operations",
+            text: local({
+              us: "BOEM and BSEE requirements.",
+              au: "NOPSEMA offshore safety and environmental requirements.",
+              in: "DGH requirements and OISD offshore safety standards.",
+              uae: "Offshore health, safety, and environment requirements, ISO 45001, and ISO 14001.",
+            }),
+            icon: "target",
+          },
           { title: "Industrial cybersecurity", text: "The NIST Cybersecurity Framework, NIST SP 800-82 for control systems, and ISA/IEC 62443.", icon: "shield" },
           { title: "Cloud security and governance", text: "Azure security best practice, Zero Trust, role-based access, encryption at rest and in transit, data lineage, and audit logging.", icon: "eye" },
         ],
@@ -1329,7 +1384,7 @@ export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
         items: [
           {
             client: "Large multi-site operators",
-            text: "Operators often run SCADA and EAM in isolation, react to equipment failures, and assemble PHMSA and EPA reports by hand. We connect SCADA, EAM, and GIS into one Azure data layer for one asset class first, then add predictive maintenance models and dashboards.",
+            text: `Operators often run SCADA and EAM in isolation, react to equipment failures, and assemble ${OG_REPORTS} reports by hand. We connect SCADA, EAM, and GIS into one Azure data layer for one asset class first, then add predictive maintenance models and dashboards.`,
             points: ["Less unplanned downtime","Real-time asset visibility","Faster compliance reporting"],
           },
         ],
@@ -1465,7 +1520,7 @@ export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
           { title: "SCADA and historians", text: "AVEVA, Siemens WinCC, and the OSIsoft PI System.", icon: "chart" },
           { title: "Asset management and GIS", text: "IBM Maximo, SAP PM, and Esri ArcGIS.", icon: "db" },
           { title: "Microsoft platform", text: "Azure, Data Lake, Synapse, Azure AI, Event Hubs, Power BI, and Dynamics 365.", mark: "azure" },
-          { title: "Secure, audit-ready data", text: "Built to API RP 54, RP 75, Spec Q2, and Std 65, OSHA, BSEE, BOEM, EPA, PHMSA, NIST CSF, ISA/IEC 62443, and ISO 27001.", icon: "shield" },
+          { title: "Secure, audit-ready data", text: `Built to API RP 54, RP 75, Spec Q2, and Std 65, ${local({ us: "OSHA, BSEE, BOEM, EPA, PHMSA", au: "WHS laws, NOPSEMA", in: "OISD, DGH, PNGRB", uae: "OSHAD, ISO 45001" })}, NIST CSF, ISA/IEC 62443, and ISO 27001.`, icon: "shield" },
         ],
       },
       {
@@ -1552,7 +1607,7 @@ export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
           { title: "Disconnected systems delay maintenance decisions", text: "SCADA, GIS, EAM, ILI, corrosion monitoring, and inspection platforms each work alone, so nobody sees the whole pipeline.", icon: "link" },
           { title: "Reactive maintenance raises integrity risk", text: "Without real-time monitoring, corrosion, leaks, and pressure anomalies go unnoticed until they affect operations.", icon: "gauge" },
           { title: "Fragmented asset data hides performance", text: "Inspection reports, GIS data, telemetry, and maintenance records sit in different systems.", icon: "db" },
-          { title: "Manual compliance makes reporting harder", text: "Teams assemble records from several client platforms to meet PHMSA, EPA, and integrity reporting.", icon: "doc" },
+          { title: "Manual compliance makes reporting harder", text: `Teams assemble records from several client platforms to meet ${local({ us: "PHMSA, EPA", au: "regulator, NGER", in: "PNGRB, pollution control board", uae: "regulatory, environmental" })}, and integrity reporting.`, icon: "doc" },
         ],
       },
       {
@@ -1667,8 +1722,12 @@ export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
         heading: "Secure, audit-ready pipeline maintenance systems.",
         cols: 4,
         items: [
-          { title: "Pipeline safety and integrity", text: "PHMSA regulations (49 CFR Parts 190 to 199), API RP 1160, API RP 1173, ASME B31.4, and ASME B31.8.", icon: "pipe" },
-          { title: "Environmental compliance", text: "EPA regulations, the Clean Water Act, the Clean Air Act, and SPCC.", icon: "cloud" },
+          {
+            title: "Pipeline safety and integrity",
+            text: `${local({ us: "PHMSA regulations (49 CFR Parts 190 to 199)", au: "AS 2885", in: "PNGRB technical standards, OISD standards", uae: "Federal and emirate safety requirements" })}, API RP 1160, API RP 1173, ASME B31.4, and ASME B31.8.`,
+            icon: "pipe",
+          },
+          { title: "Environmental compliance", text: OG_ENVIRONMENT, icon: "cloud" },
           { title: "Industrial cybersecurity", text: "The NIST Cybersecurity Framework, NIST SP 800-82, and ISA/IEC 62443.", icon: "shield" },
           { title: "Cloud security and governance", text: "Azure security best practice, Zero Trust, role-based access, encryption, data lineage, and audit logging.", icon: "eye" },
         ],
@@ -1712,7 +1771,7 @@ export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
           {
             client: "Pipeline integrity and inspection firms",
             text: "Integrity and compression service teams often work from fixed schedules while SCADA data, ILI results, and inspection logs sit apart. We join them on one Azure data platform for a single pipeline segment first, then add models that rank corrosion and leak risk.",
-            points: ["Crews sent where the risk is","Faster incident detection","Faster PHMSA and EPA reporting"],
+            points: ["Crews sent where the risk is","Faster incident detection",`Faster ${OG_REPORTS} reporting`],
           },
         ],
       },
@@ -1754,7 +1813,7 @@ export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
         cols: 4,
         items: [
           { title: "Inspection data scattered across client sites", text: "Each refinery client keeps inspection, NDT, and maintenance records in its own systems and formats.", icon: "link" },
-          { title: "Compliance reports rebuilt by hand", text: "Teams assemble OSHA, EPA, and client compliance reports from spreadsheets for every audit.", icon: "doc" },
+          { title: "Compliance reports rebuilt by hand", text: `Teams assemble ${OG_SAFETY_ENV}, and client compliance reports from spreadsheets for every audit.`, icon: "doc" },
           { title: "Turnarounds coordinated by email", text: "Shutdown schedules, contractor crews, and inspection scopes sit in separate tools.", icon: "clock" },
           { title: "Risks spotted too late", text: "Without connected data, recurring defects and safety risks across facilities stay hidden.", icon: "eye" },
         ],
@@ -1873,7 +1932,12 @@ export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
         photo: { src: `${I}/refining-leaders.jpg`, alt: "A refinery manager reviewing process dashboards in an operations room", position: "40% 35%" },
         chips: {
           heading: "Standards and regulations we design for",
-          items: ["OSHA Process Safety Management", "EPA Risk Management Program", "API Recommended Practices", "NFPA standards", "Clean Air Act", "Clean Water Act", "EPA emissions reporting", "SPCC", "NIST CSF", "NIST SP 800-82", "ISA/IEC 62443", "Microsoft cloud security benchmark", "Zero Trust", "Role-based access", "Encryption, audit logging, and data lineage"],
+          items: local({
+            us: ["OSHA Process Safety Management", "EPA Risk Management Program", "API Recommended Practices", "NFPA standards", "Clean Air Act", "Clean Water Act", "EPA emissions reporting", "SPCC", "NIST CSF", "NIST SP 800-82", "ISA/IEC 62443", ...OG_COMMON_CHIPS],
+            au: ["WHS major hazard facility regulations", "NGER reporting", "State environment protection licences", "SOCI Act critical infrastructure rules", "AESCSF", "API Recommended Practices", "NFPA standards", "NIST CSF", "ISA/IEC 62443", ...OG_COMMON_CHIPS],
+            in: ["OISD standards", "PESO licensing", "PNGRB regulations", "CPCB emission norms", "The Factories Act, 1948", "CERT-In directions", "API Recommended Practices", "NIST CSF", "ISA/IEC 62443", ...OG_COMMON_CHIPS],
+            uae: ["OSHAD in Abu Dhabi", "Federal environmental protection law", "UAE Information Assurance Regulation", "API Recommended Practices", "NFPA standards", "ISO 45001", "ISO 14001", "NIST CSF", "ISA/IEC 62443", ...OG_COMMON_CHIPS],
+          }),
         },
       },
       {
@@ -1937,7 +2001,7 @@ export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
       { q: "Can you connect to a refinery's own control and historian systems?", a: "Yes. We integrate with DCS, SCADA, historians such as the AVEVA PI System, and maintenance systems such as IBM Maximo and SAP PM, read-only where the client requires it." },
       { q: "How does AI help inspection and turnaround firms?", a: "AI flags compliance and safety risks earlier from unified data, reads inspection reports to extract findings, and helps forecast turnaround schedules from past work." },
       { q: "Which refinery and enterprise platforms can you integrate?", a: "Microsoft Azure, Dynamics 365, and Power BI, plus Honeywell Experion, Emerson DeltaV, Yokogawa, ABB Ability, the AVEVA PI System, IBM Maximo, SAP PM, and SAP S/4HANA." },
-      { q: "How do you produce audit-ready compliance reports?", a: "We build one governed reporting layer with data lineage and audit logging, so OSHA, EPA, and client reports all come from the same source." },
+      { q: "How do you produce audit-ready compliance reports?", a: `We build one governed reporting layer with data lineage and audit logging, so ${OG_SAFETY_ENV}, and client reports all come from the same source.` },
       { q: "Do we have to replace our inspection software?", a: "No. We connect and extend the tools you use today, and modernise only the ones that hold you back." },
     ],
   },
@@ -2077,7 +2141,7 @@ export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
         heading: "Secure and compliant construction operations.",
         cols: 4,
         items: [
-          { title: "Safety and quality", text: "OSHA construction standards, ISO 45001 occupational health and safety, and ISO 9001 quality management.", icon: "shield" },
+          { title: "Safety and quality", text: `${CONSTRUCTION_SAFETY}, ISO 45001 occupational health and safety, and ISO 9001 quality management.`, icon: "shield" },
           { title: "Project information", text: "ISO 19650 BIM information management and common data environment best practice.", icon: "layers" },
           { title: "Cybersecurity and data protection", text: "The NIST Cybersecurity Framework, ISO 27001, and Zero Trust architecture.", icon: "eye" },
           { title: "Cloud governance", text: "Azure security best practice, role-based access, encryption, audit logging, and data governance policies.", icon: "cloud" },

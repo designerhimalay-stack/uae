@@ -160,7 +160,7 @@ export function Card({ item, style, i }: { item: BlockItem; style: NonNullable<C
       )}
       {item.href && (
         <a href={item.href} className={s.cardLink}>
-          Explore {item.title}
+          Explore<span className={s.linkName}> {item.title}</span>
           <ArrowUpRight />
         </a>
       )}

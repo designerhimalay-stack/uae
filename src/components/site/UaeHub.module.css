@@ -206,17 +206,16 @@
   .section { padding: 64px 16px; }
   .container { gap: 40px; }
   .bento { grid-template-columns: minmax(0, 1fr); }
-  .photoCard { border-radius: 20px; padding: 6px; }
-  .photoFrame { aspect-ratio: 16 / 10; border-radius: 14px; flex: none; min-height: 0; }
+  .photoFrame { aspect-ratio: 16 / 10; flex: none; min-height: 0; }
   .regions { padding: 10px 8px 4px; }
   .regionList { padding: 2px 14px; }
   .region { padding: 10px 0; }
   .regionName { font-size: 15px; }
   .regionCity { font-size: 14px; }
-  .rule { border-radius: 20px; gap: 20px; min-height: 0; padding: 16px; }
+  .rule { gap: 20px; min-height: 0; padding: 16px; }
   .code { font-size: 13px; padding: 5px 10px; }
-  .ruleTitle { font-size: 16px; }
-  .text { font-size: 13px; }
+  .ruleTitle { font-size: 18px; }
+  .text { font-size: 14px; }
 }
 
 @media (max-width: 359.98px) {

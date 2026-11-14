@@ -8,7 +8,7 @@
 import { useMemo, useState } from "react";
 import { Photo } from "@/components/ui/Photo";
 import { Reveal } from "@/components/ui/Reveal";
-import { POSTS, postImage, postUrl, type Post } from "@/data/blog";
+import { INDEX_POSTS as POSTS, postImage, postUrl, type Post } from "@/data/blog";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight, Icon } from "../Icon";
 import { toneProps, type Tone } from "../tone";
@@ -23,6 +23,7 @@ const TOPICS: { id: string; label: string; test: (x: Post) => boolean }[] = [
   { id: "modernisation", label: "Modernisation", test: (x) => /moderni[sz]ation/i.test(x.category) && !/insurance/i.test(x.category) },
   { id: "microsoft", label: "Microsoft", test: (x) => /dynamics|sharepoint|microsoft 365/i.test(x.category) },
   { id: "azure", label: "Azure", test: (x) => /azure/i.test(x.category) },
+  { id: "data", label: "Data", test: (x) => /data|power bi/i.test(x.category) },
 ];
 
 const fmt = (iso: string) => new Date(`${iso}T00:00:00`).toLocaleDateString("en-AU", { day: "numeric", month: "long", year: "numeric" });
@@ -97,7 +98,7 @@ export function BlogIndex({ tone }: { tone: Tone }) {
 
         <div className={s.bar}>
           <div className={s.topics} role="group" aria-label="Filter by topic">
-            {[{ id: "all", label: "All" }, ...TOPICS].map((t) => (
+            {[{ id: "all", label: "All" }, ...TOPICS.filter((t) => POSTS.some(t.test))].map((t) => (
               <button key={t.id} type="button" aria-pressed={topic === t.id} className={cn(s.topic, topic === t.id && s.topicOn)} onClick={() => pick(t.id)}>
                 {t.label}
               </button>

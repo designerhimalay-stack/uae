@@ -6,6 +6,7 @@
 
 import { BRAND, PRIMARY_CTA, asset } from "@/brand/brand";
 import { localPhoto } from "@/brand/regions";
+import { HOME_HERO } from "@/data/home";
 
 // Backdrop: dark, subject on the right so the copy sits on shadow. Regions swap in their own.
 const HERO_PHOTO = localPhoto("/images/photos/hero-developer.jpg", "", "68% 50%");
@@ -63,15 +64,14 @@ export function Hero() {
           <div className={styles.space18} />
 
           <LineReveal as="h1" trigger="mount" startDelay={0.05} className={cn("t-display", styles.title)}>
-            {"Your path to"}
-            {"measurable"}
-            <span style={{ color: ACCENT }}>AI ROI.</span>
+            {HOME_HERO.lines.map((l) => l)}
+            <span style={{ color: ACCENT }}>{HOME_HERO.accent}</span>
           </LineReveal>
 
           <div className={styles.space22} />
 
           <Reveal trigger="mount" delay={0.15} duration={0.7} className={styles.lead}>
-            <p className="t-lead">{BRAND.valueProp}</p>
+            <p className="t-lead">{HOME_HERO.lead ?? BRAND.valueProp}</p>
           </Reveal>
 
           <div className={styles.space28} />
@@ -81,8 +81,8 @@ export function Hero() {
             <div className={styles.btnWrap}>
               <Button label={PRIMARY_CTA.label} href={PRIMARY_CTA.href} variant="primary" />
             </div>
-            <a href="#workshop" className={styles.textLink}>
-              See what the workshop covers
+            <a href={HOME_HERO.link.href} className={styles.textLink}>
+              {HOME_HERO.link.label}
               <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M4.5 11.5 11.5 4.5M5.5 4.5h6v6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
               </svg>

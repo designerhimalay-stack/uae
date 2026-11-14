@@ -3,6 +3,8 @@
 // itself stays on the live blog (https://aptacloud.com/blog/<slug>/).
 // Titles are the published titles, kept as written.
 
+import { local } from "@/brand/regions";
+
 export type Post = { slug: string; title: string; category: string; date: string };
 
 export const POSTS: Post[] = [
@@ -72,10 +74,28 @@ export const POSTS: Post[] = [
   { slug: "hidden-costs-poor-sharepoint-configuration", title: "The Hidden Costs of Poor SharePoint Configuration in Mid-Market Companies", category: "Microsoft SharePoint", date: "2025-12-19" },
 ];
 
-export const postUrl = (slug: string) => `https://aptacloud.com/blog/${slug}/`;
+/** India's own blog (aptacloud.com/in/blogs/), crawled 2026-11-14. Three posts had no feature image; they use the closest topic image. */
+export const IN_POSTS: Post[] = [
+  { slug: "generative-ai-use-cases-12-that-mid-sized-indian-companies-can-put-into-production", title: "Generative AI Use Cases: 12 That Mid-Sized Indian Companies Can Put Into Production", category: "Generative AI", date: "2026-11-12" },
+  { slug: "power-bi-dashboard-examples-10-dashboards-mid-sized-indian-companies-use", title: "Power BI Dashboard Examples: 10 Dashboards Mid-Sized Indian Companies Use", category: "Data & Analytics", date: "2026-11-04" },
+  { slug: "generative-ai-consulting-services-pilot-into-production", title: "Generative AI Consulting Services: Get a Pilot Into Production", category: "Generative AI", date: "2026-10-29" },
+  { slug: "sharepoint-vs-confluence-vs-google-drive-indian-enterprises-2026", title: "SharePoint vs Confluence vs Google Drive: India Guide", category: "Microsoft SharePoint", date: "2026-10-22" },
+  { slug: "legacy-systems-azure-ai-engaging-ai-consulting-firm-india", title: "From Legacy Systems to Azure AI: Guide", category: "AI Consulting", date: "2026-10-16" },
+  { slug: "power-automate-sharepoint-streamlining-operations-for-enterprises-6aa7d8ad", title: "Power Automate + SharePoint: Streamlining Operations for Enterprises", category: "Microsoft SharePoint", date: "2026-10-08" },
+  { slug: "ai-consulting-firm-vs-in-house-ai-team-roi-india", title: "AI Consulting Firm vs. In-House AI Team in India: ROI Comparison", category: "AI Consulting", date: "2026-09-25" },
+  { slug: "what-is-ai-consulting-guide-indian-businesses", title: "What Is AI Consulting? Guide for Indian Businesses", category: "AI Consulting", date: "2026-09-23" },
+  { slug: "top-ai-consulting-companies-india-how-to-choose", title: "Top AI Consulting Companies in India: How to Choose", category: "AI Consulting", date: "2026-09-17" },
+  { slug: "the-top-sharepoint-adoption-mistakes-cios-see-in-enterprises-30a3871c", title: "The Top SharePoint Adoption Mistakes CIOs See in Enterprises", category: "Microsoft SharePoint", date: "2026-09-11" },
+];
+
+/** The posts the blog index lists on this region's site. */
+export const INDEX_POSTS: Post[] = local({ us: POSTS, in: IN_POSTS });
+
+export const postUrl = (slug: string) =>
+  IN_POSTS.some((p) => p.slug === slug) ? `https://aptacloud.com/in/blogs/${slug}/` : `https://aptacloud.com/blog/${slug}/`;
 export const postImage = (slug: string) => `/images/blog/posts/${slug}.jpg`;
 export const getPost = (slug: string) => {
-  const p = POSTS.find((x) => x.slug === slug);
+  const p = POSTS.find((x) => x.slug === slug) ?? IN_POSTS.find((x) => x.slug === slug);
   if (!p) throw new Error(`Unknown post: ${slug}`);
   return p;
 };

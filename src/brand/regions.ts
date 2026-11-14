@@ -124,7 +124,7 @@ export const REGIONS: Record<RegionId, RegionConfig> = {
     badges: [],
     areaServed: ["India"],
     photos: {
-      "/images/photos/hero-developer.jpg": { src: "/images/photos/regions/in/hero.jpg", alt: "", position: "60% 55%" },
+      "/images/photos/hero-developer.jpg": { src: "/images/photos/regions/in/hero.jpg", alt: "", position: "62% 55%" },
       "/images/photos/hero-developer-2.jpg": { src: "/images/photos/regions/in/about.jpg", alt: "An AptaCloud engineer working across two monitors", position: "40% 45%" },
       "/images/photos/d365-implementation.jpg": { src: "/images/photos/regions/in/team.jpg", alt: "Colleagues gathered round a laptop, planning the next step together", position: "72% 45%" },
       "/images/photos/d365-optimization.jpg": { src: "/images/photos/regions/in/room.jpg", alt: "", position: "45% 50%" },
@@ -188,6 +188,9 @@ export const REGION = REGIONS[id];
 
 /** The production-preview origin all four sites share (GitHub Pages user site). */
 export const SITE_ORIGIN = "https://designerhimalay-stack.github.io";
+
+/** Region-specific content (regulators, laws): this region's value, else the US one. */
+export const local = <T,>(v: { us: T } & Partial<Record<RegionId, T>>): T => v[REGION.id] ?? v.us;
 
 /** The region's own photo for a shared slot, or the shared photo when it has none. */
 export const localPhoto = (src: string, alt: string, position?: string): LocalPhoto =>

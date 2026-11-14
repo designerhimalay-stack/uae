@@ -171,7 +171,10 @@ export function MegaPanel({ menu, id, open, onLink }: { menu: NavMenu; id: strin
 
   return (
     <div id={id} className={cn(s.panel, open && s.open)}>
-      <div className={s.grid}>{cells}</div>
+      {/* Column menus with four columns (India's Industries) sit four across; the rest stay three. */}
+      <div className={s.grid} style={menu.kind === "columns" && menu.columns.length + (menu.lead ? 1 : 0) > 3 ? { gridTemplateColumns: "repeat(4, minmax(0, 1fr))" } : undefined}>
+        {cells}
+      </div>
       <div className={s.footer}>
         <p className={s.footerText}>
           <span className={s.footerLead}>Built for</span>

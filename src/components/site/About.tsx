@@ -9,6 +9,7 @@ import { animate, motion, useInView, useScroll, useTransform, type MotionValue }
 import { Fragment, useEffect, useRef, useState } from "react";
 import { BRAND, asset } from "@/brand/brand";
 import { localPhoto } from "@/brand/regions";
+import { HOME_ABOUT } from "@/data/home";
 import { Reveal } from "@/components/ui/Reveal";
 import { SpreadGrid } from "@/components/ui/SpreadGrid";
 import { RollingText } from "@/components/ui/RollingText";
@@ -17,9 +18,7 @@ import s from "./About.module.css";
 import { ReadMore } from "@/components/ui/ReadMore";
 
 // Short value proposition (Brand Guidelines v2.0, 3.2), Australian spelling.
-const HEADING = "Your team has already started. We take it to production.";
-const LEAD =
-  "An AI pilot, a modernisation plan, a cloud migration: AptaCloud proves the value on your data with a proof of concept, then delivers in clear phases with senior Microsoft specialists, on the systems you already run.";
+const { heading: HEADING, lead: LEAD, photoText: PHOTO_TEXT, photoLink: PHOTO_LINK } = HOME_ABOUT;
 
 const ABOUT_PHOTO = localPhoto("/images/photos/hero-developer-2.jpg", `A ${BRAND.name} engineer reviewing code across two monitors`);
 
@@ -173,10 +172,10 @@ export function About() {
               />
               <span className={s.photoShade} aria-hidden="true" />
               <div className={s.photoContent}>
-                <p className={s.photoText}>See where AI pays off in your business first.</p>
-                {/* Points to the workshop section below (the hero already carries the primary CTA). */}
-                <a href="#workshop" className={cn("roll-host", s.photoButton)}>
-                  <RollingText text="How the assessment works" />
+                <p className={s.photoText}>{PHOTO_TEXT}</p>
+                {/* Points to a section below (the hero already carries the primary CTA). */}
+                <a href={PHOTO_LINK.href} className={cn("roll-host", s.photoButton)}>
+                  <RollingText text={PHOTO_LINK.label} />
                 </a>
               </div>
             </div>

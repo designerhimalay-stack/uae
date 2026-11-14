@@ -14,7 +14,12 @@ import { Dynamics } from "../components/site/Dynamics";
 import { GlobalPresence } from "../components/site/GlobalPresence";
 import { IndiaHub } from "../components/site/IndiaHub";
 import { UaeHub } from "../components/site/UaeHub";
-import { REGION } from "../brand/regions";
+import { REGION, local } from "../brand/regions";
+import { Cards } from "../components/service/blocks/Cards";
+import { Cases } from "../components/service/blocks/Cases";
+import { Split } from "../components/service/blocks/Split";
+import { Faq } from "../components/service/Faq";
+import { IN_AUDIENCE, IN_ENGAGEMENTS, IN_FAQS, IN_PROCESS, IN_SOLUTIONS, IN_WHY } from "../data/home";
 import { Hero } from "../components/site/Hero";
 import { Microsoft } from "../components/site/Microsoft";
 import { Partners } from "../components/site/Partners";
@@ -22,26 +27,57 @@ import { WhyWorkshop } from "../components/site/WhyWorkshop";
 import { Workshop } from "../components/site/Workshop";
 
 // No em dashes or superlatives in metadata either (Content Writing Guidelines 6.2).
-const title = `${BRAND.name} | Microsoft Cloud, Data, and AI Consultancy`;
-const description = "AptaCloud modernises the systems mid-sized insurance, oil and gas, and construction firms run on, and puts AI to work. Proven on your data first.";
+const META = local({
+  us: {
+    title: `${BRAND.name} | Microsoft Cloud, Data, and AI Consultancy`,
+    description: "AptaCloud modernises the systems mid-sized insurance, oil and gas, and construction firms run on, and puts AI to work. Proven on your data first.",
+  },
+  in: {
+    title: `${BRAND.name} India | Cloud and AI Transformation for Indian Businesses`,
+    description: "Cloud migration, AI consulting, SharePoint, data engineering, and legacy modernisation for Indian SMBs and enterprises, from teams in Gurugram and Pune.",
+  },
+});
+
+// India's home is rebuilt from its own live page (src/data/home.ts); the tone
+// rhythm runs grey → white → dark down the page.
+const india = REGION.id === "in";
 ---
 
-<Base title={title} description={description}>
+<Base title={META.title} description={META.description}>
   <Nav client:load />
   <ConstructionLines />
-  <main id="main" class="relative">
-    <Hero client:load />
-    <About client:visible />
-    <Workshop client:visible />
-    <Partners client:visible />
-    <WhyWorkshop client:visible />
-    <Dynamics client:visible />
-    <Microsoft client:visible />
-    <Azure client:visible />
-    {REGION.id === "us" && <GlobalPresence client:visible />}
-    {REGION.id === "in" && <IndiaHub client:visible />}
-    {REGION.id === "uae" && <UaeHub client:visible />}
-    <CTA client:idle />
-  </main>
+  {
+    india ? (
+      <main id="main" class="relative">
+        <Hero client:load />
+        <About client:visible />
+        <Cards client:visible block={IN_SOLUTIONS} tone="white" />
+        <Partners client:visible />
+        <Cards client:visible block={IN_WHY} tone="tint" />
+        <Dynamics client:visible />
+        <Microsoft client:visible />
+        <Cards client:visible block={IN_PROCESS} tone="tint" />
+        <Cases client:visible block={IN_ENGAGEMENTS} tone="white" />
+        <Split client:visible block={IN_AUDIENCE} tone="dark" />
+        <Faq client:visible faqs={IN_FAQS} name="AptaCloud India" tone="tint" />
+        <IndiaHub client:visible />
+        <CTA client:idle />
+      </main>
+    ) : (
+      <main id="main" class="relative">
+        <Hero client:load />
+        <About client:visible />
+        <Workshop client:visible />
+        <Partners client:visible />
+        <WhyWorkshop client:visible />
+        <Dynamics client:visible />
+        <Microsoft client:visible />
+        <Azure client:visible />
+        {REGION.id === "us" && <GlobalPresence client:visible />}
+        {REGION.id === "uae" && <UaeHub client:visible />}
+        <CTA client:idle />
+      </main>
+    )
+  }
   <Footer />
 </Base>

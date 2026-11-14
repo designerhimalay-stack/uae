@@ -3,6 +3,7 @@
 // v2.0 §3.4, in this order). Australian English.
 
 import { asset } from "@/brand/brand";
+import { local } from "@/brand/regions";
 import type { Category, CategoryId, IconId, IndustryId, ServicePhoto } from "./types";
 
 export const CATEGORIES: Record<CategoryId, Category> = {
@@ -46,7 +47,7 @@ export const CATEGORIES: Record<CategoryId, Category> = {
     id: "industries",
     name: "Industries",
     short: "Industries",
-    intro: "Technology for the three industries we specialise in.",
+    intro: local({ us: "Technology for the three industries we specialise in.", in: "Technology for the industries we serve across India." }),
   },
   insurance: {
     id: "insurance",

@@ -17,6 +17,8 @@ export type ServicePhoto = { src: string; alt: string; position?: string };
 
 export type ServicePage = {
   slug: string;
+  /** Build this page only on these regional sites (default: every region). */
+  regions?: import("@/brand/regions").RegionId[];
   category: CategoryId;
   /** Nav / breadcrumb label. */
   name: string;

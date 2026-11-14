@@ -32,10 +32,35 @@ const { region } = JSON.parse(readFileSync(new URL("./region.json", import.meta.
 const BASES = { us: "/", au: "/au", in: "/in", uae: "/uae" };
 if (!(region in BASES)) throw new Error(`region.json: unknown region "${region}"`);
 
+// Old WordPress URLs that differ from the new routes, per region, so indexed
+// links keep working (static meta-refresh pages; the host can swap in 301s).
+/** @type {Record<string, Record<string, string>>} */
+const LEGACY = {
+  in: {
+    "/microsoft-365": "/services/microsoft/microsoft-365/",
+    "/microsoft-teams": "/services/microsoft/teams/",
+    "/identity-security": "/services/microsoft/identity-security/",
+    "/microsoft-copilot": "/services/microsoft/copilot-studio/",
+    "/microsoft-sharepoint": "/services/microsoft/sharepoint/",
+    "/microsoft-dynamics-365": "/services/microsoft/microsoft-dynamics-365/",
+    "/business-intelligence-visualization": "/data-visualization/",
+    "/systems-re-engineering": "/application-re-engineering/",
+    "/legacy-migration": "/legacy-application-migration/",
+    "/legacy-modernization": "/application-modernization/",
+    "/insurance": "/industry/insurance/",
+    "/oil-gas": "/industry/oil-gas/",
+    "/construction": "/industry/engineering-and-construction/construction/",
+    "/blogs": "/blog/",
+  },
+};
+const base = BASES[region].replace(/\/$/, "");
+const redirects = Object.fromEntries(Object.entries(LEGACY[region] ?? {}).map(([from, to]) => [from, `${base}${to}`]));
+
 export default defineConfig({
   site: "https://designerhimalay-stack.github.io",
   base: BASES[region],
   output: "static",
+  redirects,
   integrations: [react()],
   vite: {
     plugins: [tailwindcss(), ...(region === "us" ? [usSpelling()] : [])],

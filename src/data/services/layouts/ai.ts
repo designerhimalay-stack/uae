@@ -7,6 +7,7 @@
 // are the live page's own and are flagged for client confirmation.
 
 import type { ServiceLayout } from "../types";
+import { local } from "@/brand/regions";
 
 const P = "/images/photos/people";
 /** Images taken from the live aptacloud.com pages (high-resolution originals only). */
@@ -153,7 +154,7 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
       },
       {
         q: "Do your AI consulting services meet industry standards?",
-        a: "Yes. We design every AI engagement around the security and compliance standards your industry works under, such as SOC 2, GLBA, and NAIC model laws in insurance, and NIST CSF and ISA/IEC 62443 in industrial operations.",
+        a: `Yes. We design every AI engagement around the security and compliance standards your industry works under, such as ${local({ us: "SOC 2, GLBA, and NAIC model laws", au: "SOC 2, APRA CPS 234, and the Privacy Act", in: "SOC 2, IRDAI guidelines, and the DPDP Act", uae: "SOC 2, CBUAE rules, and the UAE PDPL" })} in insurance, and NIST CSF and ISA/IEC 62443 in industrial operations.`,
       },
       {
         q: "How much does AI consulting cost?",

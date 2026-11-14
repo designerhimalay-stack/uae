@@ -23,7 +23,14 @@ The same code builds four sites; `region.json` in each repo picks which one. Eve
 
 - Copy is written once in Australian English. The US build converts it to US spelling at build time (`tools/region/spelling.mjs`); slugs, ids, and paths are left alone.
 - Make shared changes here (AU), then in each regional repo run `git pull upstream main`. Never edit `region.json` in this repo except to test another region locally (set it back to `au` before committing).
-- US-only home section: `components/site/GlobalPresence.tsx` (region cards with country photos in `public/images/photos/regions/`, Pexels licence).
+- Each region's home has its own section in the slot before the contact form (all share `components/site/HomeHead.tsx` for the About-style header):
+  - US: `GlobalPresence.tsx` (four region cards with country photos and live local time).
+  - India: `IndiaHub.tsx` (Gurugram and Pune office cards, DPDP data residency card with Azure India regions).
+  - UAE: `UaeHub.tsx` (Abu Dhabi photo card with Azure UAE regions, PDPL / DIFC-ADGM / FTA / WPS rule cards).
+  - AU: none yet.
+- Local home photos: `photos` in each region's config maps a shared photo path to a local one (`localPhoto()`), used by the hero, About, Dynamics, and Workshop. Files are in `public/images/photos/regions/<region>/`; credits in `docs/agentcraft/PHOTO_CREDITS.md`. The two hands-only Workshop photos stay shared.
+- Regions can set `valueProp` (hero, footer, nav) and `contact.whatsapp` (adds a WhatsApp row to the contact card; India and UAE).
+- Region branches in this clone: `region/us`, `region/in`, `region/uae` (remotes `us`, `in`, `uae`). To ship a shared change: commit on `main`, then for each region `git checkout region/<r> && git merge main`, build, and deploy. A first deploy to a new repo must go up in ~20 MB batches (a single ~95 MB push resets the connection).
 
 ## 2. Commands
 

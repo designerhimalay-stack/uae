@@ -3,6 +3,7 @@
 // partners (white), with the orange glow fading in on hover.
 
 import { BRAND, asset } from "@/brand/brand";
+import { local } from "@/brand/regions";
 import { LineReveal, Reveal } from "@/components/ui/Reveal";
 import { PillTag } from "@/components/ui/PillTag";
 import { cn } from "@/lib/utils";
@@ -10,7 +11,7 @@ import s from "./Partners.module.css";
 
 // Client brief (Oct 2026): Microsoft, Anthropic, AWS. No NetSuite (not offered).
 // Microsoft leads, AWS is supporting (Brand Guidelines v2.0, 1).
-const PARTNERS = [
+const ALL_PARTNERS = [
   {
     name: "Microsoft",
     node: <img className={cn(s.logo, s.microsoft)} src={asset("/images/partners/microsoft.svg")} alt="Microsoft" />,
@@ -29,6 +30,13 @@ const PARTNERS = [
     node: <img className={cn(s.logo, s.aws)} src={asset("/images/partners/aws.svg")} alt="AWS" />,
   },
 ];
+
+// India's live site lists Microsoft and AWS only.
+const PARTNERS = ALL_PARTNERS.filter((p) => local({ us: true, in: p.name !== "Anthropic" }));
+const HEAD = local({
+  us: { lines: ["We partner with Microsoft,", "Anthropic, and AWS."], extra: " We add Anthropic’s AI models and AWS where they fit the systems you already run." },
+  in: { lines: ["We partner with", "Microsoft and AWS."], extra: " We add AWS where it fits the systems you already run." },
+});
 
 // Where each partnership shows up in our services (the primary CTA lives in the hero and workshop).
 const LINKS = [
@@ -65,14 +73,14 @@ export function Partners() {
           </Reveal>
           <div className={s.copy}>
             <LineReveal as="h2" className={s.heading}>
-              <span>We partner with Microsoft,</span>
-              <span>Anthropic, and AWS.</span>
+              {HEAD.lines.map((l) => (
+                <span key={l}>{l}</span>
+              ))}
             </LineReveal>
             <Reveal y={30} duration={1} delay={0.1} amount={0.3}>
               <p className={s.lead}>
                 Microsoft first: Azure, Dynamics 365, Power BI, and Microsoft Fabric are where {BRAND.name}’s senior
-                specialists spend most of their time. We add Anthropic’s AI models and AWS where they fit the systems
-                you already run.
+                specialists spend most of their time.{HEAD.extra}
               </p>
             </Reveal>
           </div>
