@@ -482,3 +482,13 @@ Services outside a segment's matrix row were renamed or removed. For example, Re
 - **Repeated photos:** The most reused generic photos have been replaced with new Pexels photos. No photo repeats within a page.
 - **"Our tools" (Data Warehousing, Data Visualisation):** The scrolling logo strip is now a board grouped by role, with Microsoft first.
 - **Footer:** The contact column repeated the contact section above it. It is now an Industries column linking to the three vertical pages.
+
+## 11. Live section check, every region (2026-11-15)
+A script compared every page's sections with its own region's live page (US and AU against aptacloud.com, India against /in/, UAE against /uae/), by section type.
+- **New page:** Microsoft Databases (`/services/microsoft/database/`, US and AU), built from the live page. Cloud Storage now covers OneDrive and Azure Storage only, as its live page does. The nav lists both, in the live order.
+- **Recent projects are back, as typical engagements** (owner decision, 2026-11-15). This reverses the removal in section 9: all nine Microsoft pages and Databases show three typical engagements in our verticals, before the process, where the live pages have them. No client names or figures.
+- **Machine Learning:** gains the live page's process and case studies (as typical engagements). Its use cases already sit in "What we do".
+- **Data Engineering:** gains the live page's closing "Why AptaCloud?" section (India and the UAE show their own version in its place).
+- **SharePoint:** gains the industries section the live page has.
+- **India and UAE:** the shared pages now carry the sections their own old pages have and the shared layout lacked (challenges, why AptaCloud, outcomes, typical engagements). See `src/data/services/regional/in-sections.ts` and `uae-sections.ts`; UAE Healthcare gains its services section and UAE Fabric its why section.
+- **Still not carried over (rules):** testimonials, client logos, case-study figures, third-party market statistics, and repeated "Ready to…" CTA strips.

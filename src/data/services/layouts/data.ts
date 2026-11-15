@@ -85,6 +85,22 @@ export const DATA_LAYOUTS: Record<string, ServiceLayout> = {
       },
       { kind: "industries" },
       {
+        kind: "cards",
+        id: "why-us",
+        style: "icon",
+        head: "center",
+        tag: "Why AptaCloud",
+        icon: "target",
+        heading: "Why AptaCloud for data engineering.",
+        cols: 4,
+        items: [
+          { title: "Deep expertise", text: "Industry knowledge and technical depth that deliver results that matter.", icon: "team" },
+          { title: "A tailored approach", text: "Strategies shaped to your business needs, not a template.", icon: "target" },
+          { title: "The whole data lifecycle", text: "One team from data collection to deployment and support.", icon: "flow" },
+          { title: "Experience in your industry", text: "Data work for insurance, oil and gas, and engineering and construction teams.", icon: "chart" },
+        ],
+      },
+      {
         kind: "logos",
         id: "tools",
         tag: "Tools and platforms",

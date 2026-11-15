@@ -28,3 +28,4 @@ Compared on 2026-11-14: all 32 pages of the live WordPress site at aptacloud.com
 | 13 | Every live page repeats mid-page "Ready to…?" banners. | One mid-page CTA per page. |
 | 14 | The live trust strip and "Why UAE businesses trust AptaCloud" repeat each other; compliance appears in both and in the FAQ. | Merged: one "Why" section; compliance lives in the UAE rules section. |
 | 15 | Healthcare, financial services, manufacturing, retail, and IT/SaaS are outside the three brand verticals. | Built from the live UAE site; flagged for the client. |
+| 16 | Section check (2026-11-15): shared pages lacked the old UAE pages' challenges, "Why AptaCloud", outcomes, and case-study sections; Healthcare lacked its services section and Fabric its why section. | Added in the old pages' positions (`regional/uae-sections.ts`, `uae-pages.ts`), with case studies as typical engagements. The old pages' market statistics (adoption rates, GDP forecasts) are left out. |

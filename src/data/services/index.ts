@@ -16,7 +16,8 @@ import { REGIONAL_PAGES } from "./regional";
 import { IN_ONLY_LAYOUTS, IN_ONLY_PAGES } from "./regional/in-pages";
 import { REGION, local } from "@/brand/regions";
 import { UAE_ONLY_LAYOUTS, UAE_ONLY_PAGES } from "./regional/uae-pages";
-import type { CategoryId, ServicePage } from "./types";
+import type { Block, CategoryId, ServicePage } from "./types";
+import type { RegionalSection } from "./regional/types";
 
 import { regionPhotos } from "./region-photos";
 
@@ -40,6 +41,26 @@ function regional(page: ServicePage): ServicePage {
   return { ...page, seo: o.seo ?? page.seo, hero: { ...page.hero, ...o.hero }, faqs: o.faqs ?? page.faqs };
 }
 
+/** Places a region's own sections into the shared block list, by section id.
+ *  A regional block whose id the shared page already uses replaces that block in place. */
+function withRegional(blocks: Block[], insert: RegionalSection[] | undefined, slug: string): Block[] {
+  if (!insert) return blocks;
+  const out = [...blocks];
+  for (const s of insert) {
+    const own = "id" in s.block ? s.block.id : undefined;
+    const same = own ? out.findIndex((b) => "id" in b && b.id === own) : -1;
+    if (same >= 0) {
+      out[same] = regionPhotos(s.block);
+      continue;
+    }
+    const ref = "before" in s ? s.before : s.after;
+    const at = out.findIndex((b) => "id" in b && b.id === ref);
+    if (at < 0) throw new Error(`${slug}: regional section anchor "${ref}" not found`);
+    out.splice("before" in s ? at : at + 1, 0, regionPhotos(s.block));
+  }
+  return out;
+}
+
 export function getService(slug: string) {
   const shared = SERVICE_PAGES.find((p) => p.slug === slug);
   if (!shared) throw new Error(`Unknown service page: ${slug}`);
@@ -55,7 +76,8 @@ export function getService(slug: string) {
   const relatedIn = CATEGORIES[page.relatedCategory ?? page.category];
   // A region's FAQs replace the layout's too (the page renders layout FAQs first).
   const base = ALL_LAYOUTS[slug] && regionPhotos(ALL_LAYOUTS[slug]);
-  const layout = base && REGIONAL_PAGES[slug]?.faqs ? { ...base, faqs: REGIONAL_PAGES[slug].faqs } : base;
+  const o = REGIONAL_PAGES[slug];
+  const layout = base && (o?.faqs || o?.insert) ? { ...base, faqs: o.faqs ?? base.faqs, blocks: withRegional(base.blocks, o.insert, slug) } : base;
   return { page, extras, layout, stats: layout?.stats ?? DEFAULT_STATS, category: CATEGORIES[page.category], relatedIn, siblings };
 }
 

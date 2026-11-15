@@ -4,9 +4,9 @@
 // Dynamics' product logos, Power BI's dashboard gallery, Power Platform's
 // product-logo hub, Identity's Microsoft security products, Azure's 16-service
 // grid and curve process). Copy rewritten to the brand and content guidelines.
-// "Recent projects" titles are the live page's own.
+// "Recent projects" become typical engagements (MS_ENGAGEMENTS, end of file).
 
-import type { BlockItem, ServiceLayout } from "../types";
+import type { Block, BlockItem, ServiceLayout } from "../types";
 import { COMPANY_STATS } from "./shared";
 
 const P = "/images/photos/people";
@@ -1110,3 +1110,81 @@ export const MS_LAYOUTS: Record<string, ServiceLayout> = {
     ],
   },
 };
+
+/* ── "Recent projects" ──────────────────────────────────────────────────
+   Every live Microsoft page has a "Recent projects" section (retail, banking,
+   and healthcare clients). Until proof is approved it shows typical
+   engagements in our three verticals instead: no client names, no figures. */
+type Engagement = { client: string; text: string; points: string[] };
+const engagements = (heading: string, items: Engagement[]): Block => ({
+  kind: "cases",
+  id: "case-studies",
+  layout: "wide",
+  label: "Typical engagement",
+  tag: "Typical engagements",
+  icon: "chart",
+  heading,
+  lead: "How the work usually runs, starting with one team or one process.",
+  items,
+});
+
+const MS_ENGAGEMENTS: Record<string, Block> = {
+  "services/microsoft/microsoft-365": engagements("What a Microsoft 365 rollout looks like in our industries.", [
+    { client: "Insurance: policy and claims documents", text: "Insurers often run email, files, and approvals across ageing servers and personal drives. We move one team to Microsoft 365 first, set sharing and retention rules, then roll out by department.", points: ["One secure place for policy documents", "Approvals with an audit trail", "Staff working from any device"] },
+    { client: "Oil and gas: site and office together", text: "Field crews and office teams often work in separate tools on patchy connections. We set up Microsoft 365 with offline-ready files and a Teams channel for each site, starting with one asset.", points: ["Crews and office on the same files", "Managed devices on every site", "Fewer emailed attachments"] },
+    { client: "Engineering and construction: project partners", text: "Contractors often share drawings and RFIs by email with many partners. We set up Microsoft 365 project workspaces with guest access, piloted on one project before rollout.", points: ["Current drawings for every partner", "Controlled guest access", "Project records in one place"] },
+  ]),
+  "services/microsoft/teams": engagements("What a Microsoft Teams rollout looks like in our industries.", [
+    { client: "Insurance: claims decisions", text: "Claims and underwriting teams often chase decisions across long email threads. We set up Teams channels and approval flows for one claims team first, connected to the documents they already use.", points: ["Faster decisions on claims", "Conversations kept with the file", "Retention rules applied"] },
+    { client: "Oil and gas: shift handovers", text: "Operations teams often hand over shifts by phone and spreadsheet. We set up Teams for one site with shift channels, handover templates, and mobile access for crews.", points: ["Clear handovers between shifts", "Crews connected from the field", "Less time on calls"] },
+    { client: "Engineering and construction: site meetings", text: "Project teams often run site meetings and progress updates across several apps. We give each project a Teams workspace with notes, tasks, and partner access, starting with one live project.", points: ["One workspace per project", "Partners joined securely", "Actions tracked after each meeting"] },
+  ]),
+  "services/microsoft/copilot-studio": engagements("What a Copilot project looks like in our industries.", [
+    { client: "Insurance: submissions and correspondence", text: "Underwriters and claims handlers often spend hours summarising submissions and letters. We pilot Microsoft Copilot with one team, after checking who can see what, then extend it once the value is clear.", points: ["Faster summaries of long files", "Drafts grounded in your own documents", "Data access checked before rollout"] },
+    { client: "Oil and gas: manuals and procedures", text: "Engineers often search manuals, permits, and incident reports by hand. We build a Copilot Studio agent over one document library, so crews ask questions and get answers with sources.", points: ["Answers that link to the source", "Less time searching manuals", "Knowledge kept as people move on"] },
+    { client: "Engineering and construction: project reporting", text: "Project managers often rebuild the same reports and meeting notes every week. We set up Copilot in Teams and Word for one project team, with prompts shaped to their reports.", points: ["Meeting actions captured for you", "Report drafts ready sooner", "More time for site coordination"] },
+  ]),
+  "services/microsoft/microsoft-dynamics-365": engagements("What a Dynamics 365 project looks like in our industries.", [
+    { client: "Insurance: finance and commissions", text: "Insurers often run finance, broker commissions, and customer records in separate systems. We implement Dynamics 365 in phases, starting with one process such as commissions.", points: ["One view of each customer", "Commissions calculated in one system", "Month-end with less manual work"] },
+    { client: "Oil and gas: jobs to invoices", text: "Service companies often track jobs, equipment, and invoicing in disconnected tools. We implement Dynamics 365 Field Service and Finance, proving the job-to-invoice flow on one service line first.", points: ["Jobs invoiced sooner", "Crews and equipment scheduled together", "Costs visible by job"] },
+    { client: "Engineering and construction: project costs", text: "Contractors often manage project costs in spreadsheets beside the accounting system. We implement Dynamics 365 Project Operations on one project, then connect it to finance.", points: ["Project costs tracked as they happen", "Budgets and actuals side by side", "Fewer spreadsheets to reconcile"] },
+  ]),
+  "services/microsoft/power-bi": engagements("What a Power BI project looks like in our industries.", [
+    { client: "Insurance: loss and premium reporting", text: "Insurers often build loss and premium reports by hand from several systems. We connect one reporting area to Power BI first, on a governed data model, then add the rest.", points: ["Loss and premium figures in one place", "Reports that refresh themselves", "One definition for each measure"] },
+    { client: "Oil and gas: production and maintenance", text: "Operations teams often wait for weekly production and maintenance reports. We build Power BI dashboards on one asset's data first, refreshed from the systems already in place.", points: ["Current production figures", "Maintenance trends at a glance", "Less manual reporting"] },
+    { client: "Engineering and construction: project portfolio", text: "Project leaders often compare budgets and progress across separate spreadsheets. We build a Power BI portfolio view from one set of project data, then extend it to every project.", points: ["Cost and schedule variance seen early", "One view of every project", "Reports shared securely with partners"] },
+  ]),
+  "services/microsoft/power-platform": engagements("What a Power Platform project looks like in our industries.", [
+    { client: "Insurance: claims intake", text: "Claims and policy teams often rely on email and spreadsheets for intake and approvals. We build one Power Apps and Power Automate workflow first, such as claims intake, then extend it.", points: ["Intake captured once, correctly", "Approvals that route themselves", "A record of every step"] },
+    { client: "Oil and gas: inspections and permits", text: "Field inspections and permits are often still on paper. We build a Power Apps inspection form for one site, with offline use and an automatic hand-off to the office.", points: ["Inspections captured on site", "Data in the office the same day", "Fewer re-keyed forms"] },
+    { client: "Engineering and construction: site processes", text: "Site teams often track variations, timesheets, and RFIs in separate spreadsheets. We build one Power Platform app for the most painful process, then reuse the pattern across projects.", points: ["Data in Dataverse, not spreadsheets", "Approvals tracked to completion", "A pattern every project can reuse"] },
+  ]),
+  "services/microsoft/sharepoint": engagements("What a SharePoint project looks like in our industries.", [
+    { client: "Insurance: policy and claims records", text: "Policy and claims documents often sit across file shares and email. We move one department to SharePoint with metadata, retention, and permissions, then migrate the rest in waves.", points: ["Documents found by policy or claim", "Retention applied by rule", "Access controlled by role"] },
+    { client: "Oil and gas: procedures and permits", text: "Procedures, permits, and asset documents are often scattered across sites. We build a SharePoint document centre for one asset, with version control and approval workflows.", points: ["One current version of each procedure", "Approvals with an audit trail", "Documents reachable from site"] },
+    { client: "Engineering and construction: drawings", text: "Contractors often lose time looking for the latest drawings and transmittals. We set up SharePoint project sites with a standard structure, piloted on one project.", points: ["The latest drawing, every time", "A standard site for each project", "Partners given the access they need"] },
+  ]),
+  "services/microsoft/identity-security": engagements("What an identity and security project looks like in our industries.", [
+    { client: "Insurance: staff and broker access", text: "Insurers often grant staff and broker access without regular review. We start with multi-factor authentication and conditional access for one group, then extend Zero Trust policies across the business.", points: ["Sign-in protected by default", "Access reviewed on a schedule", "Evidence ready for audits"] },
+    { client: "Oil and gas: shared site devices", text: "Shared devices and contractor accounts are common on sites. We set up Intune device policies and Microsoft Entra ID access for one site first, with crews involved in the pilot.", points: ["Managed devices on every site", "Contractor access that expires", "Threats flagged early"] },
+    { client: "Engineering and construction: subcontractor access", text: "Subcontractors often keep access long after a project ends. We set up guest access policies and access reviews in Microsoft Entra ID on one project, then make them the standard.", points: ["Guest access with an end date", "Fewer forgotten accounts", "Project data shared safely"] },
+  ]),
+  "services/microsoft/cloud-storage": engagements("What a move to cloud storage looks like in our industries.", [
+    { client: "Insurance: file servers to the cloud", text: "Policy and claims files often sit on ageing file servers with untested backups. We move one department to OneDrive and SharePoint, with retention set and backup proven by a test restore.", points: ["Files reachable from any device", "Retention applied by rule", "Restores that have been tested"] },
+    { client: "Oil and gas: site records", text: "Inspection photos and site records often live on local drives. We set up OneDrive and Azure Blob Storage for one site's records, with automatic upload from the field.", points: ["Site records stored centrally", "Storage that grows without hardware", "Years of history kept"] },
+    { client: "Engineering and construction: project files", text: "Project files are often split across office servers and personal drives. We move one project's files to SharePoint and OneDrive, in a structure every project can reuse.", points: ["One place for project files", "Access for site and office", "Fewer copies on USB drives"] },
+  ]),
+};
+
+// Placed where the live pages have them: just before the process.
+for (const [slug, block] of Object.entries(MS_ENGAGEMENTS)) {
+  const blocks = MS_LAYOUTS[slug].blocks;
+  const at = blocks.findIndex((b) => "id" in b && b.id === "process");
+  if (at < 0) throw new Error(`${slug}: no process section to place the engagements before`);
+  blocks.splice(at, 0, block);
+}
+// The live SharePoint page lists the industries after its process; ours had left them out.
+{
+  const blocks = MS_LAYOUTS["services/microsoft/sharepoint"].blocks;
+  blocks.splice(blocks.findIndex((b) => "id" in b && b.id === "process") + 1, 0, { kind: "industries" });
+}
