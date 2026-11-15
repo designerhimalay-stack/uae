@@ -1,1 +1,0 @@
-import{i as e}from"./brand.Beo-4Rdn.js";var t=t=>e(`/${t}/`);export{t};
