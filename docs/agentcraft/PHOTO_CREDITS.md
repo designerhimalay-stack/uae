@@ -17,6 +17,8 @@ ms-teams 1787647562201-113361490c83 Â· ms-copilot 1758873272955-3b066dd11c6b �
 ms-powerbi 1758691737421-86dd84bd2951 Â· ms-powerplatform 1681569685378-3c18bf84b504 Â·
 ms-sharepoint 1554902843-260acd0993f8 Â· ms-identity 1510915228340-29c85a43dcfe Â·
 ms-storage 1758876021739-d7c60b8742a5 Â· az-hosting 1770777843445-2a1621b1201d.
+ms-database: was `people/code-pair.jpg` from the 2026-10-23 imagery pass (ID not
+recorded then); US swap is Pexels 1181677.
 
 `public/images/photos/people/` additions from Pexels (Pexels License, free for
 commercial use, no attribution required), by Pexels photo ID:

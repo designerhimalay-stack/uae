@@ -132,6 +132,19 @@ export const MS_EXTRAS: Record<string, ServiceExtras> = {
       ],
     },
   },
+  "services/microsoft/database": {
+    sections: STD,
+    benefits: {
+      heading: "What well-run Microsoft databases give you.",
+      lead: "Data that is fast to reach, protected, and ready to grow.",
+      items: [
+        { title: "Faster data access", text: "Centralised, tuned databases sized to your workloads.", icon: "gauge" },
+        { title: "Stronger security", text: "Enterprise-grade controls that support your compliance needs.", icon: "shield" },
+        { title: "Room to grow", text: "Databases that scale without a slowdown.", icon: "layers" },
+        { title: "Lower running costs", text: "Right-sized compute and licences, reviewed after go-live.", icon: "chart" },
+      ],
+    },
+  },
   "azure-hosting": {
     sections: ["pains", "services", "benefits", "useCases", "why", "process", "industries"],
     benefits: {

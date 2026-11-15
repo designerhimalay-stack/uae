@@ -115,16 +115,18 @@ const APPMOD_LINKS = [
   svc("Application Modernisation", "application-modernization"),
   svc("Application Re-engineering", "application-re-engineering"),
 ];
+// The live site's Microsoft list, in its order.
 const MS_LINKS = [
   svc("Microsoft 365", "services/microsoft/microsoft-365"),
   svc("Microsoft Teams", "services/microsoft/teams"),
+  svc("Cloud Storage", "services/microsoft/cloud-storage"),
+  svc("Identity & Security", "services/microsoft/identity-security"),
   svc("Microsoft Copilot", "services/microsoft/copilot-studio"),
+  svc("Databases", "services/microsoft/database"),
+  svc("Microsoft SharePoint", "services/microsoft/sharepoint"),
   svc("Microsoft Dynamics 365", "services/microsoft/microsoft-dynamics-365"),
   svc("Microsoft Power BI", "services/microsoft/power-bi"),
   svc("Power Platform", "services/microsoft/power-platform"),
-  svc("Microsoft SharePoint", "services/microsoft/sharepoint"),
-  svc("Identity & Security", "services/microsoft/identity-security"),
-  svc("Cloud Storage & Databases", "services/microsoft/cloud-storage"),
 ];
 const AZURE_LINKS = [
   svc("Azure Hosting", "azure-hosting"),
@@ -405,16 +407,17 @@ const PLATFORMS: NavMenu = {
       links: [
         svc("Microsoft 365", "services/microsoft/microsoft-365"),
         svc("Microsoft Teams", "services/microsoft/teams"),
-        svc("Microsoft SharePoint", "services/microsoft/sharepoint"),
-        svc("Microsoft Copilot", "services/microsoft/copilot-studio"),
+        svc("Cloud Storage", "services/microsoft/cloud-storage"),
         svc("Identity & Security", "services/microsoft/identity-security"),
-        svc("Cloud Storage & Databases", "services/microsoft/cloud-storage"),
+        svc("Microsoft Copilot", "services/microsoft/copilot-studio"),
+        svc("Microsoft SharePoint", "services/microsoft/sharepoint"),
       ],
     },
     {
-      title: "Microsoft business applications",
-      text: "ERP, CRM, reporting, and low-code apps on one Microsoft platform.",
+      title: "Microsoft data & business applications",
+      text: "Databases, ERP, CRM, reporting, and low-code apps on one Microsoft platform.",
       links: [
+        svc("Databases", "services/microsoft/database"),
         svc("Microsoft Dynamics 365", "services/microsoft/microsoft-dynamics-365"),
         svc("Microsoft Power BI", "services/microsoft/power-bi"),
         svc("Power Platform", "services/microsoft/power-platform"),
