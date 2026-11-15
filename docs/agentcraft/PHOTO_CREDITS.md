@@ -111,13 +111,13 @@ marks belong to their owners and are shown monochrome to identify tools only.
 - in-pune.jpg: Pune high-rises, WordPress Photo Directory (CC0), pd.w.org/2024/02/18465d1037c948a94
 
 ## UAE photos (`public/images/photos/regions/uae/`, Pexels licence)
-- hero.jpg: Dubai Marina at night, Pexels 5448116
+- hero.jpg: Dubai skyline with the Burj Khalifa at dusk, Pexels 19212098
 - about.jpg: Pexels 7984733 Â· team.jpg: Pexels 8938630 Â· room.jpg: Pexels 7868964
 - workshop-analysis.jpg: Pexels 7869067 Â· workshop-hands-on.jpg: Pexels 8938271
 - abu-dhabi.jpg: Etihad Towers, Abu Dhabi, Pexels 19965889
 
 ## India home photos (`public/images/photos/regions/in/`, Pexels licence)
-- hero.jpg: Bandra-Worli Sea Link, Mumbai (mirrored), Pexels 4873310 Â· about.jpg: Pexels 36706459
+- hero.jpg: World Trade Center, Kharadi, Pune (mirrored), by DesiBoy101, CC BY 4.0, https://commons.wikimedia.org/w/index.php?curid=142795310 (credited in the India footer) Â· about.jpg: Pexels 36706459
 - team.jpg: Pexels 4623089 Â· room.jpg: Pexels 7691708
 - workshop-analysis.jpg: Pexels 39204818 Â· workshop-hands-on.jpg: Pexels 4308094
 

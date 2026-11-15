@@ -111,7 +111,18 @@ const COLUMNS: { title: string; links: FooterLink[] }[] = [
     </div>
 
     <div class={styles.bottom}>
-      <p class={styles.legal}>© {BRAND.name} {BRAND.year}. All rights reserved.</p>
+      <p class={styles.legal}>
+        © {BRAND.name} {BRAND.year}. All rights reserved.
+        {/* India's home photo is CC BY 4.0, which requires this credit (and a note of the change). */}
+        {local({ us: false, in: true }) && (
+          <>
+            {" "}Home photo:{" "}
+            <a class={styles.legalLink} href="https://commons.wikimedia.org/w/index.php?curid=142795310" rel="noopener">World Trade Center, Kharadi, Pune</a>{" "}
+            by DesiBoy101,{" "}
+            <a class={styles.legalLink} href="https://creativecommons.org/licenses/by/4.0/" rel="noopener license">CC BY 4.0</a>, mirrored.
+          </>
+        )}
+      </p>
       <a href={asset("/privacy")} class:list={[styles.legal, styles.legalLink]}>Privacy policy</a>
     </div>
   </div>
