@@ -183,6 +183,11 @@
   .bar { align-items: stretch; flex-direction: column; }
   .search { width: 100%; }
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* An odd last post takes the full row as a side-by-side card, so no half-empty row. */
+  .grid > :last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .grid > :last-child:nth-child(odd) > a { flex-direction: row; }
+  .grid > :last-child:nth-child(odd) > a > div:first-child { flex: none; width: calc(50% - 4px); }
+  .grid > :last-child:nth-child(odd) > a > div:last-child { flex: 1; justify-content: center; }
 }
 
 @media (max-width: 809.98px) {

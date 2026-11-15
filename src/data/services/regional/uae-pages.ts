@@ -638,7 +638,7 @@ export const UAE_ONLY_LAYOUTS: Record<string, ServiceLayout> = {
           "We drive efficiency, innovation, and growth through AI, cloud, and real-time data.",
           "Our solutions simplify complex workflows, improve production visibility, and keep you competitive.",
         ],
-        photo: { src: `${P}/mfg-split.jpg`, alt: "A worker in a hard hat in a steam-filled industrial plant", position: "50% 40%" },
+        photo: { src: `${P}/mfg-split.jpg`, alt: "A worker checking parts on a factory production line", position: "45% 50%" },
         cta: true,
       },
       {

@@ -385,6 +385,51 @@
   white-space: nowrap;
 }
 
+/* ── US: editorial split ────────────────────────────────────────────────
+   The photo is a framed full-colour panel on the right instead of a duotone
+   backdrop; the copy sits on the plain dark field and the console overlaps the
+   panel's left edge. Below 1200 the panel drops under the copy. */
+.framed .fade { display: none; }
+
+@media (min-width: 1200px) {
+  .framed .backdrop {
+    border-radius: 28px;
+    bottom: 72px;
+    box-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.9);
+    inset-inline: auto max(60px, calc((100% - 1296px) / 2 + 60px));
+    outline: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+    top: 132px;
+    width: calc((min(100%, 1296px) - 184px) * 0.4);
+  }
+  .framed.withTicker .backdrop { bottom: 124px; }
+  .framed .inner { grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); }
+  /* The copy column ends ~600px short of the panel, so the two-line title scales to that. */
+  .framed .title { font-size: min(60px, calc(600px / (var(--chars) * 0.5))); }
+  .framed .lead { max-width: 540px; }
+  .framed .console { bottom: 40px; left: -72px; right: auto; }
+}
+
+@media (max-width: 1199.98px) {
+  .framed .backdrop {
+    border-radius: 24px;
+    height: clamp(232px, 36vw, 360px);
+    inset: auto;
+    margin: 0 40.5px 48px;
+    order: 2;
+    overflow: hidden;
+    position: relative;
+  }
+  .framed .ticker { order: 3; }
+  /* The photo panel takes the console's place; the console repeats the lead. */
+  .framed .visual { display: none; }
+}
+
+@media (max-width: 809.98px) {
+  .framed .backdrop { border-radius: 20px; height: 232px; margin: 0 16px 32px; }
+  .framed .inner { padding-bottom: 28px; }
+}
+
 /* ── Breakpoints ────────────────────────────────────────────────────── */
 @media (min-width: 1600px) {
   .inner { padding: 0 72px 80px; }

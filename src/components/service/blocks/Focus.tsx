@@ -5,7 +5,7 @@
 // colour, so the pair reads as one featured unit. Phones: stacked.
 
 import { Reveal } from "@/components/ui/Reveal";
-import { serviceHref } from "@/data/services";
+import { serviceHref } from "@/data/services/href";
 import type { Block } from "@/data/services/types";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight, Icon } from "../Icon";

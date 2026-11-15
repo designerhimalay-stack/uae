@@ -5,7 +5,7 @@ Full handover (rules, architecture, audits, open items): **SUMMARY.md**. Launch 
 Astro 7 + React 19 islands, Tailwind v4 + CSS Modules, static build to GitHub Pages under `/au` (repo `au`).
 Dev: `npm run dev -- --port 4321` → http://localhost:4321/au/ · Check: `npx tsc --noEmit`, `npm run build`.
 
-**Regions:** one codebase, four repos (US at `/`, AU `/au`, IN `/in`, UAE `/uae`). `region.json` picks the region; all regional data is in `src/brand/regions.ts`; US spelling is applied at build time. This repo is the upstream and stays `"au"`. See SUMMARY.md §1.
+**Regions:** one codebase, four repos (US at `/`, AU `/au`, IN `/in`, UAE `/uae`). `region.json` picks the region; all regional data is in `src/brand/regions.ts`; US spelling is applied at build time. This repo is the upstream and stays `"au"`. See SUMMARY.md §1. US is deliberately not an AU replica: its own photos for every shared one (`src/brand/us-photos.json`, swapped by `data/services/region-photos.ts`; never reuse an AU/IN/UAE photo or shoot), its own home sections (`components/site/us/`), and a framed photo hero on service pages (`ServiceHero` `.framed`).
 
 ## Where things live
 - `src/brand/brand.ts` — name, colours, contact, `PRIMARY_CTA`, `TRUST`, `asset()` (always wrap paths), `home("#x")` for home anchors.

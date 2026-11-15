@@ -6,7 +6,7 @@
 
 import { Photo } from "@/components/ui/Photo";
 import { Reveal } from "@/components/ui/Reveal";
-import { serviceHref } from "@/data/services";
+import { serviceHref } from "@/data/services/href";
 import type { Category, ServicePhoto } from "@/data/services/types";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "./Icon";

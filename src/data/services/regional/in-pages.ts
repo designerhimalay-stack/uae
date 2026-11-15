@@ -148,7 +148,7 @@ export const IN_ONLY_LAYOUTS: Record<string, ServiceLayout> = {
           { title: "Monitoring and support", text: "Constant monitoring, updates, and performance tuning, so work carries on without disruption.", icon: "clock" },
         ],
       },
-      { kind: "banner", heading: "Not sure which DevOps setup fits your team?", text: "We will review your pipelines and recommend where to start.", photo: { src: `${P}/devops-banner.jpg`, alt: "Developers working at desks with code on their screens", position: "50% 40%" } },
+      { kind: "banner", heading: "Not sure which DevOps setup fits your team?", text: "We will review your pipelines and recommend where to start.", photo: { src: `${P}/devops-banner.jpg`, alt: "A delivery team working together at their desks", position: "50% 50%" } },
       {
         kind: "cards",
         id: "why",

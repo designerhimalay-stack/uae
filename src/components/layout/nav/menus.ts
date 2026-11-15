@@ -154,7 +154,7 @@ export const MENUS: NavMenu[] = [
           eyebrow: "Cloud Excellence",
           title: "Cloud That Costs What It Should",
           text: "Run more on Azure for less, with costs you can explain to finance.",
-          cta: { label: "Get your cloud cost review", href: local({ us: home("#azure"), in: asset("/azure-optimization/"), uae: asset("/azure-optimization/") }) },
+          cta: { label: "Get your cloud cost review", href: local({ us: asset("/azure-optimization/"), au: home("#azure"), in: asset("/azure-optimization/"), uae: asset("/azure-optimization/") }) },
         },
       },
       {

@@ -8,6 +8,12 @@
 //    UAE → /uae/  (repo uae)
 // ─────────────────────────────────────────────────────────────────────────
 import regionFile from "../../region.json";
+import usPagePhotos from "./us-photos.json";
+
+/** The US site's own page photos (Pexels), replacing the shared ones (see us-photos.json). */
+const US_PAGE_PHOTOS: Record<string, { src: string; alt: string }> = Object.fromEntries(
+  (usPagePhotos as { from: string; id: number; alt: string }[]).map((p) => [p.from, { src: `/images/photos/regions/us/pages/${p.id}.jpg`, alt: p.alt }]),
+);
 
 export type RegionId = "us" | "au" | "in" | "uae";
 
@@ -67,8 +73,9 @@ export const REGIONS: Record<RegionId, RegionConfig> = {
     badges: [ALLEN_CHAMBER],
     areaServed: ["United States", "Mexico"],
     photos: {
+      ...US_PAGE_PHOTOS,
       "/images/photos/hero-developer.jpg": { src: "/images/photos/regions/us/hero.jpg", alt: "", position: "62% 50%" },
-      "/images/photos/hero-developer-2.jpg": { src: "/images/photos/regions/us/about.jpg", alt: "An AptaCloud engineer writing code at a desktop monitor", position: "60% 45%" },
+      "/images/photos/hero-developer-2.jpg": { src: "/images/photos/regions/us/about.jpg", alt: "An AptaCloud specialist working through a plan on her laptop", position: "50% 40%" },
       "/images/photos/d365-implementation.jpg": { src: "/images/photos/regions/us/team.jpg", alt: "A project team reviewing a plan at a flipchart", position: "55% 50%" },
       "/images/photos/d365-optimization.jpg": { src: "/images/photos/regions/us/room.jpg", alt: "", position: "60% 50%" },
       "/images/photos/workshop-analysis.jpg": { src: "/images/photos/regions/us/workshop-analysis.jpg", alt: "A consultant presenting at a whiteboard to a team around a boardroom table", position: "50% 50%" },

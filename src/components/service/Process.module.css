@@ -155,8 +155,12 @@
 
 /* Tablet: 3 × 2. */
 @media (min-width: 810px) and (max-width: 1199.98px) {
-  .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .step { min-height: 200px; }
+  .steps { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .step { grid-column: span 2; min-height: 200px; }
+  /* A short last row fills the width: two cards take half each, one takes it all. */
+  .step:nth-child(3n + 1):nth-last-child(2),
+  .step:nth-child(3n + 2):last-child { grid-column: span 3; }
+  .step:nth-child(3n + 1):last-child { grid-column: 1 / -1; }
   .stepTop { margin-bottom: 16px; }
 }
 

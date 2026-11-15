@@ -4,6 +4,7 @@
 
 import { asset } from "@/brand/brand";
 import { local } from "@/brand/regions";
+import { regionPhotos } from "./region-photos";
 import type { Category, CategoryId, IconId, IndustryId, ServicePhoto } from "./types";
 
 export const CATEGORIES: Record<CategoryId, Category> = {
@@ -80,7 +81,7 @@ export const PHASES = ["Discover", "Define", "Design", "Build", "Integrate", "Op
 
 const CARDS = "/images/photos/industry-cards";
 
-export const INDUSTRIES: Record<IndustryId, { name: string; segments: string; photos: ServicePhoto[]; href: string }> = {
+export const INDUSTRIES: Record<IndustryId, { name: string; segments: string; photos: ServicePhoto[]; href: string }> = regionPhotos({
   insurance: {
     name: "Insurance",
     segments: "MGAs, TPAs, and specialty carriers",
@@ -116,7 +117,7 @@ export const INDUSTRIES: Record<IndustryId, { name: string; segments: string; ph
     ],
     href: asset("/industry/engineering-and-construction/"),
   },
-};
+});
 
 export const WHY: { title: string; text: string; icon: IconId }[] = [
   {

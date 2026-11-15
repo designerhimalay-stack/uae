@@ -8,6 +8,7 @@
 
 import { useEffect, useRef } from "react";
 import { asset } from "@/brand/brand";
+import { REGION } from "@/brand/regions";
 import { Button } from "@/components/ui/Button";
 import { Photo } from "@/components/ui/Photo";
 import { PillTag } from "@/components/ui/PillTag";
@@ -81,9 +82,12 @@ export function ServiceHero({ page, category, howHref = "#process",
   const { hero } = page;
   // AWS pages credit AWS certification and the Well-Architected Framework instead of Microsoft.
   const aws = page.category === "aws";
+  // The US site frames its photo as a full-colour panel beside the copy (editorial split);
+  // the other regions keep the full-bleed duotone backdrop.
+  const framed = REGION.id === "us";
 
   return (
-    <section id="top" className={s.hero}>
+    <section id="top" className={cn(s.hero, framed && s.framed, ticker && s.withTicker)}>
       <div className={s.glow} aria-hidden="true" />
       <div className={s.grid} aria-hidden="true">
         <img src={asset("/images/hero/grid.svg")} alt="" width={1920} height={1080} className={s.gridImg} />
@@ -95,8 +99,9 @@ export function ServiceHero({ page, category, howHref = "#process",
         <Photo
           src={hero.photo.src}
           alt={hero.photo.alt}
-          sizes="(max-width: 809px) 180vh, 100vw"
+          sizes={framed ? "(max-width: 1199px) 100vw, 45vw" : "(max-width: 809px) 180vh, 100vw"}
           priority
+          tone={framed ? "color" : undefined}
           position={hero.photo.position}
           className={s.bgPhoto}
         />

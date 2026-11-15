@@ -20,7 +20,10 @@ import { Cases } from "../components/service/blocks/Cases";
 import { Split } from "../components/service/blocks/Split";
 import { Faq } from "../components/service/Faq";
 import { IN_AUDIENCE, IN_ENGAGEMENTS, IN_FAQS, IN_PROCESS, IN_SOLUTIONS, IN_WHY } from "../data/home";
-import { UAE_ENGAGEMENTS, UAE_FAQS, UAE_INDUSTRIES, UAE_PROCESS, UAE_SERVICES, UAE_WHY } from "../data/home";
+import { UAE_ENGAGEMENTS, UAE_FAQS, UAE_INDUSTRIES, UAE_PROCESS, UAE_SERVICES, UAE_WHY, US_PLATFORM } from "../data/home";
+import { Tabs } from "../components/service/blocks/Tabs";
+import { UsHero } from "../components/site/us/UsHero";
+import { UsCredentials } from "../components/site/us/UsCredentials";
 import { Hero } from "../components/site/Hero";
 import { Microsoft } from "../components/site/Microsoft";
 import { Partners } from "../components/site/Partners";
@@ -68,6 +71,17 @@ const india = REGION.id === "in";
         <IndiaHub client:visible />
         <CTA client:idle />
       </main>
+    ) : REGION.id === "us" ? (
+      // The global site: its own hero, credentials band, and one platform section (not the AU layout).
+      <main id="main" class="relative">
+        <UsHero client:load />
+        <UsCredentials client:visible />
+        <Workshop client:visible />
+        <Tabs client:visible block={US_PLATFORM} tone="dark" />
+        <WhyWorkshop client:visible />
+        <GlobalPresence client:visible />
+        <CTA client:idle />
+      </main>
     ) : REGION.id === "uae" ? (
       <main id="main" class="relative">
         <Hero client:load />
@@ -92,7 +106,6 @@ const india = REGION.id === "in";
         <Dynamics client:visible />
         <Microsoft client:visible />
         <Azure client:visible />
-        {REGION.id === "us" && <GlobalPresence client:visible />}
         <CTA client:idle />
       </main>
     )

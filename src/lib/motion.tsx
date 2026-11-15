@@ -164,16 +164,33 @@ export function useScroll({
     const schedule = () => {
       if (!frame) frame = requestAnimationFrame(measure);
     };
+    // Only elements near the viewport measure on scroll: a page has many scroll-linked
+    // headings, and measuring them all every frame interleaves layout reads with style writes.
+    let near = true;
+    const onScroll = () => {
+      if (near) schedule();
+    };
     measure();
-    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", schedule);
     const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(schedule) : null;
-    if (target.current) ro?.observe(target.current);
+    const io =
+      typeof IntersectionObserver !== "undefined"
+        ? new IntersectionObserver(([e]) => {
+            near = e.isIntersecting;
+            schedule(); // one last measure on leaving settles progress at 0 or 1
+          }, { rootMargin: "50% 0px" })
+        : null;
+    if (target.current) {
+      ro?.observe(target.current);
+      io?.observe(target.current);
+    }
     return () => {
       cancelAnimationFrame(frame);
-      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", schedule);
       ro?.disconnect();
+      io?.disconnect();
     };
   }, [target, a, b, scrollYProgress]);
   return { scrollYProgress };

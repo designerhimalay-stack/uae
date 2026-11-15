@@ -297,6 +297,55 @@ export const UAE_FAQS: ServicePage["faqs"] = [
   { q: "What support do we get after modernisation?", a: "A dedicated technical and project team monitors operations and security, tunes performance, and helps your people adopt the new ways of working." },
 ];
 
+/* ───────────────────────────── US ───────────────────────────── */
+// The global site: one tabbed platform section in place of AU's three
+// stacked Dynamics, Microsoft, and Azure sections (live aptacloud.com home).
+
+export const US_PLATFORM: Block = {
+  kind: "tabs",
+  id: "platform",
+  tone: "dark",
+  tag: "The Microsoft platform",
+  icon: "layers",
+  heading: "One partner across the Microsoft platform.",
+  lead: "Dynamics 365, Microsoft 365 with Copilot, and Azure, set up and run by senior Microsoft specialists.",
+  tabs: [
+    {
+      label: "Dynamics 365",
+      intro: "Connect sales, operations, HR, and finance on one platform.",
+      photo: { src: "/images/photos/regions/us/team.jpg", alt: "A project team reviewing a plan at a flipchart", position: "55% 50%" },
+      items: [
+        { title: "Consulting", text: "Your processes assessed and the right Dynamics 365 apps recommended." },
+        { title: "Implementation", text: "From solution design to deployment and training, in clear phases." },
+        { title: "Integration", text: "Power Platform, Azure, and third-party apps on one view of your data." },
+        { title: "Migration and optimisation", text: "On-premises or legacy ERP moved, then tuned, secured, and managed." },
+      ],
+    },
+    {
+      label: "Microsoft 365 and Copilot",
+      intro: "Productivity, documents, and AI where your people already work.",
+      photo: { src: "/images/photos/regions/us/room.jpg", alt: "Colleagues in a meeting with laptops", position: "60% 50%" },
+      items: [
+        { title: "Microsoft 365", text: "The full productivity suite, set up for collaboration and security." },
+        { title: "SharePoint", text: "Content and documents organised, shared, and easy to find." },
+        { title: "Microsoft Copilot", text: "AI that automates routine work and surfaces insight." },
+        { title: "Power Platform", text: "Low-code apps, automated workflows, and analytics." },
+      ],
+    },
+    {
+      label: "Azure",
+      intro: "Cloud infrastructure that is secure, scalable, and costs what it should.",
+      photo: { src: "/images/photos/regions/us/azure.jpg", alt: "A bright data center aisle lined with server cabinets", position: "50% 50%" },
+      items: [
+        { title: "Azure hosting", text: "Computing, networking, and security on Azure." },
+        { title: "Azure migration", text: "Servers, applications, and databases moved from on premises or other clouds." },
+        { title: "Azure optimisation", text: "Performance, cost, and scale tuned to your workloads." },
+        { title: "Azure managed services", text: "Monitoring and proactive support, so you can focus on the business." },
+      ],
+    },
+  ],
+};
+
 /* ───────────────────────────── By region ───────────────────────────── */
 
 export const HOME_HERO = local<HomeHero>({ us: AU_HERO, in: IN_HERO, uae: UAE_HERO });
