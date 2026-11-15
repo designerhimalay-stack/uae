@@ -454,7 +454,7 @@ export const UAE_ONLY_LAYOUTS: Record<string, ServiceLayout> = {
         icon: "target",
         heading: "Cloud built for UAE healthcare.",
         body: ["Cloud-based healthcare solutions for a growing, regulated industry, with AI, secure data management, and systems that scale and adapt."],
-        photo: { src: `${P}/health-split.jpg`, alt: "A doctor in a hijab and stethoscope, eyes closed in a quiet moment", position: "50% 30%" },
+        photo: { src: `${P}/health-split.jpg`, alt: "A doctor reviewing patient records on a tablet", position: "50% 35%" },
         list: "cards",
         cta: true,
         items: [
@@ -540,7 +540,7 @@ export const UAE_ONLY_LAYOUTS: Record<string, ServiceLayout> = {
           "Customers expect financial services to be fast, accessible, and secure. Behind every smooth transaction sit legacy applications, growing data, and strict security requirements.",
           "We modernise infrastructure, connect core business applications, and make financial data more useful for UAE financial organisations.",
         ],
-        photo: { src: `${P}/bank-split.jpg`, alt: "Glass towers in Dubai's business district", position: "50% 50%" },
+        photo: { src: `${P}/bank-split.jpg`, alt: "Two analysts reviewing financial data on a laptop", position: "50% 50%" },
         cta: true,
       },
       {
