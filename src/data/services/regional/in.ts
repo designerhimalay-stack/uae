@@ -289,6 +289,6 @@ export const IN_PAGES: Record<string, PageOverride> = {
     hero: { title: "Taking high-stakes businesses", accent: "beyond digital.", lead: "AptaCloud modernises operations with secure enterprise cloud consulting and AI, building compliance-ready systems that help Indian businesses decide faster." },
   },
   blog: {
-    seo: { title: "AptaCloud India Blog | Cloud, Data, and AI Insights", description: "Articles from AptaCloud India on generative AI, cloud, data, and modernisation for Indian businesses." },
+    seo: { title: "AptaCloud India Blog | Cloud, Data, and AI Insights", description: "Articles from AptaCloud India on generative AI, cloud, data, and modernisation, written for Indian businesses running on Microsoft Azure and Dynamics 365." },
   },
 };

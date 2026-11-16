@@ -304,6 +304,6 @@ export const UAE_PAGES: Record<string, PageOverride> = {
     hero: { title: "Engineering intelligent", accent: "enterprises.", lead: "Connected digital solutions that help UAE enterprises join up their systems, put their data to work, and scale with confidence." },
   },
   blog: {
-    seo: { title: "AptaCloud UAE Blog | Cloud, Data, and AI Insights", description: "Articles from AptaCloud on cloud, data, AI, and modernisation for UAE businesses." },
+    seo: { title: "AptaCloud UAE Blog | Cloud, Data, and AI Insights", description: "Articles from AptaCloud on cloud, data, AI, and modernisation for UAE businesses, with practical guidance on Microsoft Azure, Dynamics 365, and Power BI." },
   },
 };
