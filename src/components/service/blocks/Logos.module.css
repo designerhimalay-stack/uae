@@ -265,7 +265,9 @@
 }
 
 @media (max-width: 809.98px) {
-  .grid { gap: 6px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  /* Three across; a short last row sits centred (no empty slot at the end). */
+  .grid { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+  .gridCell { flex: 0 0 calc((100% - 12px) / 3); min-width: 0; }
   .point { padding: 14px 16px; }
   .pointText { font-size: 15px; }
 }

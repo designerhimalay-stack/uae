@@ -33,10 +33,12 @@ export function Events({ block, tone }: { block: EventsBlock; tone: Tone }) {
   today.setHours(0, 0, 0, 0);
   const next = block.next && day(block.next.end) >= today ? block.next : undefined;
   const past = next || !block.next ? block.past : [block.next, ...block.past];
+  // With nothing coming up, a forward-looking heading ("Where to meet us next.") would promise an event that is not there.
+  const heading = next ? block.heading : "Events we have taken part in.";
   return (
     <section id={block.id ?? "events"} {...toneProps(tone)}>
       <div className={sec.container}>
-        <SectionHead variant={block.head ?? "split"} tag={block.tag} icon={<Icon id={block.icon ?? "clock"} />} heading={block.heading} lead={block.lead} />
+        <SectionHead variant={block.head ?? "split"} tag={block.tag} icon={<Icon id={block.icon ?? "clock"} />} heading={heading} lead={block.lead} />
 
         {next && (
           <Reveal y={32} duration={1.1}>

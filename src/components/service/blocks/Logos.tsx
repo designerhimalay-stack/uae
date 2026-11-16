@@ -111,7 +111,8 @@ function Board({ block, tone }: { block: LogosBlock; tone: Tone }) {
               </ul>
             </article>
           </Reveal>
-          <div id={railId} className={cn(b.grid, sec.rail)}>
+          {/* Phones: one group per row (sec.stack); two across left ~90px per tool name and split words. */}
+          <div id={railId} className={cn(b.grid, sec.rail, sec.stack)}>
             {rest.map((g, i) => (
               <Reveal key={g.label} y={24} duration={0.9} delay={0.08 + i * 0.07} style={spans[i]}>
                 <article className={s.group}>

@@ -62,6 +62,7 @@
 
 .fact dt {
   color: var(--fg-muted);
+  flex-shrink: 0; /* labels stay whole; long values wrap instead */
   font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.02em;
@@ -154,7 +155,6 @@
   content: "";
   height: 96px;
   left: 0;
-  pointer-events: none;
   position: absolute;
   right: 0;
 }

@@ -108,6 +108,8 @@
   letter-spacing: -0.025em;
   line-height: 1.45;
   margin: 0;
+  /* A card that spans the row (odd last card) keeps a readable line length. */
+  max-width: 76ch;
   text-wrap: pretty;
 }
 

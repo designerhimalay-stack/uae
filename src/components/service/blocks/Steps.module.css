@@ -615,9 +615,9 @@
 
 @media (max-width: 809.98px) {
   .cycle { gap: 24px; grid-template-columns: minmax(0, 1fr); }
-  .loopWrap { position: static; }
-  .loop { max-width: 260px; }
-  .loopCentre { font-size: 16px; }
+  /* Phones: the numbered step cards carry the process; the circle squeezed its
+     centre label onto the ring (and the owner prefers cards to circles). */
+  .loopWrap { display: none; }
   .citem { border-radius: 16px; gap: 12px; padding: 14px 16px; }
   .ccurrent { transform: none; }
   .ctitle { font-size: 16px; }

@@ -81,7 +81,7 @@ export function Split({ block, cta, tone }: { block: SplitBlock; cta?: { label: 
           ))}
 
           {block.items && (
-            <div className={cn(s.list, block.list === "cards" && s.listCards, block.list === "divided" && s.listDivided)}>
+            <div className={cn(s.list, block.list === "cards" && s.listCards, block.list === "cards" && (block.items ?? []).every((it) => !it.text) && s.titlesOnly, block.list === "divided" && s.listDivided)}>
               {block.items.map((it, i) => (
                 <Reveal key={it.title} y={18} duration={0.9} delay={i * 0.07} className={s.item}>
                   {it.value ? (
