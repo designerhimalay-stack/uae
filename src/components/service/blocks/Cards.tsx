@@ -77,7 +77,7 @@ export function Card({ item, style, i }: { item: BlockItem; style: NonNullable<C
       <article className={cn(s.photoCard, "photo-host")}>
         {item.photo && (
           <div className={s.photoWrap}>
-            <Photo src={item.photo.src} alt={item.photo.alt} position={item.photo.position} tone="color" sizes="(min-width: 810px) 380px, 84vw" className={s.photo} />
+            <Photo src={item.photo.src} alt={item.photo.alt} position={item.photo.position} tone="color" sizes="(min-width: 810px) 380px, 92vw" className={s.photo} />
           </div>
         )}
         <div className={s.photoBody}>

@@ -60,7 +60,7 @@ export function Tabs({ block, tone }: { block: TabsBlock; tone: Tone }) {
 
         <div id={`${uid}-panel`} role="tabpanel" aria-labelledby={`${uid}-tab-${active}`} className={s.panel}>
           <div key={`m-${active}`} className={cn(s.media, s.fade, "photo-host")}>
-            <Photo src={tab.photo.src} alt={tab.photo.alt} position={tab.photo.position} tone="color" sizes="(min-width: 810px) 520px, 100vw" className={s.photo} />
+            <Photo src={tab.photo.src} alt={tab.photo.alt} position={tab.photo.position} tone="color" sizes="(min-width: 810px) 560px, 100vw" className={s.photo} />
           </div>
           <div key={`c-${active}`} className={cn(s.content, s.fade)}>
             {tab.intro && <p className={s.intro}>{tab.intro}</p>}

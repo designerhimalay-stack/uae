@@ -41,7 +41,7 @@ export function Industries({ industries, slug, tone = "dark" }: { industries: No
                         alt={photo.alt}
                         position={photo.position}
                         tone="color"
-                        sizes="(min-width: 1200px) 380px, (min-width: 810px) 33vw, 84vw"
+                        sizes="(min-width: 1200px) 380px, (min-width: 810px) 33vw, 92vw"
                         className={s.photo}
                       />
                       <span className={s.arrow} aria-hidden="true">

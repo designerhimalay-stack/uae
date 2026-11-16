@@ -20,19 +20,19 @@ export const IN_PAGES: Record<string, PageOverride> = {
     ],
   },
   "ai-consulting": {
-    seo: { title: "AI Consulting India | AI Strategy and Custom LLMs | AptaCloud", description: "AI consulting in India: strategy, custom LLMs, and secure automation for Indian enterprises, proven on your data before you commit." },
+    seo: { title: "AI Consulting India | AI Strategy and LLMs | AptaCloud", description: "AI consulting in India: strategy, custom LLMs, and secure automation for Indian enterprises, proven on your data before you commit." },
     hero: { title: "AI consulting for", accent: "Indian businesses.", lead: "Customised, scalable AI that gives your business an edge, starting with the one workflow where it pays off first." },
     faqs: [
       { q: "How does an AI consultant automate the workload?", a: "We analyse your repetitive tasks and where AI can help, then deploy tools that fit your workflow and reduce delays and downtime." },
       { q: "How long does it take to automate business operations with AI?", a: "Basic automation typically takes three to six months. Complex AI automation can take up to twelve months." },
       { q: "What does AI implementation cost?", a: "It depends on workflow complexity, automation scope, team size, and the software you already run. We give you an estimate after a short assessment." },
       { q: "Is AI consulting only for large companies?", a: "No. We scope AI work to the size of the business and focus on the return over time, so small and mid-sized companies can start with one workflow." },
-      { q: "How does AptaCloud keep AI integration secure?", a: "We use role-based access control, end-to-end encryption, and governance aligned with the DPDP Act, so your data stays protected." },
+      { q: "How does AptaCloud keep AI integration secure?", a: "We use role-based access control, encryption in transit and at rest, and governance aligned with the DPDP Act, so your data stays protected." },
       { q: "What does AptaCloud bring as an AI consulting firm in India?", a: "Experience across cloud and automation, and support from the first assessment through implementation, training, and ongoing improvement." },
     ],
   },
   "generative-ai": {
-    seo: { title: "Generative AI Solutions India | Azure OpenAI and LLMs | AptaCloud", description: "Enterprise generative AI in India: secure Azure OpenAI integrations, LLM deployments, and automation for content, insight, and customer service." },
+    seo: { title: "Generative AI India | Azure OpenAI and LLMs | AptaCloud", description: "Enterprise generative AI in India: secure Azure OpenAI integrations, LLM deployments, and automation for content, insight, and customer service." },
     hero: { title: "Generative AI for", accent: "Indian enterprises.", lead: "Generative AI for content, insight analysis, customer responses, and marketing, grounded in your own data and governed from day one." },
     faqs: [
       { q: "Is generative AI secure to bring into our workflow?", a: "Yes. We build on secure platforms such as Azure OpenAI Service, with strict data governance and compliance controls." },
@@ -62,7 +62,7 @@ export const IN_PAGES: Record<string, PageOverride> = {
     hero: { title: "Data engineering for", accent: "Indian businesses.", lead: "Cloud-native pipelines, platforms, and infrastructure that help Indian businesses grow faster, work more efficiently, and decide with data they trust." },
   },
   "data-warehousing": {
-    seo: { title: "Data Warehousing India | Azure Synapse and Fabric | AptaCloud", description: "Cloud data warehousing in India: scalable, high-performance warehouses on Azure Synapse and Microsoft Fabric, aligned with the DPDP Act." },
+    seo: { title: "Data Warehousing India | Synapse and Fabric | AptaCloud", description: "Cloud data warehousing in India: scalable, high-performance warehouses on Azure Synapse and Microsoft Fabric, aligned with the DPDP Act." },
     hero: { title: "Data warehousing for", accent: "Indian businesses.", lead: "Turn raw data into one trusted source, with real-time insight your teams can act on." },
     faqs: [
       { q: "What is the main benefit of an enterprise data warehouse?", a: "One consolidated source of truth, so every business decision rests on the same trusted data." },
@@ -74,7 +74,7 @@ export const IN_PAGES: Record<string, PageOverride> = {
     ],
   },
   "data-visualization": {
-    seo: { title: "Business Intelligence and Data Visualisation India | AptaCloud", description: "Business intelligence and data visualisation in India: real-time Power BI dashboards and AI-driven analytics on Microsoft Azure." },
+    seo: { title: "BI and Data Visualisation India | Power BI | AptaCloud", description: "Business intelligence and data visualisation in India: real-time Power BI dashboards and AI-driven analytics on Microsoft Azure." },
     hero: { title: "Business intelligence for", accent: "Indian businesses.", lead: "Analyse market trends, automate reporting, and improve customer experience with dashboards that keep your data unified and accessible." },
     faqs: [
       { q: "How does data visualisation help us decide?", a: "It turns complex datasets into charts, heat maps, and other visuals that show trends, market shifts, and customer behaviour at a glance." },
@@ -87,7 +87,7 @@ export const IN_PAGES: Record<string, PageOverride> = {
 
   /* ── Application modernisation ───────────────────────────────────── */
   "application-modernization": {
-    seo: { title: "Legacy Modernisation India | Cloud-Native Transformation | AptaCloud", description: "Legacy modernisation for Indian businesses: monolithic systems turned into agile, cloud-native applications on Microsoft Azure, with less risk." },
+    seo: { title: "Legacy Modernisation India | Cloud-Native Apps | AptaCloud", description: "Legacy modernisation for Indian businesses: monolithic systems turned into agile, cloud-native applications on Microsoft Azure, with less risk." },
     hero: { title: "Legacy modernisation for", accent: "Indian businesses.", lead: "Smart, scalable modernisation built for speed, flexibility, and growth, without stopping the systems you rely on." },
     faqs: [
       { q: "When is the right time to modernise?", a: "When systems are slow, expensive to run, or hard to integrate, it is time to plan modernisation." },
@@ -114,7 +114,7 @@ export const IN_PAGES: Record<string, PageOverride> = {
     ],
   },
   "application-re-engineering": {
-    seo: { title: "Systems Re-engineering India | Modern Architecture | AptaCloud", description: "Systems re-engineering in India: ageing architectures rebuilt into scalable, secure, cloud-ready platforms on Microsoft Azure." },
+    seo: { title: "Systems Re-engineering India | Modern Systems | AptaCloud", description: "Systems re-engineering in India: ageing architectures rebuilt into scalable, secure, cloud-ready platforms on Microsoft Azure." },
     hero: { title: "Systems re-engineering for", accent: "Indian businesses.", lead: "Turn legacy systems into scalable, secure platforms that keep the business logic you rely on." },
     faqs: [
       { q: "When should we re-engineer rather than replace a system?", a: "When the system still carries core business logic but struggles with performance, integration, or scale. Re-engineering avoids a costly, risky replacement." },
@@ -129,7 +129,7 @@ export const IN_PAGES: Record<string, PageOverride> = {
 
   /* ── Microsoft ───────────────────────────────────────────────────── */
   "services/microsoft/microsoft-365": {
-    seo: { title: "Microsoft 365 India | Deployment and Licensing Support | AptaCloud", description: "Microsoft 365 for Indian businesses: deployment, licensing, security configuration, and support across the full suite." },
+    seo: { title: "Microsoft 365 India | Deployment and Licensing | AptaCloud", description: "Microsoft 365 for Indian businesses: deployment, licensing, security configuration, and support across the full suite." },
     hero: { title: "Microsoft 365 services for", accent: "Indian businesses.", lead: "Deployment, licensing, security, and support across the whole Microsoft 365 suite, set up around how your teams work." },
     faqs: [
       { q: "What do we get from a Microsoft 365 implementation?", a: "Better collaboration, stronger security, and a planned move to Microsoft 365, with support and management afterwards." },
@@ -141,7 +141,7 @@ export const IN_PAGES: Record<string, PageOverride> = {
     ],
   },
   "services/microsoft/teams": {
-    seo: { title: "Microsoft Teams India | Collaboration and Calling | AptaCloud", description: "Microsoft Teams services in India: collaboration, calling, and secure hybrid work, set up and supported by AptaCloud." },
+    seo: { title: "Microsoft Teams India | Collaboration, Calling | AptaCloud", description: "Microsoft Teams services in India: collaboration, calling, and secure hybrid work, set up and supported by AptaCloud." },
     hero: { title: "Microsoft Teams for", accent: "Indian businesses.", lead: "Teams set up to improve communication and keep work flowing across every branch and office." },
     faqs: [
       { q: "How do you migrate us to Teams?", a: "We assess your needs, design the architecture, deploy the apps you need, migrate users, and hand over ownership." },
@@ -153,7 +153,7 @@ export const IN_PAGES: Record<string, PageOverride> = {
     ],
   },
   "services/microsoft/identity-security": {
-    seo: { title: "Identity and Security India | Microsoft Entra and Zero Trust | AptaCloud", description: "Microsoft identity and security in India: Microsoft Entra ID and Zero Trust frameworks that protect Indian enterprises' users and data." },
+    seo: { title: "Microsoft Identity and Security India | Entra ID | AptaCloud", description: "Microsoft identity and security in India: Microsoft Entra ID and Zero Trust frameworks that protect Indian enterprises' users and data." },
     hero: { title: "Identity and security for", accent: "Indian businesses.", lead: "Protect your business from emerging threats by securing user identities, data, and every app your people use." },
     faqs: [
       { q: "Why is identity the new security perimeter?", a: "With cloud apps and remote work, protection depends on user identities rather than network boundaries." },
@@ -178,7 +178,7 @@ export const IN_PAGES: Record<string, PageOverride> = {
     ],
   },
   "services/microsoft/sharepoint": {
-    seo: { title: "SharePoint Consulting India | Microsoft SharePoint | AptaCloud", description: "SharePoint consulting for Indian businesses: secure, metadata-driven document management and Microsoft 365 integration." },
+    seo: { title: "Microsoft SharePoint Consulting India | AptaCloud", description: "SharePoint consulting for Indian businesses: secure, metadata-driven document management and Microsoft 365 integration." },
     hero: { title: "SharePoint consulting for", accent: "Indian businesses.", lead: "Smarter collaboration and secure documents, with SharePoint set up around how your business shares work." },
     faqs: [
       { q: "Which companies need SharePoint?", a: "Companies with large volumes of documents, compliance needs, and collaboration across departments and outside teams." },
@@ -246,7 +246,7 @@ export const IN_PAGES: Record<string, PageOverride> = {
 
   /* ── Industries ──────────────────────────────────────────────────── */
   "industry/insurance": {
-    seo: { title: "Cloud and AI for Insurance India | Microsoft Azure | AptaCloud", description: "Cloud and AI for Indian insurers: claims automation, analytics, and data management aligned with IRDAI guidelines and the DPDP Act." },
+    seo: { title: "Insurance Cloud and AI India | Microsoft Azure | AptaCloud", description: "Cloud and AI for Indian insurers: claims automation, analytics, and data management aligned with IRDAI guidelines and the DPDP Act." },
     hero: { title: "Insurance technology for", accent: "Indian insurers.", lead: "Cloud and AI built for India's life, health, and general insurers, modernising existing systems while protecting personal data under IRDAI guidelines and the DPDP Act." },
     faqs: [
       { q: "What does cloud and AI mean for insurance?", a: "Scalable cloud infrastructure and AI applied to underwriting, claims, policy management, and customer service for speed, accuracy, and better decisions." },
@@ -258,7 +258,7 @@ export const IN_PAGES: Record<string, PageOverride> = {
     ],
   },
   "industry/oil-gas": {
-    seo: { title: "Cloud and AI for Oil and Gas India | Microsoft Azure | AptaCloud", description: "Cloud and AI for Indian oil and gas companies: secure Azure infrastructure, predictive analytics, and safer, more efficient operations." },
+    seo: { title: "Oil and Gas Cloud and AI India | Microsoft Azure | AptaCloud", description: "Cloud and AI for Indian oil and gas companies: secure Azure infrastructure, predictive analytics, and safer, more efficient operations." },
     hero: { title: "Oil and gas technology", accent: "for India.", lead: "AI, cloud, and system integration that improve efficiency, safety, and control for Indian oil and gas companies, in line with the DPDP Act and the IT Act." },
     faqs: [
       { q: "Can AI optimise production in oil and gas fields?", a: "Yes. AI uses current and historical production data to raise output, reduce waste, and improve decisions upstream and downstream." },

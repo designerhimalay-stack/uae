@@ -401,7 +401,7 @@ export const AI_PAGES: ServicePage[] = [
     },
     industries: {
       heading: "Where generative AI saves the most time.",
-      lead: "The best first use cases are document-heavy tasks your specialists repeat every week.",
+      lead: "Strong first use cases are document-heavy tasks your specialists repeat every week.",
       items: {
         insurance: {
           useCase: "Summarise claim files and draft correspondence for adjusters to review.",

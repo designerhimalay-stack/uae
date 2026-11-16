@@ -46,7 +46,7 @@ function Flank({ block, tone }: { block: SplitBlock; tone: Tone }) {
         <div className={s.flank}>
           {side(items.slice(0, half), 0)}
           <Reveal y={40} duration={1.2} className={cn(s.flankMedia, "photo-host")}>
-            <Photo src={block.photo.src} alt={block.photo.alt} position={block.photo.position} tone="color" sizes="(min-width: 810px) 380px, 100vw" className={s.photo} />
+            <Photo src={block.photo.src} alt={block.photo.alt} position={block.photo.position} tone="color" sizes="(min-width: 810px) 600px, 100vw" className={s.photo} />
           </Reveal>
           {side(items.slice(half), half)}
         </div>

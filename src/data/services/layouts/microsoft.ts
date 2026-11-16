@@ -131,7 +131,7 @@ export const MS_LAYOUTS: Record<string, ServiceLayout> = {
       { q: "How long does a Microsoft 365 migration take?", a: "It depends on your current environment, data volume, and requirements. We build a detailed migration plan and timeline that keeps disruption to a minimum." },
       { q: "What are the benefits of moving to Microsoft 365?", a: "Better collaboration, stronger security, higher productivity, lower IT costs, and more flexibility in how and where people work." },
       { q: "Which Microsoft 365 apps do you specialise in?", a: "The whole suite, including Teams, SharePoint, OneDrive, Exchange, Word, Excel, and PowerPoint, plus Power Apps, Power Automate, Power BI, and Microsoft Copilot." },
-      { q: "How do we choose the right Microsoft 365 plan?", a: "We assess your needs and recommend the best plan for your size, industry, and budget." },
+      { q: "How do we choose the right Microsoft 365 plan?", a: "We assess your needs and recommend the plan that fits your size, industry, and budget." },
       { q: "Do you train our staff on Microsoft 365?", a: "Yes. Our training programmes help your people use Microsoft 365 and its apps effectively." },
     ],
   },

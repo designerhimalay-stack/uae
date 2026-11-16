@@ -33,7 +33,7 @@ export const UAE_PAGES: Record<string, PageOverride> = {
     ],
   },
   "generative-ai": {
-    seo: { title: "Generative AI UAE | Azure OpenAI and LLM Solutions | AptaCloud", description: "Generative AI for UAE businesses: secure, enterprise-grade solutions on Azure OpenAI Service and large language models." },
+    seo: { title: "Generative AI UAE | Azure OpenAI and LLMs | AptaCloud", description: "Generative AI for UAE businesses: secure, enterprise-grade solutions on Azure OpenAI Service and large language models." },
     hero: { title: "Generative AI that turns", accent: "ideas into results.", lead: "Your competitors use AI to work faster and serve better. We help UAE businesses put it to work, from automation to instant content." },
     faqs: [
       { q: "What are generative AI services?", a: "Services that generate text, images, reports, and other content, automate tasks, and support decisions using models trained on large datasets." },
@@ -85,7 +85,7 @@ export const UAE_PAGES: Record<string, PageOverride> = {
     ],
   },
   "data-visualization": {
-    seo: { title: "Business Intelligence UAE | Power BI and Analytics | AptaCloud", description: "Business intelligence and data visualisation in the UAE: Power BI dashboards and analytics on Microsoft Azure." },
+    seo: { title: "Business Intelligence UAE | Power BI | AptaCloud", description: "Business intelligence and data visualisation in the UAE: Power BI dashboards and analytics on Microsoft Azure." },
     hero: { title: "Where data becomes decisions,", accent: "not just dashboards.", lead: "Turn raw data into insight with business intelligence and visualisation built around your decisions." },
     faqs: [
       { q: "What are business intelligence and data visualisation?", a: "Turning data into reports and dashboards that people can read and act on." },
@@ -98,7 +98,7 @@ export const UAE_PAGES: Record<string, PageOverride> = {
 
   /* ── Application modernisation ───────────────────────────────────── */
   "application-modernization": {
-    seo: { title: "Legacy Modernisation UAE | Cloud-Native Transformation | AptaCloud", description: "Legacy modernisation in the UAE: outdated systems turned into agile, cloud-native applications on Microsoft Azure." },
+    seo: { title: "Legacy Modernisation UAE | Cloud-Native Apps | AptaCloud", description: "Legacy modernisation in the UAE: outdated systems turned into agile, cloud-native applications on Microsoft Azure." },
     hero: { title: "Legacy modernisation for", accent: "UAE businesses.", lead: "Turn legacy systems into high-performing applications that support growth, in planned stages." },
     faqs: [
       { q: "What is legacy system modernisation?", a: "Upgrading old applications and systems for efficiency, speed, and security, so you cut costs and stay competitive." },
@@ -137,7 +137,7 @@ export const UAE_PAGES: Record<string, PageOverride> = {
 
   /* ── Microsoft ───────────────────────────────────────────────────── */
   "services/microsoft/microsoft-365": {
-    seo: { title: "Microsoft 365 UAE | Deployment and Licensing Support | AptaCloud", description: "Microsoft 365 for UAE businesses: deployment, licensing, and support across the full suite." },
+    seo: { title: "Microsoft 365 UAE | Deployment and Licensing | AptaCloud", description: "Microsoft 365 for UAE businesses: deployment, migration, licensing, security configuration, and support across Teams, SharePoint, OneDrive, and Exchange." },
     hero: { title: "Microsoft 365 services for", accent: "UAE businesses.", lead: "Better collaboration, security, and productivity with a planned move to Microsoft 365." },
     faqs: [
       { q: "How long does a Microsoft 365 migration take?", a: "Typically one to two weeks for around 50 users, and two to five months for 500 or more." },
@@ -148,7 +148,7 @@ export const UAE_PAGES: Record<string, PageOverride> = {
     ],
   },
   "services/microsoft/teams": {
-    seo: { title: "Microsoft Teams UAE | Collaboration and Voice | AptaCloud", description: "Microsoft Teams in the UAE: secure voice, integrations, and governance for UAE organisations." },
+    seo: { title: "Microsoft Teams UAE | Collaboration and Voice | AptaCloud", description: "Microsoft Teams in the UAE: secure voice, meetings, integrations, and governance for UAE organisations, set up for hybrid work and supported after go-live." },
     hero: { title: "Microsoft Teams for", accent: "UAE businesses.", lead: "Secure collaboration and integrated workflows with Microsoft Teams, set up around your goals." },
     faqs: [
       { q: "Do you provide voice services for Teams?", a: "Yes. We set up Teams Phone with call queues, an auto attendant, and Microsoft eCDN for advanced calling." },
@@ -160,7 +160,7 @@ export const UAE_PAGES: Record<string, PageOverride> = {
     ],
   },
   "services/microsoft/identity-security": {
-    seo: { title: "Identity and Security UAE | Microsoft Entra and Zero Trust | AptaCloud", description: "Identity and security for UAE businesses: Microsoft Entra ID, Zero Trust security, and compliance on Azure." },
+    seo: { title: "Microsoft Identity and Security UAE | Entra ID | AptaCloud", description: "Identity and security for UAE businesses: Microsoft Entra ID, Intune, and Zero Trust security on Azure, set up for PDPL compliance and monitored." },
     hero: { title: "Identity and security for", accent: "UAE businesses.", lead: "Protect your users, devices, AI, applications, and data across hybrid and cloud infrastructure." },
     faqs: [
       { q: "What security does Microsoft Entra ID provide?", a: "Encryption, access management, threat protection, identity protection, and compliance tools for your data and privacy." },
@@ -183,7 +183,7 @@ export const UAE_PAGES: Record<string, PageOverride> = {
     ],
   },
   "services/microsoft/sharepoint": {
-    seo: { title: "Microsoft SharePoint UAE | Intranet and Collaboration | AptaCloud", description: "Microsoft SharePoint in the UAE: intranet design, migration, document governance, and workflow automation for enterprise teams." },
+    seo: { title: "SharePoint UAE | Intranet and Collaboration | AptaCloud", description: "Microsoft SharePoint in the UAE: intranet design, migration, document governance, and workflow automation for enterprise teams." },
     hero: { title: "SharePoint solutions for", accent: "UAE businesses.", lead: "From intranet portals to document governance and workflow automation, change how your business works every day." },
     faqs: [
       { q: "What can we store in SharePoint?", a: "Documents, lists, and site content, backed by OneDrive and Azure storage options." },
@@ -194,7 +194,7 @@ export const UAE_PAGES: Record<string, PageOverride> = {
     ],
   },
   "services/microsoft/microsoft-dynamics-365": {
-    seo: { title: "Microsoft Dynamics 365 UAE | ERP and CRM | AptaCloud", description: "Dynamics 365 in the UAE: ERP migration, Business Central setup, and support for unified, automated workflows." },
+    seo: { title: "Microsoft Dynamics 365 UAE | ERP and CRM | AptaCloud", description: "Dynamics 365 in the UAE: ERP migration, Business Central setup, CRM, and support for unified, automated workflows across finance, sales, and operations." },
     hero: { title: "Dynamics 365 for", accent: "UAE businesses.", lead: "Optimise, automate, and scale with one ERP and CRM platform, supported by AptaCloud." },
     faqs: [
       { q: "How is Dynamics 365 different from other ERP or CRM systems?", a: "It unifies ERP and CRM on one cloud platform, available anywhere, with real-time data instead of separate systems." },
@@ -220,7 +220,7 @@ export const UAE_PAGES: Record<string, PageOverride> = {
     ],
   },
   "azure-implementation": {
-    seo: { title: "Azure Implementation UAE | Cloud Deployment | AptaCloud", description: "Azure implementation in the UAE: architecture design to deployment, for a secure, scalable Azure rollout." },
+    seo: { title: "Azure Implementation UAE | Cloud Deployment | AptaCloud", description: "Azure implementation in the UAE: architecture design to deployment, with governance and PDPL-aligned security, for a secure, scalable Azure rollout." },
     hero: { title: "Expert-led Azure implementation", accent: "for secure growth.", lead: "A strong cloud foundation is critical. We set up Azure so it is secure, fast, and cost-effective from day one." },
     faqs: [
       { q: "What is Azure implementation?", a: "Setting up infrastructure, applications, networking, and security on Azure for performance, cost, and scale." },
@@ -244,8 +244,8 @@ export const UAE_PAGES: Record<string, PageOverride> = {
     ],
   },
   "azure-managed-services": {
-    seo: { title: "Azure Managed Services UAE | Cloud Support | AptaCloud", description: "Azure managed services for UAE businesses: monitoring, optimisation, security, and support in your time zone." },
-    hero: { title: "Your Azure is powerful.", accent: "Is it performing?", lead: "Most businesses move to the cloud. Fewer get the most from it. We manage Azure so it performs." },
+    seo: { title: "Azure Managed Services UAE | Cloud Support | AptaCloud", description: "Azure managed services for UAE businesses: monitoring, patching, backup, optimisation, security, and support in your time zone, on a monthly plan." },
+    hero: { title: "Azure that performs,", accent: "managed for you.", lead: "Most businesses move to the cloud. Fewer get the most from it. We manage Azure so it performs." },
     faqs: [
       { q: "How are managed services different from basic hosting?", a: "Hosting gives you infrastructure. Managed services add full management, optimisation, and security." },
       { q: "Can you reduce our Azure costs?", a: "Yes. We find unused resources and optimise usage." },
@@ -272,7 +272,7 @@ export const UAE_PAGES: Record<string, PageOverride> = {
     ],
   },
   "industry/oil-gas": {
-    seo: { title: "Cloud and AI for Oil and Gas UAE | Microsoft Azure | AptaCloud", description: "Cloud and AI for UAE oil and gas companies: secure Azure infrastructure, predictive analytics, and efficient operations." },
+    seo: { title: "Oil and Gas Cloud and AI UAE | Microsoft Azure | AptaCloud", description: "Cloud and AI for UAE oil and gas companies: secure Azure infrastructure, predictive analytics, and efficient operations." },
     hero: { title: "Smarter oil and gas", accent: "operations.", lead: "Predictive maintenance and connected data that help UAE operators reduce downtime and run more efficiently." },
     faqs: [
       { q: "Can AI make production more efficient?", a: "Yes. AI analyses real-time and historical data to optimise production and flag issues early." },

@@ -240,7 +240,7 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
           { title: "Integrated web apps", text: "AI built into customer-facing or internal portals.", icon: "code" },
           { title: "Chat agents", text: "Microsoft Teams, Slack, or custom chat agents that help people work together.", icon: "chat" },
           { title: "Independent apps", text: "Standalone AI apps for specialised workflows.", icon: "layers" },
-          { title: "Embedded IoT agents", text: "AI inside connected devices for logistics, field operations, and manufacturing.", icon: "cog" },
+          { title: "Embedded IoT agents", text: "AI inside connected devices on sites, plants, and field equipment.", icon: "cog" },
         ],
       },
       {
@@ -539,7 +539,7 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
       },
       {
         q: "How do we choose the first use case?",
-        a: "We rank use cases by value and data readiness in a short assessment, then prove the best one with a proof of concept on your data.",
+        a: "We rank use cases by value and data readiness in a short assessment, then prove the one with the clearest return with a proof of concept on your data.",
       },
     ],
   },
@@ -563,7 +563,7 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
           { title: "Predictive analysis", text: "Forecast demand, spot trends, and anticipate market changes, so you can plan ahead.", icon: "chart" },
           { title: "Customer segmentation and personalisation", text: "Segment customers by behaviour, preferences, and demographics for personalised offers and campaigns.", icon: "team" },
           { title: "Fraud detection and prevention", text: "Real-time detection that analyses transaction patterns and stops losses before they occur.", icon: "shield" },
-          { title: "Supply chain optimisation", text: "Optimise inventory, predict disruption, and streamline logistics.", icon: "migrate" },
+          { title: "Supply chain optimisation", text: "Optimise inventory, predict disruption, and keep supplies moving.", icon: "migrate" },
           { title: "Intelligent document processing", text: "Natural language processing and computer vision that read complex documents with human-level accuracy.", icon: "doc" },
           { title: "Quality assurance and defect detection", text: "Computer vision quality control that finds defects before products reach the market.", icon: "search" },
         ],

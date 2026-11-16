@@ -34,7 +34,7 @@ export function Posts({ block, tone }: { block: PostsBlock; tone: Tone }) {
               <Reveal key={it.slug} y={28} duration={0.9} delay={i * 0.07} className={s.cell}>
                 <a href={postUrl(it.slug)} className={cn(s.card, "photo-host")}>
                   <div className={s.thumb}>
-                    <Photo src={postImage(it.slug)} alt="" tone="color" sizes="(min-width: 1200px) 380px, 84vw" className={s.photo} />
+                    <Photo src={postImage(it.slug)} alt="" tone="color" sizes="(min-width: 1200px) 380px, 92vw" className={s.photo} />
                   </div>
                   <div className={s.body}>
                     <p className={s.meta}>

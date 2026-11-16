@@ -18,7 +18,7 @@ export const DATA_LAYOUTS: Record<string, ServiceLayout> = {
         id: "overview",
         tag: "Why our services",
         icon: "db",
-        heading: "Why our data engineering services?",
+        heading: "Why choose our data engineering services?",
         body: [
           "AptaCloud helps organisations get the full value from their data with practical engineering.",
           "Whether you want to improve operations, make better decisions, or drive digital transformation, our data engineering consultants guide you at every step.",
@@ -148,7 +148,7 @@ export const DATA_LAYOUTS: Record<string, ServiceLayout> = {
         id: "overview",
         tag: "Why our services",
         icon: "db",
-        heading: "Why our data warehousing services?",
+        heading: "Why choose our data warehousing services?",
         body: [
           "AptaCloud's data warehousing services help businesses centralise, analyse, and act on their data.",
           "With us, you improve operational efficiency, make decisions from one trusted source, and keep your data secure and compliant.",

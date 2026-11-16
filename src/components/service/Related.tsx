@@ -40,7 +40,7 @@ export function Related({ category, siblings, tone = "dark" }: { category: Categ
                     alt=""
                     position={p.photo.position}
                     tone="color"
-                    sizes="(min-width: 1200px) 380px, 84vw"
+                    sizes="(min-width: 1200px) 600px, 92vw"
                     className={s.photo}
                   />
                   <span className={s.arrow} aria-hidden="true">

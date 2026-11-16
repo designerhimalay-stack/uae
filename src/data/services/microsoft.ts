@@ -225,7 +225,7 @@ export const MS_PAGES: ServicePage[] = [
     },
     industries: {
       heading: "Copilots in the industries we serve.",
-      lead: "The best first copilot answers the questions your specialists hear most.",
+      lead: "A good first copilot answers the questions your specialists hear most.",
       items: {
         insurance: { useCase: "A copilot that answers policy and procedure questions for underwriters and brokers.", outcome: "Answers in seconds, with the source attached." },
         oilgas: { useCase: "A copilot that finds the right procedure or inspection record for a crew.", outcome: "Less time searching, more time on the job." },

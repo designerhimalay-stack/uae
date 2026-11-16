@@ -77,7 +77,7 @@ export const APPMOD_LAYOUTS: Record<string, ServiceLayout> = {
         id: "expertise",
         tag: "Our expertise",
         icon: "code",
-        heading: "Our application migration expertise spans:",
+        heading: "The systems we migrate.",
         reverse: true,
         list: "divided",
         photo: { src: `${P}/macbook-four.jpg`, alt: "Two engineers refactoring legacy application code across two monitors", position: "50% 45%" },

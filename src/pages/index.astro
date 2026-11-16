@@ -41,7 +41,7 @@ const META = local({
     description: "Microsoft cloud and AI consulting for UAE businesses: Azure, AI agents, generative AI, Dynamics 365, and modernisation, built around PDPL and UAE rules.",
   },
   in: {
-    title: `${BRAND.name} India | Cloud and AI Transformation for Indian Businesses`,
+    title: `${BRAND.name} India | Cloud and AI for Indian Businesses`,
     description: "Cloud migration, AI consulting, SharePoint, data engineering, and legacy modernisation for Indian SMBs and enterprises, from teams in Gurugram and Pune.",
   },
 });
@@ -49,9 +49,15 @@ const META = local({
 // India's home is rebuilt from its own live page (src/data/home.ts); the tone
 // rhythm runs grey → white → dark down the page.
 const india = REGION.id === "in";
+
+// The India and UAE homes show an FAQ, so they carry FAQPage schema (AEO).
+const homeFaqs = india ? IN_FAQS : REGION.id === "uae" ? UAE_FAQS : [];
+const jsonLd = homeFaqs.length
+  ? [{ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: homeFaqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }]
+  : [];
 ---
 
-<Base title={META.title} description={META.description}>
+<Base title={META.title} description={META.description} jsonLd={jsonLd}>
   <Nav client:load />
   <ConstructionLines />
   {

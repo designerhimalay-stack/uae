@@ -492,3 +492,12 @@ A script compared every page's sections with its own region's live page (US and 
 - **SharePoint:** gains the industries section the live page has.
 - **India and UAE:** the shared pages now carry the sections their own old pages have and the shared layout lacked (challenges, why AptaCloud, outcomes, typical engagements). See `src/data/services/regional/in-sections.ts` and `uae-sections.ts`; UAE Healthcare gains its services section and UAE Fabric its why section.
 - **Still not carried over (rules):** testimonials, client logos, case-study figures, third-party market statistics, and repeated "Ready to…" CTA strips.
+
+## 12. SEO ruleset and three-width design pass, every region (2026-11-15)
+Checked every page of all four builds against the client's `aptacloud-content` and `aptacloud-content-audit` skills (`tools/audit/rulecheck.mjs`, `seoaudit.mjs`, `ctaaudit.mjs`) and at 1440, 1024, and 390 (`audit.mjs`, `designaudit.mjs`).
+- **Copy fixed:** "the best" (4), "next generation", "end-to-end" (5), six rhetorical CTA headings on India and UAE pages (for example "Ready to modernise healthcare…?" → "Modernise healthcare with AI and cloud."), the UAE managed-services hero question, two awkward "Why our … services?" headings, and AI Agents and Machine Learning cards that named logistics and manufacturing.
+- **Blog listing titles:** Australian spelling (the US build converts), and no banned words or unsourced figures ("Leveraging…", "8 Best…", "Unlocking…", "Is Leading the Way", "by 40% or More"). The articles on the live blog keep their own titles. `[CLIENT: retitle those posts at source]`
+- **Metadata:** 27 India and UAE titles cut to 60 characters or fewer; 7 short descriptions extended; the India and UAE home pages now carry FAQPage schema.
+- **CTA cadence:** no section has two identical buttons, and no page repeats its primary CTA more than once mid-page (all regions).
+- **Design:** no overflow, broken images, overlaps, or console errors at any width. Outlier cards brought to the 24/28 padding tiers and 24px radius (industry deep dive, panels, phases, rows, pipeline, layers, AI models, process timeline). Image `sizes` hints corrected so split, banner, tab, related, and phone card photos load a large enough file.
+- **Accepted:** the privacy policy names the legal entity, OTS Solutions Inc.; the pricing tables keep their client-approved figures.

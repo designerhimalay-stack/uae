@@ -7,7 +7,7 @@
   display: grid;
   gap: 48px;
   grid-template-columns: minmax(0, 500px) minmax(0, 1fr);
-  padding: 36px 44px 36px 36px;
+  padding: 28px;
 }
 
 .rings {

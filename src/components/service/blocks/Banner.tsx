@@ -43,7 +43,7 @@ export function Banner({ block, cta, tone, id }: { block: BannerBlock; cta?: { l
             </div>
           </div>
           <div className={s.media}>
-            <Photo src={block.photo.src} alt={block.photo.alt} position={block.photo.position} tone="color" sizes="(min-width: 810px) 520px, 100vw" className={s.photo} />
+            <Photo src={block.photo.src} alt={block.photo.alt} position={block.photo.position} tone="color" sizes="(min-width: 810px) 560px, 100vw" className={s.photo} />
           </div>
         </Reveal>
       </div>

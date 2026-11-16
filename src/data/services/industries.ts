@@ -220,7 +220,7 @@ export const INDUSTRY_PAGES: ServicePage[] = [
     cta: {
       label: "Book an architecture assessment",
       short: "Book an assessment",
-      heading: "Drive the next generation of connected operations.",
+      heading: "Connect your operations across every site.",
       lead: "Let us assess your SCADA, asset, and field architecture and show how to connect it into one governed data platform.",
     },
     stack: ["azure", "azureSynapse", "fabric", "powerBI", "dynamics", "serviceBus", "eventGrid", "azureML"],

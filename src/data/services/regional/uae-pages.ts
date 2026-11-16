@@ -76,7 +76,7 @@ export const UAE_ONLY_PAGES: ServicePage[] = [
     category: "industries",
     name: "Healthcare",
     summary: "Secure, compliant cloud and AI for UAE healthcare providers.",
-    seo: { title: "Cloud and AI for Healthcare UAE | Microsoft Azure | AptaCloud", description: "Cloud and AI for UAE healthcare: secure, scalable systems connected to NABIDH and Malaffi, with modern care delivery and analytics." },
+    seo: { title: "Healthcare Cloud and AI UAE | Microsoft Azure | AptaCloud", description: "Cloud and AI for UAE healthcare: secure, scalable systems connected to NABIDH and Malaffi, with modern care delivery and analytics." },
     hero: {
       title: "Smarter, compliant",
       accent: "healthcare in the UAE.",
@@ -95,7 +95,7 @@ export const UAE_ONLY_PAGES: ServicePage[] = [
     category: "industries",
     name: "Banking & Financial Services",
     summary: "Cloud, data, and AI for UAE banks, fintechs, insurers, and investment firms.",
-    seo: { title: "Cloud and AI for Banking and Financial Services UAE | AptaCloud", description: "Cloud, data, and AI for UAE financial institutions: connected core systems, analytics, automation, and CBUAE, DIFC, and PDPL readiness." },
+    seo: { title: "Cloud and AI for Banking and Finance UAE | AptaCloud", description: "Cloud, data, and AI for UAE financial institutions: connected core systems, analytics, automation, and CBUAE, DIFC, and PDPL readiness." },
     hero: {
       title: "The next era of banking",
       accent: "with cloud and AI.",
@@ -114,7 +114,7 @@ export const UAE_ONLY_PAGES: ServicePage[] = [
     category: "industries",
     name: "Manufacturing",
     summary: "AI, IoT, cloud ERP, and analytics for UAE manufacturers.",
-    seo: { title: "Cloud and AI for Manufacturing UAE | Microsoft Azure | AptaCloud", description: "AI and cloud for UAE manufacturers: IoT, MES, cloud ERP, and predictive maintenance aligned with ISO 9001, ESMA, and PDPL." },
+    seo: { title: "Manufacturing Cloud and AI UAE | Microsoft Azure | AptaCloud", description: "AI and cloud for UAE manufacturers: IoT, MES, cloud ERP, and predictive maintenance aligned with ISO 9001, ESMA, and PDPL." },
     hero: {
       title: "Modern manufacturing with",
       accent: "measurable outcomes.",
@@ -533,7 +533,7 @@ export const UAE_ONLY_LAYOUTS: Record<string, ServiceLayout> = {
         items: [
           { title: "Data-driven modernisation", text: "IT systems rebuilt on a data-enabled architecture.", icon: "layers" },
           { title: "UAE compliance focus", text: "Connected to NABIDH in Dubai and Malaffi in Abu Dhabi.", icon: "shield" },
-          { title: "End-to-end support", text: "From planning and migration to post-deployment.", icon: "clock" },
+          { title: "Support at every stage", text: "From planning and migration to post-deployment.", icon: "clock" },
           { title: "Scalable, cost-optimised", text: "Right-sized resources that follow clinical demand.", icon: "gauge" },
         ],
       },
@@ -561,7 +561,7 @@ export const UAE_ONLY_LAYOUTS: Record<string, ServiceLayout> = {
       { q: "Can you integrate with our existing systems?", a: "Yes, with little interruption to operations." },
       { q: "How do cloud solutions reduce costs?", a: "A pay-as-you-go model removes expensive hardware and maintenance and uses resources efficiently." },
       { q: "Do you support providers across several sites in the UAE?", a: "Yes. Central management of data and systems keeps care consistent and coordinated across locations." },
-      { q: "How do cloud and AI improve healthcare supply chains?", a: "End-to-end visibility, integrated workflows, predictive analytics, automation, and real-time data." },
+      { q: "How do cloud and AI improve healthcare supply chains?", a: "Full visibility, integrated workflows, predictive analytics, automation, and real-time data." },
     ],
   },
 

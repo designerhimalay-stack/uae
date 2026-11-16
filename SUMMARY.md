@@ -164,7 +164,11 @@ node tools/audit/ctaaudit.mjs <slug>...           # duplicate buttons per sectio
 node tools/audit/shoot.mjs /path/ name 1440 full  # screenshot (modes: full, fold, el:#id)
 node tools/audit/seoaudit.mjs dist                # after build: titles, descriptions, H1, canonical, OG, JSON-LD, alt, em dashes
 node tools/audit/linkcheck.mjs dist   # every internal link and #anchor resolves
+node tools/audit/rulecheck.mjs dist <region> out.json   # client content rules: em dashes, rhetorical questions, banned words, unsourced figures, product names, OTS brands, out-of-vertical, CTA labels, spelling, schema
+node tools/audit/sectioncheck.mjs <region> dist cache/ out.json   # every section type the region's own live page has, and ours lacks
+node tools/audit/serve.mjs <buildDir> /au/ 4321   # serve any region's build (e.g. a deploy worktree) for the browser audits; set REGION=<region>
 ```
+Known, accepted rule hits: the privacy policy's legal entity (OTS Solutions Inc.), the client-approved pricing tables (US$35, 10%), AWS product names (Mainframe Modernization, Compute Optimizer), live blog titles that are questions, and the India/UAE region-only pages (healthcare, banking, manufacturing), which are an open client item. `designaudit` flags images under 1.2× their slot; only "Npx shown at Mpx" with N < M is a real upscale (fix the `sizes` hint).
 
 **Don't edit `src/` while a crawl is running.** The dev server reloads and the crawl fails.
 
