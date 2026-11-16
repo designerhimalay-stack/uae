@@ -77,10 +77,18 @@
   text-align: center;
 }
 
-/* Phone: the groups sit two to a row (sec.rail), three apps to a group row. */
+/* Phone (down to 320px): groups of one or two apps sit two to a row; groups of
+   three or more, and the odd "closer", take the full row with up to four apps
+   across. Each small group's apps share its card evenly. */
 @media (max-width: 809.98px) {
-  .group { border-radius: 20px; gap: 12px; padding: 14px; }
-  .apps { display: grid; gap: 12px 4px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .bento { display: grid; grid-auto-flow: row dense; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .group { border-radius: 20px; gap: 12px; min-width: 0; padding: 14px; }
+  .wide, .closer { grid-column: 1 / -1; }
+  .closer { order: 1; }
+  .apps { display: grid; gap: 12px 4px; grid-template-columns: repeat(var(--apps), minmax(0, 1fr)); }
+  .wide .apps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .closer .apps { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .label { font-size: 12px; padding: 5px 10px; }
   .app { width: auto; }
   .plate { border-radius: 11px; height: 40px; width: 40px; }
   .icon { height: 24px; width: 24px; }

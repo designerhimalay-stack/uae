@@ -3,7 +3,7 @@
 // with a sticky plan header. Phones: a plan switcher above the cards' rail,
 // and the comparison shows one plan's column at a time.
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import type { Block } from "@/data/services/types";
@@ -20,6 +20,27 @@ type PlansBlock = Extract<Block, { kind: "plans" }>;
 export function Plans({ block, cta, tone }: { block: PlansBlock; cta?: { label: string; short: string }; tone: Tone }) {
   const id = block.id ?? "pricing";
   const [plan, setPlan] = useState(0);
+  // While the plan header is pinned under the nav, a solid band fills the gap
+  // above it (CSS .stuck), so rows scrolling past never show around the nav.
+  const tableRef = useRef<HTMLTableElement>(null);
+  const [stuck, setStuck] = useState(false);
+  useEffect(() => {
+    const table = tableRef.current;
+    if (!table) return;
+    let frame = 0;
+    const check = () => {
+      frame = 0;
+      const head = table.tHead?.getBoundingClientRect();
+      const box = table.getBoundingClientRect();
+      const top = head ? parseFloat(getComputedStyle(table.tHead!.rows[0].cells[0]).top) || 0 : 0;
+      setStuck(box.top < top && box.bottom > top + (head?.height ?? 0));
+    };
+    const onScroll = () => { if (!frame) frame = requestAnimationFrame(check); };
+    check();
+    addEventListener("scroll", onScroll, { passive: true });
+    addEventListener("resize", onScroll);
+    return () => { removeEventListener("scroll", onScroll); removeEventListener("resize", onScroll); cancelAnimationFrame(frame); };
+  }, []);
 
   return (
     <section id={id} {...toneProps(tone)}>
@@ -69,7 +90,7 @@ export function Plans({ block, cta, tone }: { block: PlansBlock; cta?: { label: 
                 ))}
               </div>
             </div>
-            <table className={s.table} data-plan={plan}>
+            <table ref={tableRef} className={cn(s.table, stuck && s.stuck)} data-plan={plan}>
               <thead>
                 <tr>
                   <th scope="col">

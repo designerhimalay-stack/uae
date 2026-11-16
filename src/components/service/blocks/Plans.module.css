@@ -142,6 +142,21 @@
   /* Clear the fixed nav while the table scrolls under it. */
   top: 88px;
   z-index: 1;
+  box-shadow: inset 0 -1px 0 var(--line);
+}
+
+/* While the header is pinned (Plans.tsx sets .stuck), a solid band runs from
+   the top of the screen down to it, so rows scrolling past never show around
+   the floating nav. At rest there is no band, so the title above stays clear. */
+.stuck thead th::before {
+  background: var(--card);
+  bottom: 100%;
+  content: "";
+  height: 96px;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
 }
 
 .table thead th:first-child {
