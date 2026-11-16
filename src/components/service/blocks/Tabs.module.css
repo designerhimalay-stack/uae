@@ -155,14 +155,8 @@
 }
 
 @media (max-width: 809.98px) {
-  .tabs {
-    flex-wrap: nowrap;
-    margin: 0 -16px;
-    overflow-x: auto;
-    padding: 0 16px;
-    scrollbar-width: none;
-  }
-  .tabs::-webkit-scrollbar { display: none; }
+  /* Every tab visible: the row wraps instead of scrolling sideways (no swiping on phones). */
+  .tabs { flex-wrap: wrap; gap: 8px; }
   .tab { flex: none; font-size: 14px; padding: 10px 16px; }
   .panel { border-radius: 24px; grid-template-columns: minmax(0, 1fr); min-height: 0; }
   .media { min-height: 140px; border-radius: 18px; }

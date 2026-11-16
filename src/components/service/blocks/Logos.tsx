@@ -102,7 +102,7 @@ function Board({ block, tone }: { block: LogosBlock; tone: Tone }) {
               <div className={s.leadCopy}>
                 <span className={s.firstPill}>Microsoft first</span>
                 <h3 className={s.groupTitle}>{lead.label}</h3>
-                {lead.text && <p className={s.groupText}>{lead.text}</p>}
+                {lead.text && <ReadMore className={s.groupText}>{lead.text}</ReadMore>}
               </div>
               <ul className={s.leadList} style={{ ["--n" as string]: lead.ids.length }}>
                 {lead.ids.map((id) => (
@@ -166,7 +166,7 @@ export function Logos({ block, tone }: { block: LogosBlock; tone: Tone }) {
                   </span>
                   <div className={b.body}>
                     <h3 className={b.title}>{g.title}</h3>
-                    {g.text && <p className={b.text}>{g.text}</p>}
+                    {g.text && <ReadMore className={b.text}>{g.text}</ReadMore>}
                   </div>
                 </article>
               </Reveal>
