@@ -37,6 +37,7 @@ async function variants(path) {
   // Short names: long blog slugs break Windows' path limit in git worktrees.
   const stem = path.split("/").pop().replace(/\.[a-z]+$/i, "").slice(0, 32);
   const out = [];
+  const files = [];
   for (const w of [...new Set(widths)]) {
     const name = `${stem}-${hash}-${w}.webp`;
     const cached = join(CACHE, name);
@@ -45,10 +46,11 @@ async function variants(path) {
     mkdirSync(dirname(target), { recursive: true });
     copyFileSync(cached, target);
     out.push(`${BASE}images/_opt/${name} ${w}w`);
+    files.push({ w, path: `images/_opt/${name}` });
   }
   const hex = (v) => v.toString(16).padStart(2, "0");
   const opaque = !meta.hasAlpha;
-  const info = { srcset: out.join(", "), width: meta.width, height: meta.height, bg: opaque ? `#${hex(dominant.r)}${hex(dominant.g)}${hex(dominant.b)}` : null };
+  const info = { srcset: out.join(", "), files, width: meta.width, height: meta.height, bg: opaque ? `#${hex(dominant.r)}${hex(dominant.g)}${hex(dominant.b)}` : null };
   known.set(path, info);
   return info;
 }
@@ -94,3 +96,60 @@ for (const page of walk(DIST)) {
   if (next !== html) writeFileSync(page, next);
 }
 console.log(`images: ${known.size} files, ${imgs} tags`);
+
+// React islands re-render some photos in the browser (tab panels, rearranged
+// grids), and those renders carry the plain `src`, so the browser fetched the
+// full original JPG on top of the WebP. Point every raster photo path in the
+// client bundles at its WebP variant (the largest up to 1600px wide) instead.
+const PHOTO_IN_JS = /(["'`])\/(images\/[^"'`\s]+?\.(?:jpe?g|png))\1/g;
+let swapped = 0;
+const astroDir = join(DIST, "_astro");
+if (existsSync(astroDir)) {
+  for (const f of readdirSync(astroDir).filter((n) => n.endsWith(".js"))) {
+    const file = join(astroDir, f);
+    const js = readFileSync(file, "utf8");
+    const paths = new Set([...js.matchAll(PHOTO_IN_JS)].map((m) => m[2]));
+    if (!paths.size) continue;
+    let next = js;
+    for (const path of paths) {
+      const v = await variants(path);
+      if (!v || !v.files.length) continue;
+      const pick = v.files.filter((x) => x.w <= 1600).sort((a, b) => b.w - a.w)[0] ?? v.files[0];
+      next = next.replace(new RegExp(`(["'\`])/${path.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\1`, "g"), `$1/${pick.path}$1`);
+      swapped++;
+    }
+    if (next !== js) writeFileSync(file, next);
+  }
+}
+console.log(`client bundles: ${swapped} photo paths pointed at WebP variants`);
+
+// Paths the bundles build at run time (`/images/blog/posts/${slug}.jpg`, the US
+// page photos) cannot be mapped one by one: give every file in those folders a
+// WebP twin at the same name, and point the template's extension at it.
+const DYNAMIC = [
+  { dir: "images/blog/posts", width: 1200 },
+  { dir: "images/photos/regions/us/pages", width: 1600 },
+];
+let twins = 0;
+for (const { dir, width } of DYNAMIC) {
+  const abs = join(DIST, dir);
+  if (!existsSync(abs)) continue;
+  for (const n of readdirSync(abs).filter((x) => /\.(jpe?g|png)$/i.test(x))) {
+    const buf = readFileSync(join(abs, n));
+    const hash = createHash("sha1").update(buf).digest("hex").slice(0, 10);
+    const cached = join(CACHE, `twin-${hash}-${width}.webp`);
+    if (!existsSync(cached)) await sharp(buf).resize({ width, withoutEnlargement: true }).webp({ quality: 74 }).toFile(cached);
+    copyFileSync(cached, join(abs, n.replace(/\.(jpe?g|png)$/i, ".webp")));
+    twins++;
+  }
+  if (existsSync(astroDir)) {
+    const re = new RegExp(`(\`/${dir.replace(/\//g, "\\/")}/\\$\\{[^}]+\\})\\.(?:jpe?g|png)\``, "g");
+    for (const f of readdirSync(astroDir).filter((x) => x.endsWith(".js"))) {
+      const file = join(astroDir, f);
+      const js = readFileSync(file, "utf8");
+      const next = js.replace(re, "$1.webp`");
+      if (next !== js) writeFileSync(file, next);
+    }
+  }
+}
+console.log(`run-time photo folders: ${twins} WebP twins`);

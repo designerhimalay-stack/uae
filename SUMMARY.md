@@ -169,6 +169,7 @@ node tools/audit/sectioncheck.mjs <region> dist cache/ out.json   # every sectio
 node tools/audit/serve.mjs <buildDir> /au/ 4321   # serve any region's build (e.g. a deploy worktree) for the browser audits; set REGION=<region>
 node tools/audit/mobilecheck.mjs 360 out.json <slug>...   # phone system per section: overflow, swipe rails, card columns, long copy without Read more, tiny text, tap targets (also run at 320)
 node tools/audit/phonesheet.mjs 360 out-prefix "<slug>#<section>"...   # phone screenshots of sections, four to a sheet, for visual review
+node tools/audit/imgweight.mjs <full-url>...      # live image weight per page (desktop and phone): bytes, time, and any original JPG/PNG that bypassed the WebP variants
 ```
 Known, accepted rule hits: the privacy policy's legal entity (OTS Solutions Inc.), the client-approved pricing tables (US$35, 10%), AWS product names (Mainframe Modernization, Compute Optimizer), live blog titles that are questions, and the India/UAE region-only pages (healthcare, banking, manufacturing), which are an open client item. `designaudit` flags images under 1.2× their slot; only "Npx shown at Mpx" with N < M is a real upscale (fix the `sizes` hint).
 
