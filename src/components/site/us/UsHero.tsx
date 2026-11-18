@@ -5,7 +5,7 @@
 // pillars as glass cards along the foot. Distinct from the AU hero (no
 // console, no ticker). Phones: pillars two-up.
 
-import { BRAND, PRIMARY_CTA, asset } from "@/brand/brand";
+import { PRIMARY_CTA, asset } from "@/brand/brand";
 import { localPhoto } from "@/brand/regions";
 import { Button } from "@/components/ui/Button";
 import { Photo } from "@/components/ui/Photo";
@@ -14,6 +14,8 @@ import { LineReveal, Reveal } from "@/components/ui/Reveal";
 import { Icon } from "@/components/service/Icon";
 import type { IconId } from "@/data/services/types";
 import s from "./UsHero.module.css";
+
+const US_LEAD = "Put AI to work across your business and take the manual effort out of everyday operations. We prove it on your data first.";
 
 const PHOTO = localPhoto("/images/photos/hero-developer.jpg", "", "62% 50%");
 
@@ -45,13 +47,14 @@ export function UsHero() {
         <Reveal trigger="mount" delay={0.05}>
           <PillTag
             icon={
+              // Sparkle (as the AU hero's AI tag); the tag no longer names a place, so no map pin.
               <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                <path d="M10 17.25s5.25-4.6 5.25-9a5.25 5.25 0 0 0-10.5 0c0 4.4 5.25 9 5.25 9Z" stroke="currentColor" strokeWidth="1.25" strokeLinejoin="round" />
-                <circle cx="10" cy="8.25" r="1.9" stroke="currentColor" strokeWidth="1.25" />
+                <path d="M8.75 3.25c.45 3.05 1.85 4.75 4.75 5.5-2.9.75-4.3 2.45-4.75 5.5-.45-3.05-1.85-4.75-4.75-5.5 2.9-.75 4.3-2.45 4.75-5.5Z" stroke="currentColor" strokeWidth="1.25" strokeLinejoin="round" />
+                <path d="M15 12.25c.2 1.2.65 1.65 1.75 1.85-1.1.2-1.55.65-1.75 1.85-.2-1.2-.65-1.65-1.75-1.85 1.1-.2 1.55-.65 1.75-1.85Z" stroke="currentColor" strokeWidth="1.1" strokeLinejoin="round" />
               </svg>
             }
           >
-            Microsoft-certified · Richardson, Texas
+            Artificial intelligence · Microsoft-certified
           </PillTag>
         </Reveal>
 
@@ -61,7 +64,10 @@ export function UsHero() {
         </LineReveal>
 
         <Reveal trigger="mount" delay={0.15} duration={0.8} className={s.row}>
-          <p className={s.lead}>{BRAND.valueProp}</p>
+          {/* From the live aptacloud.com hero ("Revolutionize with Artificial Intelligence… Harness the
+              power of AI to transform your business and drive efficiency."), in house style:
+              "revolutionise" and "harness the power" are banned (Brand Guidelines v2.0). */}
+          <p className={s.lead}>{US_LEAD}</p>
           <div className={s.actions}>
             <Button label={PRIMARY_CTA.label} href={PRIMARY_CTA.href} variant="primary" />
             <a href="#why" className={s.link}>

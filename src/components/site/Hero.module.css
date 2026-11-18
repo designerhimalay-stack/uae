@@ -6,6 +6,8 @@
 .hero {
   align-content: center;
   align-items: center;
+  /* Solid page colour so the fixed construction lines don't run down either side of the hero. */
+  background: var(--brand-dark);
   display: flex;
   flex: none;
   flex-direction: column;

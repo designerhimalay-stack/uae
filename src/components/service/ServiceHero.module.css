@@ -4,6 +4,8 @@
    Shorter than the home hero so the next section stays one scroll away. */
 
 .hero {
+  /* Solid page colour so the fixed construction lines don't run down either side of the hero. */
+  background: var(--brand-dark);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;

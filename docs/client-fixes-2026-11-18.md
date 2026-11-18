@@ -79,6 +79,13 @@ Each one repeats a problem your list flagged: Microsoft leading the wording (ite
 | B11 | Share image (every shared link) | "Modernise, connect, and put AI to work… · Microsoft-first" | "Put AI to work on the systems you run, proven on your data. · Microsoft-certified" (no region-specific spelling, so it suits all four sites) | All |
 | B12 | Proofreading: missing Oxford comma | Insurance menu, Microsoft 365 menu promo, Why AptaCloud reason 4, app modernisation risk card | "claims adjustment and compliance" → "claims adjustment, and compliance"; "collaboration and security" → "collaboration, and security"; "ERP, SCADA and project" → "ERP, SCADA, and project"; "Security, legal and compliance, and continuity planning" → "Security, legal, compliance, and continuity planning" | All |
 
+## Part B2. Later requests (same day)
+
+| # | Request | What changed | File | Regions |
+|---|---|---|---|---|
+| D1 | Remove the vertical lines on both sides of the hero content | The site's decorative construction lines (two fixed rules on the page grid) showed through the heroes because the hero background was transparent. Both heroes now use the solid page colour, so the lines no longer show; nothing else on the page changes. Checked on every page of all four sites with `tools/audit/linesaudit.mjs`: no section shows the lines (the old build showed them in the hero of every service, industry, and company page, and the AU, India, and UAE homes). | [ServiceHero.module.css](../src/components/service/ServiceHero.module.css), [Hero.module.css](../src/components/site/Hero.module.css) | All |
+| D2 | Rewrite the US hero from the old aptacloud.com hero | Old: "Revolutionize with Artificial Intelligence / Your Path to Measurable AI ROI / Harness the power of AI to transform your business and drive efficiency." New: tag "Artificial intelligence · Microsoft-certified" (sparkle icon); H1 "Your path to measurable AI ROI." (unchanged); lead "Put AI to work across your business and take the manual effort out of everyday operations. We prove it on your data first." Same message, in house style: "revolutionise" and "harness the power of" are banned words, and the lead ends on the proof-of-concept promise. | [UsHero.tsx](../src/components/site/us/UsHero.tsx) | US home |
+
 ## Part C. Found, not changed: for your decision
 
 Each of these needs a decision or sign-off we don't have, or would mean restructuring, which your document rules out.
