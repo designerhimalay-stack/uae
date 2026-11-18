@@ -162,7 +162,7 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
       },
       {
         q: "Which AI models do you use?",
-        a: "We are Microsoft-first: Azure OpenAI Service, Microsoft Copilot Studio, and Azure Machine Learning. Where another model suits the task better, such as Anthropic's Claude, Google Gemini, Mistral, xAI Grok, or Meta Llama, we use it within your cloud environment and security controls.",
+        a: "Most of our AI work runs on Azure OpenAI Service, Microsoft Copilot Studio, and Azure Machine Learning. Where another model suits the task better, such as Anthropic's Claude, Google Gemini, Mistral, xAI Grok, or Meta Llama, we use it within your cloud environment and security controls.",
       },
     ],
   },
@@ -531,7 +531,7 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
       },
       {
         q: "Which generative AI models do you use?",
-        a: "We are Microsoft-first with Azure OpenAI Service, and choose other models such as Claude, Gemini, Llama, or Mistral where they suit the task better, all within your security controls.",
+        a: "We usually start with Azure OpenAI Service, and choose other models such as Claude, Gemini, Llama, or Mistral where they suit the task better, all within your security controls.",
       },
       {
         q: "Can generative AI use our own documents?",

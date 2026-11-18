@@ -29,7 +29,7 @@ const AU_HERO: HomeHero = {
 
 const AU_ABOUT: HomeAbout = {
   heading: "Your team has already started. We take it to production.",
-  lead: "An AI pilot, a modernisation plan, a cloud migration: AptaCloud proves the value on your data with a proof of concept, then delivers in clear phases with senior Microsoft specialists, on the systems you already run.",
+  lead: "An AI pilot, a modernisation plan, a cloud migration: AptaCloud proves the value on your data with a proof of concept, then delivers in clear phases with senior, Microsoft-certified AI and cloud specialists, on the systems you already run.",
   photoText: "See where AI pays off in your business first.",
   photoLink: { label: "How the assessment works", href: "#workshop" },
 };
@@ -44,7 +44,7 @@ const IN_HERO: HomeHero = {
 };
 
 const IN_ABOUT: HomeAbout = {
-  heading: "Microsoft cloud and AI specialists for Indian SMBs and enterprises.",
+  heading: "AI and cloud specialists for Indian SMBs and enterprises.",
   lead: "AptaCloud moves Indian businesses to the cloud, modernises legacy systems, and builds AI and machine learning around the work, with Copilot and SharePoint shaping how teams collaborate, run operations, and keep audit trails.",
   photoText: "See where AI pays off in your business first.",
   photoLink: { label: "How we work", href: "#process" },
@@ -189,7 +189,7 @@ const UAE_HERO: HomeHero = {
 };
 
 const UAE_ABOUT: HomeAbout = {
-  heading: "Microsoft cloud and AI specialists for businesses across the UAE.",
+  heading: "AI and cloud specialists for businesses across the UAE.",
   lead: "We help small, medium, and large enterprises in the UAE simplify operations, automate workflows, and see their data clearly, with cloud, AI, and system upgrades that improve performance, secure data, and flex as you grow.",
   photoText: "See where AI pays off in your business first.",
   photoLink: { label: "How we work", href: "#process" },
@@ -247,7 +247,7 @@ export const UAE_WHY: Block = {
   lead: "Six reasons, from the first conversation to the support after go-live.",
   cols: 3,
   items: [
-    { title: "Certified cloud specialists", text: "A skilled team for Azure, Dynamics 365, SharePoint, and AI.", icon: "team" },
+    { title: "Certified cloud specialists", text: "A skilled team for AI, Azure, Dynamics 365, and SharePoint.", icon: "team" },
     { title: "UAE market knowledge", text: "Solutions shaped to how businesses in the UAE operate and are regulated.", icon: "target" },
     { title: "Enterprise-grade delivery", text: "Practices that stand up in large, regulated environments.", icon: "layers" },
     { title: "Tailored at every stage", text: "Shaped to your processes, systems, and budget.", icon: "cog" },
@@ -305,11 +305,23 @@ export const US_PLATFORM: Block = {
   kind: "tabs",
   id: "platform",
   tone: "dark",
-  tag: "The Microsoft platform",
+  tag: "Platforms",
   icon: "layers",
-  heading: "One partner across the Microsoft platform.",
-  lead: "Dynamics 365, Microsoft 365 with Copilot, and Azure, set up and run by senior Microsoft specialists.",
+  heading: "The platforms your AI runs on.",
+  lead: "Azure, Dynamics 365, and Microsoft 365 with Copilot, set up and run by senior, Microsoft-certified specialists.",
+  // Positioning order: Azure (data and cloud tier) before the wider Microsoft stack.
   tabs: [
+    {
+      label: "Azure",
+      intro: "Cloud infrastructure that is secure, scalable, and costs what it should.",
+      photo: { src: "/images/photos/regions/us/azure.jpg", alt: "A bright data center aisle lined with server cabinets", position: "50% 50%" },
+      items: [
+        { title: "Azure hosting", text: "Computing, networking, and security on Azure." },
+        { title: "Azure migration", text: "Servers, applications, and databases moved from on premises or other clouds." },
+        { title: "Azure optimisation", text: "Performance, cost, and scale tuned to your workloads." },
+        { title: "Azure managed services", text: "Monitoring and proactive support, so you can focus on the business." },
+      ],
+    },
     {
       label: "Dynamics 365",
       intro: "Connect sales, operations, HR, and finance on one platform.",
@@ -330,17 +342,6 @@ export const US_PLATFORM: Block = {
         { title: "SharePoint", text: "Content and documents organised, shared, and easy to find." },
         { title: "Microsoft Copilot", text: "AI that automates routine work and surfaces insight." },
         { title: "Power Platform", text: "Low-code apps, automated workflows, and analytics." },
-      ],
-    },
-    {
-      label: "Azure",
-      intro: "Cloud infrastructure that is secure, scalable, and costs what it should.",
-      photo: { src: "/images/photos/regions/us/azure.jpg", alt: "A bright data center aisle lined with server cabinets", position: "50% 50%" },
-      items: [
-        { title: "Azure hosting", text: "Computing, networking, and security on Azure." },
-        { title: "Azure migration", text: "Servers, applications, and databases moved from on premises or other clouds." },
-        { title: "Azure optimisation", text: "Performance, cost, and scale tuned to your workloads." },
-        { title: "Azure managed services", text: "Monitoring and proactive support, so you can focus on the business." },
       ],
     },
   ],

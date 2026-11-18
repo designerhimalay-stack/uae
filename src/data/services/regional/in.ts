@@ -285,7 +285,7 @@ export const IN_PAGES: Record<string, PageOverride> = {
 
   /* ── Company ─────────────────────────────────────────────────────── */
   "about-us": {
-    seo: { title: "About AptaCloud India | Microsoft Cloud and AI Consultancy", description: "AptaCloud India: Microsoft-certified specialists in Azure, AI, data engineering, and modernisation, with teams in Gurugram and Pune." },
+    seo: { title: "About AptaCloud India | AI and Cloud Consultancy", description: "AptaCloud India: Microsoft-certified specialists in Azure, AI, data engineering, and modernisation, with teams in Gurugram and Pune." },
     hero: { title: "Taking high-stakes businesses", accent: "beyond digital.", lead: "AptaCloud modernises operations with secure enterprise cloud consulting and AI, building compliance-ready systems that help Indian businesses decide faster." },
   },
   blog: {

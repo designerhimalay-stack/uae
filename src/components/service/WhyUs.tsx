@@ -20,7 +20,7 @@ import { ReadMore } from "@/components/ui/ReadMore";
 export function WhyUs({ why, cta, tone = "tint" }: { why: NonNullable<ServicePage["why"]>; cta: ServicePage["cta"]; tone?: Tone }) {
   const reasons = [...WHY, ...why.extra];
   return (
-    <section id="why" {...toneProps(tone, "tint")}>
+    <section id="why" {...toneProps(tone, "tint")} data-full-text>
       <div className={sec.container}>
         <SectionHead tag="Why AptaCloud" icon={<Icon id="shield" />} heading={why.heading} lead={why.lead} />
 

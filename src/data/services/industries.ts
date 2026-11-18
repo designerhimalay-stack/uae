@@ -149,16 +149,16 @@ export const INDUSTRY_PAGES: ServicePage[] = [
   {
     slug: "industry/insurance/third-party-adjusters",
     category: "insurance",
-    name: "Third-Party Adjusters",
+    name: "Third-Party Administrators",
     summary: "Claims intake, validation, and multi-carrier workflows automated for TPAs.",
     seo: {
-      title: "Technology for Third-Party Adjusters (TPAs) | AptaCloud",
+      title: "Technology for Third-Party Administrators (TPAs) | AptaCloud",
       description: "Technology for TPAs: automated claims intake and validation, multi-carrier integration, and claims visibility on Microsoft Azure.",
     },
     hero: {
       title: "Faster claims and settlements",
-      accent: "for third-party adjusters.",
-      lead: "AptaCloud helps third-party adjusters (TPAs) streamline claims processing, speed up settlements, and run more efficiently, by connecting carrier systems and automating the work in between.",
+      accent: "for third-party administrators.",
+      lead: "AptaCloud helps third-party administrators (TPAs) streamline claims processing, speed up settlements, and run more efficiently, by connecting carrier systems and automating the work in between.",
       photo: photo("tpa-hero", "Claims colleagues greeting a client in a bright office", "55% 40%"),
       chip: { title: "For TPAs", items: ["Automated claims intake", "Multi-carrier integration", "Claims visibility"] },
       marks: ["azure", "dynamics", "azureOpenAI"],

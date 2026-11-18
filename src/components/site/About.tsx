@@ -34,7 +34,7 @@ const STATS = [
     value: 300,
     from: 0,
     title: "Clients served",
-    text: "200+ engineers under one roof, delivering from 4 locations.",
+    text: "200+ engineers, delivering from 4 locations.",
     icon: "chart" as const,
   },
 ];

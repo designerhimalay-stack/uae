@@ -300,7 +300,7 @@ export const UAE_PAGES: Record<string, PageOverride> = {
 
   /* ── Company ─────────────────────────────────────────────────────── */
   "about-us": {
-    seo: { title: "About AptaCloud UAE | Microsoft Cloud and AI Consultancy", description: "AptaCloud: Microsoft-certified specialists in Azure, AI, data, and modernisation, serving UAE businesses with 20+ years of experience." },
+    seo: { title: "About AptaCloud UAE | AI and Cloud Consultancy", description: "AptaCloud: Microsoft-certified specialists in Azure, AI, data, and modernisation, serving UAE businesses with 20+ years of experience." },
     hero: { title: "Engineering intelligent", accent: "enterprises.", lead: "Connected digital solutions that help UAE enterprises join up their systems, put their data to work, and scale with confidence." },
   },
   blog: {

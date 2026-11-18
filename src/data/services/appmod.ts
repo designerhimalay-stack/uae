@@ -157,7 +157,7 @@ export const APPMOD_PAGES: ServicePage[] = [
       },
       {
         q: "Do you only migrate to Microsoft Azure?",
-        a: "We lead with Microsoft Azure. Where you already run workloads on AWS, we plan around them.",
+        a: "Most of our work runs on Microsoft Azure. Where you already run workloads on AWS, we plan around them.",
       },
     ],
   },
@@ -306,7 +306,7 @@ export const APPMOD_PAGES: ServicePage[] = [
       },
       {
         q: "Which cloud platforms do you use?",
-        a: "We lead with Microsoft Azure, and support hybrid setups where you keep some systems on-premises or on AWS.",
+        a: "Most of our work runs on Microsoft Azure, and we support hybrid setups where you keep some systems on-premises or on AWS.",
       },
       {
         q: "What happens after launch?",

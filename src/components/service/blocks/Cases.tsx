@@ -52,7 +52,7 @@ function Metric({ value = "" }: { value?: string }) {
  *  Phones: the cases sit on a swipe rail. */
 function Wide({ block, tone }: { block: CasesBlock; tone: Tone }) {
   return (
-    <section id={block.id ?? "case-studies"} {...toneProps(tone)}>
+    <section id={block.id ?? "case-studies"} {...toneProps(tone)} data-full-text>
       <div className={sec.container}>
         <SectionHead variant={block.head ?? "split"} tag={block.tag} icon={<Icon id={block.icon ?? "chart"} />} heading={block.heading} lead={block.lead} />
         <div id={`${block.id ?? "case-studies"}-rail`} className={cn(s.wideList, sec.rail, sec.stack)}>
@@ -108,7 +108,7 @@ export function Cases({ block, tone }: { block: CasesBlock; tone: Tone }) {
   const id = block.id ?? "case-studies";
   if (block.layout === "wide") return <Wide block={block} tone={tone} />;
   return (
-    <section id={id} {...toneProps(tone)}>
+    <section id={id} {...toneProps(tone)} data-full-text>
       <div className={sec.container}>
         <SectionHead variant={block.head ?? "split"} tag={block.tag} icon={<Icon id={block.icon ?? "chart"} />} heading={block.heading} lead={block.lead} />
         <div id={`${id}-rail`} className={cn(s.grid, block.items.length === 3 && s.three, sec.rail)}>

@@ -20,12 +20,13 @@ import { AgentConsole } from "./hero/AgentConsole";
 import styles from "./Hero.module.css";
 
 const ACCENT = "var(--accent)";
-// The PDF's offerings: Cloud, Data, IT, AI and the Microsoft services it lists.
+// The offerings in the positioning order (client 2026-11-18): AI, modernisation,
+// data and Azure, then the Microsoft stack. ("IT" dropped: generic IT support is not the ICP.)
 const TICKER_WORDS = [
-  "Cloud",
-  "Data",
-  "IT",
   "AI",
+  "Modernisation",
+  "Data",
+  "Cloud",
   "Dynamics 365",
   "Microsoft 365",
   "SharePoint",
@@ -58,7 +59,7 @@ export function Hero() {
       <div className={styles.inner}>
         <div className={styles.copy}>
           <Reveal trigger="mount" delay={0.1} className={styles.eyebrow}>
-            <PillTag icon={<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8.75 3.25c.45 3.05 1.85 4.75 4.75 5.5-2.9.75-4.3 2.45-4.75 5.5-.45-3.05-1.85-4.75-4.75-5.5 2.9-.75 4.3-2.45 4.75-5.5Z" stroke="currentColor" strokeWidth="1.25" strokeLinejoin="round" /><path d="M15 12.25c.2 1.2.65 1.65 1.75 1.85-1.1.2-1.55.65-1.75 1.85-.2-1.2-.65-1.65-1.75-1.85 1.1-.2 1.55-.65 1.75-1.85Z" stroke="currentColor" strokeWidth="1.1" strokeLinejoin="round" /></svg>}>Microsoft-certified cloud, data &amp; AI</PillTag>
+            <PillTag icon={<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8.75 3.25c.45 3.05 1.85 4.75 4.75 5.5-2.9.75-4.3 2.45-4.75 5.5-.45-3.05-1.85-4.75-4.75-5.5 2.9-.75 4.3-2.45 4.75-5.5Z" stroke="currentColor" strokeWidth="1.25" strokeLinejoin="round" /><path d="M15 12.25c.2 1.2.65 1.65 1.75 1.85-1.1.2-1.55.65-1.75 1.85-.2-1.2-.65-1.65-1.75-1.85 1.1-.2 1.55-.65 1.75-1.85Z" stroke="currentColor" strokeWidth="1.1" strokeLinejoin="round" /></svg>}>AI-first, Microsoft-certified</PillTag>
           </Reveal>
 
           <div className={styles.space18} />

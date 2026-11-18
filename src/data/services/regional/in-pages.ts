@@ -566,7 +566,7 @@ export const IN_ONLY_LAYOUTS: Record<string, ServiceLayout> = {
         items: [
           { title: "We understand your systems", text: "A team that respects your industry's demands and turns a complex roadmap into results.", icon: "search" },
           { title: "Broad expertise", text: "Cloud, data engineering, integration, and digital transformation in one team.", icon: "team" },
-          { title: "Microsoft first", text: "Azure, Dynamics 365, and Power BI, with AWS where it fits your estate.", icon: "layers" },
+          { title: "Microsoft-certified", text: "Azure, Dynamics 365, and Power BI, with AWS where it fits your estate.", icon: "layers" },
           { title: "Built around you", text: "Your systems, processes, and growth plans, not a fixed package.", icon: "cog" },
           { title: "Security by design", text: "Identity, encryption, monitoring, and governance from day one.", icon: "shield" },
           { title: "Support after go-live", text: "Monitoring, troubleshooting, and improvement under an agreed scope.", icon: "clock" },

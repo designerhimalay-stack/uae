@@ -195,10 +195,11 @@ export function ServiceHero({ page, category, howHref = "#process",
                 ))}
               </ul>
               <p className={s.consoleFoot}>
-                <span>Delivered in six phases</span>
+                {/* Not a fixed count: process sections run four to six stages by page. */}
+                <span>Delivered in clear phases</span>
                 <span className={s.status}>
                   <i aria-hidden="true" />
-                  {aws ? "Well-Architected" : "Microsoft-first"}
+                  {aws ? "Well-Architected" : "Microsoft-certified"}
                 </span>
               </p>
             </div>

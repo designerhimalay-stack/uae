@@ -9,7 +9,17 @@ import { useEffect, useId, useRef, useState, type KeyboardEvent, type MouseEvent
 import { TRUST, asset } from "@/brand/brand";
 import { Logo } from "@/brand/Logo";
 import { cn } from "@/lib/utils";
-import type { NavColumn, NavMenu, NavPromo } from "./menus";
+import { promoCta, type NavColumn, type NavMenu, type NavPromo } from "./menus";
+
+/** True on the homepage. Starts true so the server HTML and first render agree. */
+export function useOnHome() {
+  const [onHome, setOnHome] = useState(true);
+  useEffect(() => {
+    const strip = (p: string) => p.replace(/\/index\.html$/, "").replace(/\/$/, "");
+    setOnHome(strip(window.location.pathname) === strip(asset("/")));
+  }, []);
+  return onHome;
+}
 import s from "./MegaPanel.module.css";
 
 type OnLink = (e: MouseEvent<HTMLAnchorElement>, href: string) => void;
@@ -60,6 +70,7 @@ function Column({
 }
 
 function Promo({ promo, onLink }: { promo: NavPromo; onLink: OnLink }) {
+  const cta = promoCta(promo, useOnHome());
   return (
     <div className={cn(s.cell, s.promo)}>
       <div className={s.promoLogo}>
@@ -79,8 +90,8 @@ function Promo({ promo, onLink }: { promo: NavPromo; onLink: OnLink }) {
         <p className={s.title}>{promo.title}</p>
         <p className={s.text}>{promo.text}</p>
       </div>
-      <a href={promo.cta.href} className={s.promoCta} onClick={(e) => onLink(e, promo.cta.href)}>
-        <span>{promo.cta.label}</span>
+      <a href={cta.href} className={s.promoCta} onClick={(e) => onLink(e, cta.href)}>
+        <span>{cta.label}</span>
         <span className={s.promoArrow}>
           <Arrow />
         </span>

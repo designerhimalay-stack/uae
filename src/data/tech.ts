@@ -1,6 +1,7 @@
 // Technology marks used in service pages (stack chips + logo marquee).
-//  • color: the official Microsoft product marks (full colour) — Microsoft leads,
+//  • color: the official Microsoft product marks (full colour), the core platform,
 //    so its products keep their colour while every other mark sits monochrome.
+//    (Positioning still leads with AI; Microsoft is a credential, not the headline.)
 //  • mono:  Simple Icons (CC0) / LobeHub (MIT) silhouettes, drawn in currentColor via CSS mask.
 //  • AI model marks (Claude, GPT, Gemini, Grok, Llama) use their own colour where
 //    they have one; GPT and Grok are black marks, so they follow currentColor.
@@ -41,7 +42,7 @@ export const TECH = {
   powerBI: { name: "Power BI", color: "/images/m365/powerbi.png" },
   fabric: { name: "Microsoft Fabric", color: lg("fabric") },
   entra: { name: "Microsoft Entra ID", color: lg("entra") },
-  azureAD: { name: "Azure Active Directory", color: lg("azuread") },
+  azureAD: { name: "Microsoft Entra ID", color: lg("azuread") },
   sqlServer: { name: "SQL Server", color: lg("sqlserver") },
   autogen: { name: "AutoGen by Microsoft" },
   teams: { name: "Microsoft Teams" },

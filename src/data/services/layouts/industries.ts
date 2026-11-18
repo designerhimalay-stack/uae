@@ -920,7 +920,7 @@ export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
     ],
   },
 
-  /* ─────────────────────────── Third-Party Adjusters ─────────────────────────── */
+  /* ─────────────────────────── Third-Party Administrators ─────────────────────────── */
   "industry/insurance/third-party-adjusters": {
     stats: COMPANY_STATS,
     blocks: [

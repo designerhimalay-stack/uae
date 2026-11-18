@@ -19,9 +19,10 @@ const PHOTO = localPhoto("/images/photos/hero-developer.jpg", "", "62% 50%");
 
 const PILLARS: { title: string; text: string; href: string; icon: IconId }[] = [
   { title: "Artificial intelligence", text: "Find where AI pays off, then prove it on your data.", href: asset("/ai-consulting/"), icon: "spark" },
+  // Positioning order: AI, modernisation, Azure, then the Microsoft stack.
+  { title: "Modernised applications", text: "Legacy systems turned into software that grows with you.", href: asset("/application-modernization/"), icon: "code" },
   { title: "Microsoft Azure", text: "Secure, scalable, resilient cloud infrastructure.", href: asset("/azure-hosting/"), icon: "cloud" },
   { title: "Dynamics 365", text: "Finance, operations, and field teams on one platform.", href: asset("/services/microsoft/microsoft-dynamics-365/"), icon: "layers" },
-  { title: "Modernised applications", text: "Legacy systems turned into software that grows with you.", href: asset("/application-modernization/"), icon: "code" },
 ];
 
 function Arrow() {
@@ -63,8 +64,8 @@ export function UsHero() {
           <p className={s.lead}>{BRAND.valueProp}</p>
           <div className={s.actions}>
             <Button label={PRIMARY_CTA.label} href={PRIMARY_CTA.href} variant="primary" />
-            <a href="#platform" className={s.link}>
-              Explore the Microsoft platform
+            <a href="#why" className={s.link}>
+              See how we work
               <Arrow />
             </a>
           </div>

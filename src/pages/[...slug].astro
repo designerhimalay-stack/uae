@@ -96,7 +96,7 @@ const rhythm = homeRhythm(flow.length);
 const tones: Record<string, Tone> = Object.fromEntries(flow.map((id, i) => [id, rhythm[i]]));
 const stackHeading = extras.stackHeading ?? {
   heading: "Tools and platforms we use.",
-  lead: "Microsoft first, with the tools your team already knows.",
+  lead: "Built by Microsoft-certified specialists, with the tools your team already knows.",
 };
 
 // CRO: the primary action appears in the hero, once mid-page, and in the contact
@@ -106,9 +106,26 @@ const stackHeading = extras.stackHeading ?? {
 // "Let's talk" link). The nav pill reads "Let's talk" on every page.
 const offers = (b: Block) =>
   b.kind === "banner" || b.kind === "plans" || b.kind === "assessment" || ((b.kind === "cards" || b.kind === "split" || b.kind === "steps") && !!b.cta);
+// Client feedback 2026-11-18 (item 18): the mid-page button waits for proof. It goes to
+// the first block that offers the CTA after the first "Typical engagement" (cases) or
+// process section. Pages with neither keep the old rule (pricing first, else the first offer).
+const proofAt = blocks.findIndex((b) => b.kind === "cases" || ("id" in b && b.id === "process"));
 const decision = blocks.findIndex((b) => b.kind === "plans" || b.kind === "assessment");
-const midCta = decision >= 0 ? decision : blocks.findIndex(offers);
+// With no banner after it, the button sits at the foot of the process section itself.
+const afterProof = proofAt >= 0 ? blocks.findIndex((b, i) => i > proofAt && offers(b)) : -1;
+const midCta =
+  proofAt < 0
+    ? decision >= 0 ? decision : blocks.findIndex(offers)
+    : afterProof >= 0
+      ? afterProof
+      : blocks[proofAt].kind === "steps" ? proofAt : -1;
 const ctaFor = (i: number) => (i === midCta ? cta : undefined);
+// Client feedback 2026-11-18 (item 19): "Why AptaCloud" sections show their full card
+// text on phones (no "Read more"). Typical engagement stories do so in Cases itself.
+const fullText = (b: Block) =>
+  ("id" in b && (b.id === "why" || b.id === "why-us")) ||
+  ("tag" in b && (b.tag === "Why AptaCloud" || b.tag === "Why choose us" || b.tag === "Why our services")) ||
+  ("heading" in b && typeof b.heading === "string" && /^Why .*(AptaCloud|choose us|our .*services)/i.test(b.heading));
 
 // Hero's secondary link goes to the process section when the page has one.
 const howHref = !layout || blocks.some((b) => "id" in b && b.id === "process") ? "#process" : null;
@@ -188,7 +205,7 @@ const jsonLd = [
         {stats.length > 0 && <Stats client:load stats={stats} ribbon={page.stack.map((id) => TECH[id].name)} />}
         {blocks.map((b, i) => {
           const tone = blockTones[i];
-          return b.kind === "cards" ? (
+          const el = b.kind === "cards" ? (
             <Cards client:visible block={b} cta={ctaFor(i)} tone={tone} />
           ) : b.kind === "banner" ? (
             <Banner client:visible block={b} cta={ctaFor(i)} tone={tone} id={`banner-${i}`} />
@@ -255,6 +272,7 @@ const jsonLd = [
           ) : (
             <Faq client:visible faqs={faqs} name={page.name} tone={tone} />
           );
+          return fullText(b) ? <div data-full-text style="display: contents">{el}</div> : el;
         })}
         {related.length > 0 && <Related client:visible category={relatedIn} siblings={related} tone={relatedTone} />}
       </>

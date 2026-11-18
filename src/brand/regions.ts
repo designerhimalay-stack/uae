@@ -104,7 +104,7 @@ export const REGIONS: Record<RegionId, RegionConfig> = {
     areaServed: ["Australia"],
     card: {
       place: "Across Australia",
-      text: "Microsoft cloud, data, and AI for mid-sized Australian firms.",
+      text: "AI, data, and cloud for mid-sized Australian firms.",
       timeZone: "Australia/Sydney",
       photo: { src: "/images/photos/regions/au-sydney.jpg", alt: "The Sydney Opera House on the harbour", position: "40% 50%" },
     },
@@ -177,7 +177,7 @@ export const REGIONS: Record<RegionId, RegionConfig> = {
     },
     card: {
       place: "Across the UAE",
-      text: "Microsoft cloud, data, and AI for businesses across the UAE.",
+      text: "AI, data, and cloud for businesses across the UAE.",
       timeZone: "Asia/Dubai",
       photo: { src: "/images/photos/regions/uae-dubai.jpg", alt: "The Dubai skyline with the Burj Khalifa", position: "50% 55%" },
     },

@@ -83,7 +83,7 @@ function Tool({ id, big }: { id: TechId; big?: boolean }) {
   );
 }
 
-/** board: the live "Our tools" row, grouped by role. Microsoft leads as a full-width
+/** board: the live "Our tools" row, grouped by role. The core platform group comes first as a full-width
  *  row (intro left, its tools right); the other groups sit beneath as equal cards:
  *  up to three in one row, four as a 2 × 2 with two-column lists, so every card in
  *  a row holds the same number of tool rows. Phones: the groups become a swipe rail. */
@@ -100,7 +100,7 @@ function Board({ block, tone }: { block: LogosBlock; tone: Tone }) {
           <Reveal y={28} duration={1}>
             <article className={s.groupLead}>
               <div className={s.leadCopy}>
-                <span className={s.firstPill}>Microsoft first</span>
+                <span className={s.firstPill}>Core platform</span>
                 <h3 className={s.groupTitle}>{lead.label}</h3>
                 {lead.text && <ReadMore className={s.groupText}>{lead.text}</ReadMore>}
               </div>

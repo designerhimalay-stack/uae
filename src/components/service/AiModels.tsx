@@ -1,6 +1,6 @@
 // AI models strip (inside the dark Services section on AI pages): the model
 // families we build with — GPT, Claude, Gemini, Grok, Llama — as logo tiles
-// beside a short "Microsoft-first, model-agnostic" statement. Tiles brighten
+// beside a short "Model-agnostic, Microsoft-certified" statement. Tiles brighten
 // and their mark lifts on hover; on phones they scroll sideways.
 
 import { Reveal } from "@/components/ui/Reveal";
@@ -18,7 +18,7 @@ export function AiModels() {
       <div className={s.copy}>
         <p className={s.eyebrow}>
           <span className={s.dot} aria-hidden="true" />
-          Model-agnostic, Microsoft-first
+          Model-agnostic, Microsoft-certified
         </p>
         <h3 className={s.title}>We build with the model that fits the task.</h3>
         <p className={s.text}>

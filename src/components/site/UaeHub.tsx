@@ -13,7 +13,7 @@ import s from "./UaeHub.module.css";
 
 const HEADING = "Built around UAE rules, hosted in the UAE.";
 const LEAD =
-  "We set up Microsoft cloud, data, and AI around the UAE's data protection and reporting rules, on Azure regions in Dubai and Abu Dhabi.";
+  "We set up AI, data, and cloud around the UAE's data protection and reporting rules, on Azure regions in Dubai and Abu Dhabi.";
 
 const RULES = [
   {

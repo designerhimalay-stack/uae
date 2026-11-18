@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import s from "./Partners.module.css";
 
 // Client brief (Oct 2026): Microsoft, Anthropic, AWS. No NetSuite (not offered).
-// Microsoft leads, AWS is supporting (Brand Guidelines v2.0, 1).
+// Microsoft is a credential, not the headline (positioning order, client 2026-11-18); AWS is supporting.
 const ALL_PARTNERS = [
   {
     name: "Microsoft",
@@ -42,10 +42,11 @@ const HEAD = local({
 });
 
 // Where each partnership shows up in our services (the primary CTA lives in the hero and workshop).
+// Positioning order: AI, then Azure, then the wider Microsoft stack; AWS supporting.
 const LINKS = [
-  { label: "Dynamics 365 services", href: asset("/services/microsoft/microsoft-dynamics-365/") },
-  { label: "Microsoft Azure services", href: asset("/azure-hosting/") },
   { label: "AI consulting services", href: asset("/ai-consulting/") },
+  { label: "Microsoft Azure services", href: asset("/azure-hosting/") },
+  { label: "Dynamics 365 services", href: asset("/services/microsoft/microsoft-dynamics-365/") },
   { label: "AWS cloud services", href: asset("/aws-compute/") },
 ];
 
@@ -82,8 +83,8 @@ export function Partners() {
             </LineReveal>
             <Reveal y={30} duration={1} delay={0.1} amount={0.3}>
               <p className={s.lead}>
-                Microsoft first: Azure, Dynamics 365, Power BI, and Microsoft Fabric are where {BRAND.name}’s senior
-                specialists spend most of their time.{HEAD.extra}
+                {BRAND.name}’s senior specialists are Microsoft-certified, and most of our AI and data work runs on
+                Azure and Microsoft Fabric.{HEAD.extra}
               </p>
             </Reveal>
           </div>

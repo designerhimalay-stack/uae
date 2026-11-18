@@ -2,7 +2,7 @@
 // Microsoft platform, AI models, Engineering & data — side by side, each a clean
 // list of logo rows (mark on a white tile, name, and any grouped family members).
 // Lists never leave ragged gaps the way a fixed tile grid does, and the
-// Microsoft-first story reads left to right. Phones: cards stack.
+// platform story reads left to right. Phones: cards stack.
 
 import { Reveal } from "@/components/ui/Reveal";
 import { TECH, type TechId } from "@/data/tech";

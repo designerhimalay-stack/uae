@@ -30,10 +30,13 @@ const COLUMNS: { title: string; links: FooterLink[] }[] = [
     title: "Services",
     links: [
       { label: "AI Consulting", href: asset("/ai-consulting/") },
-      { label: "Data Engineering", href: asset("/data-engineering/") },
+      // Positioning order: AI, modernisation, data, Azure, then the Microsoft stack.
       { label: "Application Modernisation", href: asset("/application-modernization/") },
-      { label: "Dynamics 365", href: local({ us: asset("/services/microsoft/microsoft-dynamics-365/"), au: home("#dynamics"), in: home("#dynamics"), uae: asset("/services/microsoft/microsoft-dynamics-365/") }) },
-      { label: "Microsoft Azure", href: local({ us: asset("/azure-hosting/"), au: home("#azure"), in: asset("/azure-migration/"), uae: asset("/azure-migration/") }) },
+      { label: "Data Engineering", href: asset("/data-engineering/") },
+      // Client feedback 2026-11-18, item 17: Azure links to Azure Optimisation (IN/UAE keep their migration page).
+      { label: "Microsoft Azure", href: local({ us: asset("/azure-optimization/"), au: asset("/azure-optimization/"), in: asset("/azure-migration/"), uae: asset("/azure-migration/") }) },
+      // Same rule as item 17: a footer service link opens its service page, not a homepage section.
+      { label: "Dynamics 365", href: asset("/services/microsoft/microsoft-dynamics-365/") },
     ],
   },
   {
@@ -100,7 +103,7 @@ const COLUMNS: { title: string; links: FooterLink[] }[] = [
 
         {/* The contact form sits directly above the footer, so no second CTA here. */}
         <div class={styles.cta}>
-          <p class={styles.ctaText}>Microsoft first, and proven on your data.</p>
+          <p class={styles.ctaText}>See it work. Then scale it.</p>
           <Button label="Back to top" href="#top" variant="outline" className={styles.ctaButton} />
         </div>
       </div>

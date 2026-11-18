@@ -1,8 +1,9 @@
-# Aptacloud
+# AptaCloud
 
-Marketing site for Aptacloud, a premier consulting firm for cloud, data, IT and AI
-with a Microsoft-centric focus: an AI Assessment Workshop, Dynamics 365, Microsoft 365,
-SharePoint, Copilot, Power Platform, Azure and AWS.
+Marketing site for AptaCloud, an AI-first consultancy for mid-sized insurance, oil and gas,
+and engineering and construction firms. Positioning order: AI, then modernization, then data
+and Azure, then the Microsoft stack (Dynamics 365, Microsoft 365, SharePoint, Copilot, Power
+Platform), with AWS supporting. Microsoft is a credential, not the headline.
 
 ## Stack
 

@@ -132,7 +132,7 @@ export const WHY: { title: string; text: string; icon: IconId }[] = [
   },
   {
     title: "Senior specialists, faster decisions",
-    text: "Senior Microsoft specialists do the work, without the layers and long discovery phases of larger firms.",
+    text: "Senior, Microsoft-certified AI and cloud specialists do the work, without the layers and long discovery phases of larger firms.",
     icon: "team",
   },
   {

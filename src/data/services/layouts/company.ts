@@ -43,7 +43,7 @@ export const COMPANY_LAYOUTS: Record<string, ServiceLayout> = {
         heading: "Your team has already started. We take it to production.",
         body: [
           "AptaCloud works with mid-sized businesses in insurance, oil and gas, and engineering and construction. We modernise the systems they run on, connect them, and put AI to work on top of them.",
-          "Most of our clients come to us with something already under way: an AI pilot, a modernisation plan, or a cloud migration. We prove the value on their data with a proof of concept, then deliver in clear phases with senior Microsoft specialists, on the systems they already run.",
+          "Most of our clients come to us with something already under way: an AI pilot, a modernisation plan, or a cloud migration. We prove the value on their data with a proof of concept, then deliver in clear phases with senior, Microsoft-certified AI and cloud specialists, on the systems they already run.",
           "Our engineers work from the United States, India, and Mexico, so delivery and support carry on around the clock.",
         ],
         photo: { src: `${C}/about-story.jpg`, alt: "Three colleagues discussing a project around a computer in the office", position: "55% 50%" },
@@ -54,7 +54,7 @@ export const COMPANY_LAYOUTS: Record<string, ServiceLayout> = {
         style: "mark",
         tag: "Microsoft",
         icon: "team",
-        heading: "Microsoft, at the centre of what we do.",
+        heading: "What we do.",
         lead: "The Microsoft tools your teams use every day, set up and connected properly.",
         cols: 4,
         items: [
@@ -110,7 +110,7 @@ export const COMPANY_LAYOUTS: Record<string, ServiceLayout> = {
         tag: "Partners",
         icon: "link",
         heading: "The technology partners we build with.",
-        lead: "Microsoft leads. We add Anthropic's AI models and Amazon Web Services where they fit the systems you already run.",
+        lead: "Microsoft is our main platform partner. We add Anthropic's AI models and Amazon Web Services where they fit the systems you already run.",
         cols: 3,
         items: [
           { title: "Microsoft", text: "Azure, Dynamics 365, Power BI, and Microsoft Fabric are where our senior specialists spend most of their time.", logo: "/images/partners/microsoft.svg" },
@@ -167,7 +167,7 @@ export const COMPANY_LAYOUTS: Record<string, ServiceLayout> = {
         photo: { src: `${C}/careers-team.jpg`, alt: "A team of colleagues working at computers in a modern office", position: "50% 45%" },
         items: [
           { title: "Senior-led delivery", text: "Experienced specialists lead every project, from the first workshop to go-live.", icon: "team" },
-          { title: "Microsoft-first technology", text: "Azure, Dynamics 365, Power BI, Microsoft Fabric, and Copilot, with AWS and Anthropic where they fit.", icon: "cloud" },
+          { title: "AI-first technology", text: "AI on Azure, Microsoft Fabric, Power BI, Dynamics 365, and Copilot, with AWS and Anthropic where they fit.", icon: "cloud" },
           { title: "Industries known in depth", text: "Insurance, oil and gas, and engineering and construction, so the work builds on itself.", icon: "target" },
           { title: "Proof before commitment", text: "Ideas are proven on client data with a proof of concept before full delivery.", icon: "spark" },
         ],

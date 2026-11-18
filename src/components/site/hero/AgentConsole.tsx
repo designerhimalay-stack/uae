@@ -1,6 +1,6 @@
 // "Agent Console" — one glass HUD chip floating over the hero's full-bleed
 // photo (card chrome: --bg-glass, 1px --line-strong border, 2px radius, mono
-// labels): the Microsoft-centric stack named in the PDF.
+// labels): the capabilities in the positioning order, AI first (client 2026-11-18).
 // Chips drift a few pixels with the pointer (fine pointers only, off for
 // reduced motion).
 
@@ -14,7 +14,7 @@ import s from "./AgentConsole.module.css";
 const ACCENT = "var(--accent)";
 
 // Product names per Brand Guidelines v2.0, 10 (never "D365").
-const STACK = ["Dynamics 365", "Microsoft 365", "Azure", "Copilot"];
+const STACK = ["AI agents", "Modernisation", "Data", "Azure"];
 
 /** Writes --px / --py (−1…1, eased) on the root from the pointer position. */
 function usePointerDrift() {
@@ -53,12 +53,12 @@ export function AgentConsole({ className }: { className?: string }) {
 
   return (
     <div ref={ref} className={cn(s.root, className)}>
-      {/* (b) Microsoft-centric solutions */}
+      {/* (b) AI-first solutions */}
       <Reveal trigger="mount" delay={1.05} className={cn(s.slot, s.slotStack)}>
         <div className={cn(s.chip, s.chipStack)} style={{ ["--depth" as string]: "6px" }}>
           <div className={s.stackHead}>
             <Pulse size={6} color={ACCENT} />
-            <p className={cn("t-micro", s.nowrap, s.chipTitle)}>Microsoft-centric solutions</p>
+            <p className={cn("t-micro", s.nowrap, s.chipTitle)}>AI-first solutions</p>
           </div>
           <div className={s.tags}>
             {STACK.map((t) => (

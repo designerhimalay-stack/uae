@@ -18,7 +18,7 @@ Dev: `npm run dev -- --port 4321` → http://localhost:4321/au/ · Check: `npx t
 ## Rules (from AptaCloud Brand + Content Writing Guidelines v2.0)
 - "AptaCloud" only. Australian spelling in copy, US spelling in URLs. Oxford comma. No em dashes.
 - Banned: seamless, end-to-end, robust, cutting-edge, leverage, unlock, revolutionise, "free", "Contact us", "Book now", superlatives.
-- One primary CTA per page, POC-led. No unapproved metrics, case studies or partner claims. No NetSuite. Microsoft leads.
+- One primary CTA per page, POC-led. No unapproved metrics, case studies or partner claims. No NetSuite. Positioning order: AI, then modernization, then data and Azure, then the Microsoft stack. Microsoft is a credential, not the headline.
 - SEO-team skills (from Downloads `aptacloud-content*.skill`): no rhetorical questions; segment pages name the matrix buyer and map only that segment's services; proof = "typical engagement" (client-pattern, no figures, no client names) until RWLS/Warrikal are approved; no testimonials or client logos.
 - CRO (template rule in `[...slug].astro`): nav "Let's talk"; primary CTA in hero, once mid-page (pricing/assessment, else first banner/cta block via `ctaFor`), and the form. Later banners get a "Let's talk" text link. Never two identical buttons in one section.
 - Verticals only: Insurance, Oil & Gas, Engineering & Construction.
@@ -30,5 +30,6 @@ Dev: `npm run dev -- --port 4321` → http://localhost:4321/au/ · Check: `npx t
 - No accent "border line" hover effects (user dislikes them).
 - Cards stay clean and flat like home: white cards on light sections, surface cards on dark, photos above text (no dark overlays, glows or gradient cards). Hero glow/grid only. Numbers only where order matters (process).
 - Sub-page hero title is always two lines (title, then the red accent tail); size scales to the longer line. Phones may wrap.
-- Phones: no sideways swiping. Card groups (`sec.rail`) become a 2-column grid, an odd last card spans the row, and heavy cards (case studies, plans, offices, layered lists) use `sec.stack` for one column. Card copy goes through `ui/ReadMore` (2 lines + "Read more" on phones, full text on desktop). Owner, 2026-11-03.
+- Phones: no sideways swiping. Card groups (`sec.rail`) become a 2-column grid, an odd last card spans the row, and heavy cards (case studies, plans, offices, layered lists) use `sec.stack` for one column. Card copy goes through `ui/ReadMore` (2 lines + "Read more" on phones, full text on desktop). Owner, 2026-11-03. Exceptions (client, 2026-11-18): Why AptaCloud cards, Typical engagement stories, and the form's "What happens next" steps show full text on phones (`data-full-text` on the section).
+- Client fix list 2026-11-18 (`docs/client-fixes-2026-11-18.md`): change only what it lists; don't restructure sections, rewrite copy, or change design around it.
 - AI expertise shows GPT, Claude, Gemini, Grok, Llama logos (`public/images/ai/`).

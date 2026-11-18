@@ -248,7 +248,7 @@ export const MS_PAGES: ServicePage[] = [
     why: {
       heading: "Why AptaCloud for Microsoft Copilot.",
       lead: "We build copilots on your data, with the controls in place first.",
-      extra: [{ title: "Microsoft-first, model-aware", text: "We build in Copilot Studio and Azure OpenAI Service, and know when another model suits a task better.", icon: "spark" }],
+      extra: [{ title: "Model-aware builds", text: "We build in Copilot Studio and Azure OpenAI Service, and know when another model suits a task better.", icon: "spark" }],
     },
     stack: ["copilotStudio", "copilot", "azureOpenAI", "powerAutomate", "powerApps", "sharepoint", "dynamics", "teams", "entra", "purview"],
     faqs: [

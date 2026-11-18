@@ -43,7 +43,7 @@ const GAINS = [
   {
     index: "03",
     title: "Hands-on experience",
-    text: "Work through a live example with our senior Microsoft specialists, not a slide deck.",
+    text: "Work through a live example with our senior AI specialists, not a slide deck.",
     src: "/images/photos/workshop-hands-on.jpg",
     alt: "Three colleagues laughing while working together on laptops at a shared table",
     position: "55% 50%",

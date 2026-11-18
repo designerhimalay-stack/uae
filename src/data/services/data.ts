@@ -275,7 +275,7 @@ export const DATA_PAGES: ServicePage[] = [
       },
       {
         q: "Should we use Microsoft Fabric, Synapse, or Snowflake?",
-        a: "We compare them against your data volumes, skills, and licences during discovery. For most Microsoft-centric businesses we recommend Microsoft Fabric, and we show the reasoning with costs.",
+        a: "We compare them against your data volumes, skills, and licences during discovery. For most businesses already on Microsoft tools we recommend Microsoft Fabric, and we show the reasoning with costs.",
       },
       {
         q: "How do you make sure the numbers match after migration?",

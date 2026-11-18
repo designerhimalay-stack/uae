@@ -29,9 +29,9 @@ p{font-size:24px;color:rgba(255,255,255,.7);letter-spacing:-.5px;max-width:820px
 <div class="wrap">
   <img class="logo" src="${logo}">
   <div>
-    <h1>Modernise, connect, and put AI to work, <span>proven on your data.</span></h1>
+    <h1>Put AI to work on the systems you run, <span>proven on your data.</span></h1>
   </div>
-  <div class="foot"><span><b>Insurance</b></span><span><b>Oil &amp; Gas</b></span><span><b>Engineering &amp; Construction</b></span><span>Microsoft-first</span></div>
+  <div class="foot"><span><b>Insurance</b></span><span><b>Oil &amp; Gas</b></span><span><b>Engineering &amp; Construction</b></span><span>Microsoft-certified</span></div>
 </div>`);
 await p.waitForTimeout(300);
 await p.screenshot({ path: join(pub, "og-image.jpg"), type: "jpeg", quality: 88 });

@@ -41,7 +41,7 @@ export const MS_LAYOUTS: Record<string, ServiceLayout> = {
         lead: "One cloud platform for productivity, collaboration, and security. Whether you want to migrate, optimise, or secure your environment, we help you get the full value from it.",
         groups: [
           { label: "Office applications", apps: [{ name: "Outlook", icon: APP("outlook") }, { name: "Word", icon: APP("word") }, { name: "Excel", icon: APP("excel") }, { name: "PowerPoint", icon: APP("powerpoint") }, { name: "OneNote", icon: APP("onenote") }, { name: "Access", icon: APP("access") }, { name: "Publisher", icon: APP("publisher") }] },
-          { label: "Team collaboration", apps: [{ name: "Teams", icon: APP("teams") }, { name: "SharePoint", icon: APP("sharepoint") }, { name: "Yammer", icon: APP("yammer") }] },
+          { label: "Team collaboration", apps: [{ name: "Teams", icon: APP("teams") }, { name: "SharePoint", icon: APP("sharepoint") }, { name: "Viva Engage", icon: APP("yammer") }] },
           { label: "Business app platform", apps: [{ name: "Power Apps", icon: APP("powerapps") }, { name: "Power Automate", icon: APP("flow") }, { name: "Forms", icon: APP("forms") }] },
           { label: "Analytics", apps: [{ name: "Power BI", icon: APP("powerbi") }, { name: "My Analytics", icon: APP("myanalytics") }] },
           { label: "Email and calendar", apps: [{ name: "Exchange", icon: APP("exchange") }, { name: "Calendar", icon: APP("calendar") }] },

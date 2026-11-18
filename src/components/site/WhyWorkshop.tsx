@@ -43,12 +43,12 @@ const BENEFITS = [
   },
   {
     title: "Senior specialists, faster decisions",
-    text: "Senior Microsoft specialists do the work, without the layers and long discovery phases of larger firms.",
+    text: "Senior, Microsoft-certified AI and cloud specialists do the work, without the layers and long discovery phases of larger firms.",
     icon: "guide" as const,
   },
   {
     title: "Built around what you already run",
-    text: "We modernise and connect your existing policy, ERP, SCADA and project systems rather than replacing them.",
+    text: "We modernise and connect your existing policy, ERP, SCADA, and project systems rather than replacing them.",
     icon: "connect" as const,
   },
 ];
@@ -143,7 +143,7 @@ function TagIcon() {
 
 export function WhyWorkshop() {
   return (
-    <section id="why" data-theme="light" className={s.section}>
+    <section id="why" data-theme="light" className={s.section} data-full-text>
       <div className={s.container}>
         <div className={s.content}>
           <Reveal y={30} duration={1} amount={0.3} className={s.tagCol}>

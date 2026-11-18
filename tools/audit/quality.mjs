@@ -85,13 +85,16 @@ for (const slug of slugs) {
     }
     try { await p.goto(url, { waitUntil: "load", timeout: 90000 }); } catch (e) { findings.push({ vw, kind: "load-failed", where: "page", detail: String(e).slice(0, 80) }); await ctx.close(); continue; }
     await p.waitForLoadState("networkidle", { timeout: 60000 }).catch(() => {});
+    // LCP as a visitor gets it: browsers stop recording at the first scroll, so read it before scrolling.
+    const lcpBeforeScroll = vw === 390 && process.env.PERF !== "0" ? await p.evaluate(() => window.__lcp) : null;
     const h = await p.evaluate(() => document.body.scrollHeight);
     for (let y = 0; y < h; y += 500) { await p.evaluate((y) => scrollTo(0, y), y); await p.waitForTimeout(vw === 390 && process.env.PERF !== "0" ? 120 : 30); }
     await p.waitForTimeout(400);
     await p.evaluate(() => scrollTo(0, 0)); await p.waitForTimeout(200);
     for (const f of await p.evaluate(PAGE, [vw])) findings.push({ vw, ...f });
     if (vw === 390 && process.env.PERF !== "0") {
-      const m = await p.evaluate(() => ({ cls: window.__cls, shifts: window.__shifts, lcp: window.__lcp }));
+      const m = await p.evaluate(() => ({ cls: window.__cls, shifts: window.__shifts }));
+      m.lcp = lcpBeforeScroll;
       if (m.cls > 0.1) findings.push({ vw, kind: "layout-shift", where: "page", detail: `CLS ${m.cls.toFixed(3)} (needs ≤ 0.1) ${JSON.stringify(m.shifts.slice(0, 3))}` });
       if (m.lcp && m.lcp.t > 2500) findings.push({ vw, kind: "slow-lcp", where: "page", detail: `LCP ${Math.round(m.lcp.t)} ms on a throttled phone (needs ≤ 2500) ${m.lcp.el}` });
     }

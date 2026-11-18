@@ -64,7 +64,7 @@ To check again, run `npm run build`, then the audit scripts in [SUMMARY.md](../S
 - ✅ Verticals only (insurance, oil and gas, engineering and construction). No healthcare, retail, or Canada content.
 - ✅ Credentials in the approved wording (20+ years, 300+ clients, 200+ engineers, 4 delivery locations).
 - ✅ Each segment page names the matrix buyer and maps only the services the matrix marks for that segment.
-- ✅ Microsoft leads. AWS is a supporting partner. No NetSuite.
+- ✅ Positioning order: AI, then modernization, then data and Azure, then the Microsoft stack. Microsoft is a credential, not the headline. AWS is a supporting partner. No NetSuite. (Client feedback 2026-11-18.)
 
 ## 6. Conversion (CRO)
 

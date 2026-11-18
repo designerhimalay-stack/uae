@@ -12,7 +12,7 @@ import s from "./UsCredentials.module.css";
 const STATS = [
   { value: 20, suffix: "+", label: "Years of experience" },
   { value: 300, suffix: "+", label: "Clients served" },
-  { value: 200, suffix: "+", label: "Engineers under one roof" },
+  { value: 200, suffix: "+", label: "Engineers" },
   { value: 4, suffix: "", label: "Delivery locations" },
 ];
 
@@ -48,7 +48,7 @@ export function UsCredentials() {
       <div className={s.container}>
         <Reveal y={24} duration={1} amount={0.3} className={s.head}>
           <p className={s.kicker}>{BRAND.name} in numbers</p>
-          <h2 className={s.heading}>Two decades of Microsoft-first delivery, from Texas to the world.</h2>
+          <h2 className={s.heading}>Senior AI and cloud specialists, headquartered in Richardson, Texas.</h2>
         </Reveal>
 
         <dl className={s.stats}>

@@ -16,8 +16,8 @@ import { REGION, REGIONS as ALL_REGIONS, REGION_ORDER, regionHome } from "@/bran
 import { RollingText } from "@/components/ui/RollingText";
 import { cn } from "@/lib/utils";
 import styles from "./Nav.module.css";
-import { MENUS, type NavMenu } from "./nav/menus";
-import { MegaPanel } from "./nav/MegaPanel";
+import { MENUS, promoCta, type NavMenu } from "./nav/menus";
+import { MegaPanel, useOnHome } from "./nav/MegaPanel";
 
 // Region switcher: each region is its own site (src/brand/regions.ts); picking
 // one goes to that site's home page.
@@ -126,6 +126,7 @@ function onThisPage(url: URL) {
 
 export function Nav({ cta = DEFAULT_CTA }: { cta?: NavCta }) {
   const TALK = cta;
+  const onHome = useOnHome();
   const [open, setOpen] = useState(false);
   const [drop, setDrop] = useState<string | null>(null); // desktop dropdown
   const [group, setGroup] = useState<string | null>(null); // compact accordion
@@ -328,7 +329,7 @@ export function Nav({ cta = DEFAULT_CTA }: { cta?: NavCta }) {
                 <div id={subId} className={cn(styles.groupWrap, on && styles.groupOpen)}>
                   <div className={styles.groupInner}>
                     {compactLinks(t.column.links)}
-                    {accentLink(t.promo.cta)}
+                    {accentLink(promoCta(t.promo, onHome))}
                   </div>
                 </div>
               </div>

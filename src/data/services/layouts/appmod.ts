@@ -191,7 +191,7 @@ export const APPMOD_LAYOUTS: Record<string, ServiceLayout> = {
       { q: "How do you keep downtime to a minimum during migration?", a: "We provision the cloud infrastructure first and migrate code and data in stages without disrupting production. Traffic moves across gradually before on-premises systems are retired." },
       { q: "How quickly can you migrate?", a: "Our tools and automation shorten migrations, and most complete within a few months, depending on the size of the portfolio. You get a phased timeline after discovery." },
       { q: "What testing do you do after migration?", a: "Functional, integration, interoperability, security, performance, scalability, and user acceptance testing, so migrated apps have no regressions and meet agreed service levels." },
-      { q: "Which cloud platforms do you support?", a: "We are Microsoft-first and most migrations land on Azure, but our tools are cloud-agnostic and we also migrate Windows and Linux workloads to AWS and Google Cloud." },
+      { q: "Which cloud platforms do you support?", a: "Most migrations land on Azure, but our tools are cloud-agnostic and we also migrate Windows and Linux workloads to AWS and Google Cloud." },
     ],
   },
 
@@ -548,7 +548,7 @@ export const APPMOD_LAYOUTS: Record<string, ServiceLayout> = {
           { title: "Modernisation SWOT", text: "Internal strengths and weaknesses, external opportunities and threats.", icon: "search" },
           { title: "Future-state vision", text: "Proposed platforms, capabilities, and data flows.", icon: "eye" },
           { title: "Budget and timing", text: "Draft budgets, priorities, and phasing.", icon: "clock" },
-          { title: "Risk management", text: "Security, legal and compliance, and continuity planning.", icon: "shield" },
+          { title: "Risk management", text: "Security, legal, compliance, and continuity planning.", icon: "shield" },
           { title: "Resource management", text: "Staff skills, availability, and vendor dependencies.", icon: "team" },
         ],
       },

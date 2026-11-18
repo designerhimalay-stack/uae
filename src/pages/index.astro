@@ -33,16 +33,16 @@ import { Workshop } from "../components/site/Workshop";
 // No em dashes or superlatives in metadata either (Content Writing Guidelines 6.2).
 const META = local({
   us: {
-    title: `${BRAND.name} | Microsoft Cloud, Data, and AI Consultancy`,
+    title: `${BRAND.name} | AI, Data, and Cloud Consultancy`,
     description: "AptaCloud modernises the systems mid-sized insurance, oil and gas, and construction firms run on, and puts AI to work. Proven on your data first.",
   },
   uae: {
-    title: `${BRAND.name} UAE | Microsoft Cloud and AI Consulting`,
-    description: "Microsoft cloud and AI consulting for UAE businesses: Azure, AI agents, generative AI, Dynamics 365, and modernisation, built around PDPL and UAE rules.",
+    title: `${BRAND.name} UAE | AI and Cloud Consulting`,
+    description: "AI and cloud consulting for UAE businesses: AI agents, generative AI, modernisation, Azure, and Dynamics 365, built around PDPL and UAE rules.",
   },
   in: {
-    title: `${BRAND.name} India | Cloud and AI for Indian Businesses`,
-    description: "Cloud migration, AI consulting, SharePoint, data engineering, and legacy modernisation for Indian SMBs and enterprises, from teams in Gurugram and Pune.",
+    title: `${BRAND.name} India | AI and Cloud for Indian Businesses`,
+    description: "AI consulting, legacy modernisation, data engineering, cloud migration, and SharePoint for Indian SMBs and enterprises, from teams in Gurugram and Pune.",
   },
 });
 
@@ -67,7 +67,7 @@ const jsonLd = homeFaqs.length
         <About client:visible />
         <Cards client:visible block={IN_SOLUTIONS} tone="white" />
         <Partners client:visible />
-        <Cards client:visible block={IN_WHY} tone="tint" />
+        <div data-full-text style="display: contents"><Cards client:visible block={IN_WHY} tone="tint" /></div>
         <Dynamics client:visible />
         <Microsoft client:visible />
         <Cards client:visible block={IN_PROCESS} tone="tint" />
@@ -94,7 +94,7 @@ const jsonLd = homeFaqs.length
         <About client:visible />
         <Cards client:visible block={UAE_SERVICES} tone="white" />
         <Cards client:visible block={UAE_PROCESS} tone="dark" />
-        <Cards client:visible block={UAE_WHY} tone="tint" />
+        <div data-full-text style="display: contents"><Cards client:visible block={UAE_WHY} tone="tint" /></div>
         <UaeHub client:visible />
         <Partners client:visible />
         <Cases client:visible block={UAE_ENGAGEMENTS} tone="tint" />

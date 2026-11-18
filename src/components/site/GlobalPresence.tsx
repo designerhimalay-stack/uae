@@ -16,7 +16,7 @@ import s from "./GlobalPresence.module.css";
 
 const HEADING = "Headquartered in Texas. Working across four regions.";
 const LEAD =
-  "One team and one way of working, led by Microsoft specialists. Delivery runs from the United States, Mexico, and India, with a dedicated site for each region we serve.";
+  "One team and one way of working, led by senior AI and cloud specialists. Delivery runs from the United States, Mexico, and India, with a dedicated site for each region we serve.";
 
 function useNow() {
   const [now, setNow] = useState<Date | null>(null);

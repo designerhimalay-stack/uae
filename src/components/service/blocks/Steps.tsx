@@ -328,7 +328,9 @@ function Arc({ steps }: { steps: StepsBlock["steps"] }) {
 }
 
 export function Steps({ block, cta, tone }: { block: StepsBlock; cta?: { label: string; short: string }; tone: Tone }) {
-  const button = block.cta && cta && (
+  // The page passes `cta` only to the one block that carries the mid-page button
+  // (see ctaFor in [...slug].astro), so a process section can carry it too.
+  const button = cta && (
     <Reveal y={20} duration={0.9} className={s.cta}>
       <Button label={cta.label} shortLabel={cta.short} href="#contact" />
     </Reveal>

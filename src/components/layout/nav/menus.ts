@@ -1,15 +1,17 @@
 // Nav menu content, one structure per region, each mirroring that region's live site
 // (aptacloud.com, /in/, /uae/), with this site's page URLs.
-//   US  — Services (AI, Data, App modernisation, Azure, AWS) · Platforms (Microsoft) · Industries · About
-//   AU  — Services (with Microsoft as a tab) · Industries · About
-//   IN, UAE — Solutions (Microsoft, Cloud, ERP & CRM, AI, Data & Intelligence, App modernisation)
+// Service tabs follow the positioning order (client 2026-11-18): AI, modernisation, data
+// and Azure, then the Microsoft stack, AWS supporting.
+//   US  — Services (AI, App modernisation, Data, Azure, AWS) · Platforms (Microsoft) · Industries · About
+//   AU  — Services (AI, App modernisation, Data, Azure, Microsoft, AWS) · Industries · About
+//   IN, UAE — Solutions (AI, App modernisation, Data & Intelligence, Cloud, ERP & CRM, Microsoft)
 //             · Industries (six sectors) · About (Overview, Resources)
 // One shell for every panel — a 3-column grid + a trust strip (no CTA) — filled from three building blocks:
 //   tabs   — categories; hovering/focusing one swaps the next two cells
 //   column — a header, an optional two-line intro and its links
 //   promo  — a highlighted card: logo, eyebrow, title, copy and a CTA
 
-import { BRAND, asset, home } from "@/brand/brand";
+import { BRAND, PRIMARY_CTA, asset, home } from "@/brand/brand";
 import { REGION, local } from "@/brand/regions";
 
 /** Link to a service page on this site (slugs keep the live site's US spelling).
@@ -26,7 +28,12 @@ export type NavPromo = {
   title: string;
   text: string;
   cta: NavLink;
+  /** The button on every page except the homepage, when `cta` only makes sense there. */
+  offHome?: NavLink | false;
 };
+
+/** The promo button for the page we are on (client feedback 2026-11-18, item 15). */
+export const promoCta = (p: NavPromo, onHome: boolean): NavLink => (!onHome && p.offHome) || p.cta;
 export type NavTab = { id: string; label: string; column: NavColumn; promo: NavPromo };
 
 export type NavMenu = {
@@ -49,6 +56,10 @@ const WORKSHOP_PROMO: NavPromo = {
   title: "AI Assessment Workshop",
   text: "A tailored workshop that shows where AI can automate your operations and what it should return.",
   cta: local({ us: { label: "See what the workshop covers", href: home("#workshop") }, in: { label: "See how we work", href: home("#process") }, uae: { label: "See how we work", href: home("#process") } }),
+  // Off the homepage, "See what the workshop covers" jumped away from the page; it now
+  // opens the contact form on the same page (every page has #contact).
+  // India and the UAE follow the same rule ("See how we work" also jumped to the homepage).
+  offHome: { label: PRIMARY_CTA.label, href: PRIMARY_CTA.href },
 };
 
 const DATA_PROMO: NavPromo = {
@@ -74,7 +85,7 @@ const MS_PROMO: NavPromo = {
   logoAlt: "Microsoft 365",
   eyebrow: "Certified Partner",
   title: "Full Microsoft Business Suite",
-  text: "The complete Microsoft ecosystem tailored for productivity, collaboration and security.",
+  text: "The complete Microsoft ecosystem tailored for productivity, collaboration, and security.",
   cta: { label: "Explore Microsoft 365", href: asset("/services/microsoft/microsoft-365/") },
 };
 
@@ -85,8 +96,9 @@ const AZURE_PROMO: NavPromo = {
   title: "Cloud That Costs What It Should",
   text: "Run more on Azure for less, with costs you can explain to finance.",
   cta: local({
-    us: { label: "Get your cloud cost review", href: asset("/azure-optimization/") },
-    au: { label: "Get your cloud cost review", href: home("#azure") },
+    // Client feedback 2026-11-18, item 14: the button names the page it opens.
+    us: { label: "Explore Azure optimisation", href: asset("/azure-optimization/") },
+    au: { label: "Explore Azure optimisation", href: asset("/azure-optimization/") },
     in: { label: "Plan your move to Azure", href: asset("/azure-migration/") },
     uae: { label: "Plan your move to Azure", href: asset("/azure-migration/") },
   }),
@@ -184,8 +196,10 @@ const AWS_TAB: NavTab = {
   promo: AWS_PROMO,
 };
 
-// India and the UAE: the live sites' "Solutions" menu, in its order and with its labels.
-const REGIONAL_TABS: NavTab[] = [
+// India and the UAE: the live sites' "Solutions" menu and labels, ordered AI first
+// (positioning order, client 2026-11-18). Same tabs and links as the live sites.
+const REGIONAL_ORDER = ["ai", "app-mod", "data", "cloud", "erp", "microsoft"];
+const REGIONAL_TABS: NavTab[] = ([
   {
     id: "microsoft",
     label: "Microsoft",
@@ -265,7 +279,7 @@ const REGIONAL_TABS: NavTab[] = [
     },
     promo: APPMOD_PROMO,
   },
-];
+] as NavTab[]).sort((a, b) => REGIONAL_ORDER.indexOf(a.id) - REGIONAL_ORDER.indexOf(b.id));
 
 /* ── Menus ───────────────────────────────────────────────────────────── */
 
@@ -276,12 +290,12 @@ const INDUSTRIES: NavMenu = {
   columns: [
     {
       title: "Insurance",
-      text: "Automate policy processing, claims adjustment and compliance workflows.",
+      text: "Automate policy processing, claims adjustment, and compliance workflows.",
       links: [
         svc("Insurance overview", "industry/insurance"),
         svc("Carriers", "industry/insurance/carriers"),
         svc("Managing General Agents (MGA)", "industry/insurance/managing-general-agents"),
-        svc("Third Party Adjusters (TPA)", "industry/insurance/third-party-adjusters"),
+        svc("Third-Party Administrators (TPA)", "industry/insurance/third-party-adjusters"),
         svc("Independent Agents", "industry/insurance/independent-agents"),
       ],
     },
@@ -319,7 +333,7 @@ const REGIONAL_INDUSTRIES: NavMenu = {
     logoAlt: "AptaCloud",
     eyebrow: "Industries",
     title: `Built for the Sectors We Serve${where}`,
-    text: "Microsoft cloud, data, and AI shaped around how each industry works and what it has to comply with.",
+    text: "AI, data, and cloud shaped around how each industry works and what it has to comply with.",
     cta: { label: "Talk to an industry lead", href: "#contact" },
   },
   columns: [
@@ -428,13 +442,13 @@ const PLATFORMS: NavMenu = {
 
 export const MENUS: NavMenu[] = local<NavMenu[]>({
   us: [
-    { id: "services", label: "Services", kind: "tabs", tabsTitle: "What we do", tabs: [AI_TAB, DATA_TAB, APPMOD_TAB, AZURE_TAB, AWS_TAB] },
+    { id: "services", label: "Services", kind: "tabs", tabsTitle: "What we do", tabs: [AI_TAB, APPMOD_TAB, DATA_TAB, AZURE_TAB, AWS_TAB] },
     PLATFORMS,
     INDUSTRIES,
     ABOUT,
   ],
   au: [
-    { id: "services", label: "Services", kind: "tabs", tabsTitle: "What we do", tabs: [AI_TAB, DATA_TAB, APPMOD_TAB, MS_TAB, AZURE_TAB, AWS_TAB] },
+    { id: "services", label: "Services", kind: "tabs", tabsTitle: "What we do", tabs: [AI_TAB, APPMOD_TAB, DATA_TAB, AZURE_TAB, MS_TAB, AWS_TAB] },
     INDUSTRIES,
     ABOUT,
   ],

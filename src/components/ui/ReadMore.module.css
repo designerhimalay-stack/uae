@@ -59,4 +59,17 @@
     outline: 2px solid var(--accent);
     outline-offset: 2px;
   }
+
+  /* Client feedback 2026-11-18 (item 19): inside a [data-full-text] section (Why
+     AptaCloud cards, Typical engagement stories) phones show the whole text. */
+  :global([data-full-text]) .clamp {
+    -webkit-line-clamp: unset;
+    display: block;
+    overflow: visible;
+  }
+
+  :global([data-full-text]) .toggle,
+  :global([data-full-text]) .more {
+    display: none !important;
+  }
 }

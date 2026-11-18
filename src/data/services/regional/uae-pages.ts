@@ -627,7 +627,7 @@ export const UAE_ONLY_LAYOUTS: Record<string, ServiceLayout> = {
         items: [
           { title: "Complex environments", text: "20+ years across cloud, data engineering, and integration.", icon: "team" },
           { title: "Shaped to your operations", text: "Designed for your model, systems, and obligations.", icon: "cog" },
-          { title: "Microsoft first", text: "Azure, with AWS where it fits your estate.", icon: "layers" },
+          { title: "Microsoft-certified", text: "Azure, with AWS where it fits your estate.", icon: "layers" },
           { title: "Security at the core", text: "Identity, encryption, monitoring, and recovery from the design up.", icon: "shield" },
           { title: "Cost and performance", text: "Real-world performance reviewed and improved.", icon: "gauge" },
           { title: "Support throughout", text: "From assessment through optimisation.", icon: "clock" },

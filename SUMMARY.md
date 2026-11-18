@@ -4,7 +4,7 @@ Read this first if you are taking over this project (any model or developer). It
 
 ## 1. What this is
 
-The marketing site for **AptaCloud**, a Microsoft-first cloud, data, and AI consultancy for mid-sized businesses in three verticals: **Insurance**, **Oil & Gas**, and **Engineering & Construction**. It replaces the WordPress site at aptacloud.com and keeps its live URL paths.
+The marketing site for **AptaCloud**, an AI-first consultancy (AI, then modernization, then data and Azure, then the Microsoft stack) for mid-sized businesses in three verticals: **Insurance**, **Oil & Gas**, and **Engineering & Construction**. It replaces the WordPress site at aptacloud.com and keeps its live URL paths.
 
 - **Stack:** Astro 7 (static output) + React 19 islands, Tailwind v4 + CSS Modules, TypeScript.
 - **Pages:** 53 built pages. That is the home page, 50 registry pages (service, industry, and company), the privacy page, and a 404.
@@ -102,9 +102,9 @@ On any conflict, the brand guidelines and `aptacloud-content` win.
 - **Banned:** seamless, end-to-end, robust, cutting-edge, leverage, unlock, revolutionise, "free", "Contact us", "Book now", "Get started", and superlatives (best, leading, industry-leading, world-class).
 - **Verticals only:** insurance, oil and gas, and engineering and construction. Never healthcare, retail, banking, or Canada.
 - **Segment pages** name the buyer exactly as the matrix in `industry-sitemap.md` does, and map only the services the matrix marks for that segment. For example, Refining & Distribution is HSE, turnaround, and NDT inspection firms, not refiners. Field Services is MEP, concrete, and steel trade contractors.
-- **Microsoft leads.** AWS supports. Anthropic is a partner for AI models. Never NetSuite. Google Cloud may be named only when describing a migration (owner decision, 2026-11-02).
+- **Positioning order: AI, then modernization, then data and Azure, then the Microsoft stack. Microsoft is a credential, not the headline** (client feedback 2026-11-18). AWS supports. Anthropic is a partner for AI models. Never NetSuite. Google Cloud may be named only when describing a migration (owner decision, 2026-11-02).
 - **Proof.** No figures, client names, testimonials, or client logos unless AptaCloud has approved them. The only approved case studies are RWLS LLC and Warrikal Engineering, and they **cannot be published until AptaCloud confirms**. Until then, case sections are "typical engagements": client-pattern framing ("We often see…"), proof of concept then rollout, and qualitative outcomes (`label: "Typical engagement"` on a `cases` block).
-- **Credentials**, in the approved wording only: 20+ years of experience, 300+ clients served, 200+ engineers under one roof, 4 delivery locations.
+- **Credentials**, in the approved wording only: 20+ years of experience, 300+ clients served, 200+ engineers, 4 delivery locations ("under one roof" was dropped: it contradicts 4 locations, client feedback 2026-11-18).
 - **Statistics** need a named source. AWS is described as "AWS partner", never "certified AWS partner". Engineer-level "AWS-certified" wording is flagged for confirmation.
 
 ## 5. Design system (strict)

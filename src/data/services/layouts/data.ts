@@ -134,7 +134,7 @@ export const DATA_LAYOUTS: Record<string, ServiceLayout> = {
       },
       {
         q: "Do you work with Microsoft Fabric?",
-        a: "Yes. We are Microsoft-first and build many data platforms on Microsoft Fabric and Azure, with Power BI for reporting.",
+        a: "Yes. We build many data platforms on Microsoft Fabric and Azure, with Power BI for reporting.",
       },
     ],
   },
@@ -218,7 +218,7 @@ export const DATA_LAYOUTS: Record<string, ServiceLayout> = {
         icon: "db",
         layout: "board",
         heading: "Our tools.",
-        lead: "We work with proven platforms to deliver enterprise-grade data warehousing, Microsoft first.",
+        lead: "We work with proven platforms to deliver enterprise-grade data warehousing, with Microsoft Fabric and Azure at the core.",
         ids: ["azure", "fabric", "sqlServer", "snowflake", "bigquery", "redshift", "oracle", "ibm", "teradata", "airflow", "informatica", "talend"],
         categories: [
           { label: "Microsoft data platform", text: "Where most of our warehouses are built, run, and governed.", ids: ["fabric", "azure", "sqlServer"] },

@@ -6,5 +6,5 @@ import type { Stat } from "../types";
 export const COMPANY_STATS: Stat[] = [
   { value: 20, label: "Years of experience" },
   { value: 300, label: "Clients served" },
-  { value: 200, label: "Engineers under one roof" },
+  { value: 200, label: "Engineers" },
 ];

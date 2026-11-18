@@ -151,7 +151,7 @@ export const AI_PAGES: ServicePage[] = [
       },
       {
         q: "Which AI models do you use?",
-        a: "We are Microsoft-first: Azure OpenAI Service, Microsoft Copilot Studio, and Azure Machine Learning. Where another model suits the task better, such as Anthropic's Claude, Google Gemini, xAI Grok, or Meta Llama, we use it within your cloud environment and security controls.",
+        a: "Most of our AI work runs on Azure OpenAI Service, Microsoft Copilot Studio, and Azure Machine Learning. Where another model suits the task better, such as Anthropic's Claude, Google Gemini, xAI Grok, or Meta Llama, we use it within your cloud environment and security controls.",
       },
       {
         q: "How do you keep our data secure?",
