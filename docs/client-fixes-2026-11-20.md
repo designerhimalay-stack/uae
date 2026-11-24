@@ -172,6 +172,8 @@ Status: `done` (already live from the 2026-11-18 round, verified in source) · `
 - Checked and left by design: pricing figures (live site), region-switcher links to other builds, India's redirect stubs, AWS product names in US spelling, Why AptaCloud cards in full on phones (client exception), AU industry heroes (the client's own live-site images).
 - For your decision: on phones the AU hero's Opera House sits behind the headline and dark tint; a fix means a different phone hero layout. The privacy policy names OTS Solutions Inc. and says "Contact us" (legal text; client to confirm).
 - Result: au 31 pass, us 28, in 28, 0 fail; photo repeats 0 on all three builds.
+- UAE polished to the same standard (2026-11-24, user: don't hold the UAE back for polishing): value line rewritten in the new outcome-led pattern; managed-services rate 'Quoted on request'; Azure DevOps hero now developers on pipeline code; every shared fix carried over. Checker 17 pass, 0 fail; 0 photo repeats. Not published (hold).
+- All regions: article and event page headers carry id=top, so the footer's Back to top link resolves.
 
 ## Next session
 
