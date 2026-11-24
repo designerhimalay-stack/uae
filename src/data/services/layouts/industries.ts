@@ -50,6 +50,68 @@ const CONSTRUCTION_SAFETY = local({
 });
 const OG_COMMON_CHIPS = ["Microsoft cloud security benchmark", "Zero Trust", "Role-based access", "Encryption, audit logging, and data lineage"];
 
+
+/** Client designer pointers, 2026-11-20: core policy administration systems on the Insurance page, in a
+ *  P&C group and a Life group. The pointers name these as suggestions to confirm against AptaCloud's
+ *  partner list first (no unconfirmed partner claims), so the section stays off until the client confirms:
+ *  set CORE_SYSTEMS_CONFIRMED to true, and swap in the vendors' logo files (tech.ts) when supplied. */
+const CORE_SYSTEMS_CONFIRMED = false;
+const CORE_SYSTEMS: ServiceLayout["blocks"][number] = {
+  kind: "logos",
+  id: "core-systems",
+  tag: "Core systems",
+  icon: "layers",
+  layout: "board",
+  heading: "The core policy systems we connect.",
+  lead: "We integrate, modernise, and build AI on top of the policy administration systems insurers already run.",
+  ids: ["guidewire", "duckCreek", "majesco", "appliedEpic", "fastLife", "exlLifePro", "sapiens"],
+  categories: [
+    { label: "Property and casualty", text: "Policy administration, billing, and claims for P&C lines.", ids: ["guidewire", "duckCreek", "majesco", "appliedEpic"] },
+    { label: "Life and annuities", text: "Policy administration for life, annuity, and group business.", ids: ["majesco", "fastLife", "exlLifePro", "sapiens"] },
+  ],
+};
+
+/** Client designer pointers, 2026-11-20: Carriers, MGAs, and TPAs each get a section on our own
+ *  AI-led claims intake and triage solution. One flow, with the lead written for each segment. */
+const CLAIMS_AI_LEAD = {
+  cr: "Our AI-led claims intake and triage solution reads every first notice of loss, checks it against the policy, and routes it to the right adjuster, so each claim starts moving on day one.",
+  mga: "Our AI-led claims intake and triage solution captures each first notice of loss across your programs, checks it against the binding authority, and sends a complete file to the right claims team or TPA.",
+  tpa: "Our AI-led claims intake and triage solution applies each client's rules and service levels from the first notice of loss, so claims for every program reach the right adjuster with the file already complete.",
+} as const;
+
+const claimsAI = (segment: keyof typeof CLAIMS_AI_LEAD): ServiceLayout["blocks"][number] => ({
+  kind: "pipeline",
+  id: "claims-ai",
+  tag: "AI claims intake and triage",
+  icon: "agent",
+  heading: "AI-led claims intake and triage, built by AptaCloud.",
+  lead: CLAIMS_AI_LEAD[segment],
+  ends: ["A claim arrives by email, portal, phone, or app", "A complete claim file in your claims system"],
+  stages: [
+    {
+      label: "Capture",
+      items: [
+        { title: "Every intake channel", text: "Emails, web and portal forms, call notes, photos, and PDFs are picked up as they arrive.", mark: "logicApps" },
+        { title: "Documents read by AI", text: "Policy numbers, dates, parties, and loss details are pulled from each document and photo.", mark: "azureOpenAI" },
+      ],
+    },
+    {
+      label: "Check",
+      items: [
+        { title: "Policy and coverage", text: "Details are matched against the policy in your admin system, and gaps are flagged for follow-up.", mark: "apiManagement" },
+        { title: "Severity and fraud signals", text: "Each claim is scored for complexity, likely severity, and unusual patterns.", mark: "azureML" },
+      ],
+    },
+    {
+      label: "Route",
+      items: [
+        { title: "Triage", text: "Simple claims are fast-tracked, and complex ones go to the adjuster with the right skills and capacity.", mark: "powerAutomate" },
+        { title: "People decide", text: "Adjusters approve or correct each recommendation, and every decision is logged for audit.", mark: "dynamics" },
+      ],
+    },
+  ],
+});
+
 export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
   /* ─────────────────────────── Insurance hub ─────────────────────────── */
   "industry/insurance": {
@@ -73,6 +135,7 @@ export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
           { title: "AI and automation", text: "Insurance processes and data prepared for intelligent automation and AI.", icon: "spark" },
         ],
       },
+      ...(CORE_SYSTEMS_CONFIRMED ? [CORE_SYSTEMS] : []),
       {
         kind: "cards",
         id: "solutions",
@@ -633,7 +696,7 @@ export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
         lead: "From cloud modernisation to AI automation, we help carriers solve complex operational problems with the right technology.",
         cols: 4,
         items: [
-          { title: "Azure cloud", text: `Secure, scalable Azure architecture for modern policy administration, API-first and highly available, ready for SOC 2 and ${INS_REGULATOR} requirements.`, mark: "azure" },
+          { title: "Azure cloud", text: `Secure, scalable Azure architecture for modern policy administration, API-first and highly available, ready for ${local({ us: `SOC 2 and ${INS_REGULATOR}`, in: "IRDAI" /* client P0, 2026-11-20 */ })} requirements.`, mark: "azure" },
           { title: "Dynamics 365", text: "Policyholder, broker, and service interactions in one place, for better engagement and retention.", mark: "dynamics" },
           { title: "AI consulting", text: "AI for underwriting risk analytics, fraud detection, document processing, and claims support.", icon: "spark" },
           { title: "Agentic AI", text: "AI agents that validate documents, route first notice of loss, and automate the claims lifecycle, with human oversight.", icon: "agent" },
@@ -643,6 +706,7 @@ export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
           { title: "Policy administration implementation", text: "Guidewire, Duck Creek, Ingenium, and DXC Assure implemented and tuned across policy, claims, and billing.", icon: "doc" },
         ],
       },
+      claimsAI("cr"),
       {
         kind: "focus",
         id: "deep-dive",
@@ -710,7 +774,7 @@ export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
         photo: { src: `${I}/carriers-security.jpg`, alt: "Insurance analysts monitoring security dashboards in an operations room", position: "45% 40%" },
         chips: {
           heading: "Regulations and standards we design for",
-          items: local({ us: ["NAIC model laws", "SOC 2", "GLBA", "NYDFS 23 NYCRR 500", "HIPAA (health insurers)", "CCPA and CPRA", "State insurance reporting", "ACORD standards", "PCI DSS (premium payments)", "NIST CSF", "CIS Controls", "IRS Publication 1075"], ...INS_CHIPS_INTL }),
+          items: local({ us: ["NAIC model laws", "SOC 2", "GLBA", "NYDFS 23 NYCRR 500", "HIPAA (health insurers)", "CCPA and CPRA", "State insurance reporting", "ACORD standards", "PCI DSS (premium payments)", "NIST CSF", "CIS Controls", "IRS Publication 1075"], ...INS_CHIPS_INTL, in: INS_CHIPS_INTL.in.filter((c) => c !== "SOC 2") /* IRDAI in its place, client P0 2026-11-20 */ }),
         },
       },
       {
@@ -800,6 +864,7 @@ export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
           { title: "System integration", text: "Policy administration, broker portals, email, and document platforms connected for real-time data flow.", icon: "link" },
         ],
       },
+      claimsAI("mga"),
       {
         kind: "focus",
         id: "deep-dive",
@@ -957,6 +1022,7 @@ export const INDUSTRY_LAYOUTS: Record<string, ServiceLayout> = {
           { title: "System integration", text: "Claims platforms, carrier systems, email, and documents connected for claims data processing.", icon: "link" },
         ],
       },
+      claimsAI("tpa"),
       {
         kind: "focus",
         id: "deep-dive",

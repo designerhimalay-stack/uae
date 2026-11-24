@@ -19,9 +19,9 @@ export const APPMOD_PAGES: ServicePage[] = [
       accent: "without the shutdown.",
       lead: "AptaCloud migrates the applications your business still depends on to Microsoft Azure, in phases, with parallel running and testing at every step. Your teams keep working while the platform underneath them changes.",
       photo: {
-        src: "/images/photos/services/legacy-rack.jpg",
-        alt: "An engineer checks a server rack with a handheld tester during a migration",
-        position: "50% 45%",
+        src: "/images/photos/services/legacy-code.jpg",
+        alt: "A developer working through legacy application code on a monitor and laptop",
+        position: "55% 45%",
       },
       chip: { title: "Migration", items: ["Rehost or re-platform", "Data migration", "Phased cut-over"] },
       marks: ["azure", "dotnet", "linux"],

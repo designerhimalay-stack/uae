@@ -166,6 +166,18 @@
   width: 20px;
 }
 
+/* Official product icons (Azure, Dynamics 365) keep their own colours on a neutral tile. */
+.iconLogo {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.iconLogo img {
+  display: block;
+  height: 24px;
+  object-fit: contain;
+  width: 24px;
+}
+
 .go {
   color: var(--fg-muted);
   grid-area: go;

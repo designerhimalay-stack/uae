@@ -325,7 +325,7 @@ export const AWS_PAGES: ServicePage[] = [
       title: "AWS, managed day to day",
       accent: "by certified specialists.",
       lead: "AptaCloud manages your Amazon Web Services (AWS) environment, from account set-up and security to databases, networks, and incident response. We automate, secure, and scale your workloads, so your team can focus on the business.",
-      photo: photo("man-control", "An operations engineer watching a wall of monitoring screens", "45% 40%"),
+      photo: photo("man-dashboards", "An operations engineer reviewing monitoring dashboards at her desk", "55% 45%"),
       chip: { title: "Managed AWS", items: ["Monitoring and patching", "Security and backup", "Incident reporting"] },
       marks: ["cloudWatch", "awsBackup", "systemsManager"],
     },

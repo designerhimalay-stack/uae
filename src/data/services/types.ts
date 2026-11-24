@@ -15,6 +15,21 @@ export type IconId =
 
 export type ServicePhoto = { src: string; alt: string; position?: string };
 
+/** A conference AptaCloud attends; each has its own page at /events/<slug>/ (client, 2026-11-20). */
+export type CompanyEvent = {
+  slug: string;
+  name: string;
+  start: string;
+  end: string;
+  venue: string;
+  /** City and state, for cards. */
+  city: string;
+  text: string;
+  photo: ServicePhoto;
+  /** The organiser's registration page (upcoming events). */
+  register?: string;
+};
+
 export type ServicePage = {
   slug: string;
   /** Build this page only on these regional sites (default: every region). */
@@ -286,9 +301,9 @@ export type Block =
     })
   | (Head & {
       kind: "events";
-      /** The next event in full, then past events as a dated list. Dates are ISO (yyyy-mm-dd). */
-      next?: { name: string; start: string; end: string; venue: string; text: string; href: string; register?: string; photo: ServicePhoto };
-      past: { name: string; start: string; end: string; venue: string; href?: string }[];
+      /** The next event in full, then past events as cards; each links to its own page. Dates are ISO (yyyy-mm-dd). */
+      next?: CompanyEvent;
+      past: CompanyEvent[];
       /** "All events" link under the section (About). */
       all?: string;
     })

@@ -4,6 +4,7 @@ import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 import { readFileSync } from "node:fs";
 import { usSpelling } from "./tools/region/spelling.mjs";
+import { auTerms } from "./tools/region/au-terms.mjs";
 
 // Touch screens keep :hover after a tap, so every hover rule only applies on
 // devices that can really hover.
@@ -58,13 +59,15 @@ const base = BASES[region].replace(/\/$/, "");
 const redirects = Object.fromEntries(Object.entries(LEGACY[region] ?? {}).map(([from, to]) => [from, `${base}${to}`]));
 
 export default defineConfig({
-  site: "https://designerhimalay-stack.github.io",
+  // Production address (client P0, 2026-11-20): canonicals, hreflang, sitemap, and social
+  // previews point to aptacloud.com (US at /, /au/, /in/). Keep in step with SITE_ORIGIN in src/brand/regions.ts.
+  site: "https://aptacloud.com",
   base: BASES[region],
   output: "static",
   redirects,
   integrations: [react()],
   vite: {
-    plugins: [tailwindcss(), ...(region === "us" ? [usSpelling()] : [])],
+    plugins: [tailwindcss(), ...(region === "us" ? [usSpelling()] : []), ...(region === "au" ? [auTerms()] : [])],
     css: { postcss: { plugins: [hoverOnly] } },
   },
 });

@@ -11,7 +11,6 @@ import { About } from "../components/site/About";
 import { Azure } from "../components/site/Azure";
 import { CTA } from "../components/site/CTA";
 import { Dynamics } from "../components/site/Dynamics";
-import { GlobalPresence } from "../components/site/GlobalPresence";
 import { IndiaHub } from "../components/site/IndiaHub";
 import { UaeHub } from "../components/site/UaeHub";
 import { REGION, local } from "../brand/regions";
@@ -20,7 +19,8 @@ import { Cases } from "../components/service/blocks/Cases";
 import { Split } from "../components/service/blocks/Split";
 import { Faq } from "../components/service/Faq";
 import { IN_AUDIENCE, IN_ENGAGEMENTS, IN_FAQS, IN_PROCESS, IN_SOLUTIONS, IN_WHY } from "../data/home";
-import { UAE_ENGAGEMENTS, UAE_FAQS, UAE_INDUSTRIES, UAE_PROCESS, UAE_SERVICES, UAE_WHY, US_PLATFORM } from "../data/home";
+import { UAE_ENGAGEMENTS, UAE_FAQS, UAE_INDUSTRIES, UAE_PROCESS, UAE_SERVICES, UAE_WHY, US_AGENTS, US_AGENT_BUILD, US_INDUSTRIES, US_PLATFORM } from "../data/home";
+import { Industries } from "../components/service/Industries";
 import { Tabs } from "../components/service/blocks/Tabs";
 import { UsHero } from "../components/site/us/UsHero";
 import { UsCredentials } from "../components/site/us/UsCredentials";
@@ -33,7 +33,11 @@ import { Workshop } from "../components/site/Workshop";
 // No em dashes or superlatives in metadata either (Content Writing Guidelines 6.2).
 const META = local({
   us: {
-    title: `${BRAND.name} | AI, Data, and Cloud Consultancy`,
+    title: `${BRAND.name} | AI Consulting, Modernisation, and Data`,
+    description: "AptaCloud modernises the systems mid-sized insurance, oil and gas, and construction firms run on, and puts AI to work. Proven on your data first.",
+  },
+  au: {
+    title: `${BRAND.name} Australia | AI Consulting, Modernisation, and Data`,
     description: "AptaCloud modernises the systems mid-sized insurance, oil and gas, and construction firms run on, and puts AI to work. Proven on your data first.",
   },
   uae: {
@@ -79,13 +83,17 @@ const jsonLd = homeFaqs.length
       </main>
     ) : REGION.id === "us" ? (
       // The global site: its own hero, credentials band, and one platform section (not the AU layout).
+      // Client, 2026-11-20: two agentic AI sections and the focus industries added; Global presence
+      // removed so the US home stays US-focused. Tones run tint → white → dark.
       <main id="main" class="relative">
         <UsHero client:load />
         <UsCredentials client:visible />
         <Workshop client:visible />
+        <Cards client:visible block={US_AGENTS} tone="dark" />
+        <Split client:visible block={US_AGENT_BUILD} tone="tint" />
+        <Industries client:visible industries={US_INDUSTRIES} slug="home" tone="white" />
         <Tabs client:visible block={US_PLATFORM} tone="dark" />
         <WhyWorkshop client:visible />
-        <GlobalPresence client:visible />
         <CTA client:idle />
       </main>
     ) : REGION.id === "uae" ? (

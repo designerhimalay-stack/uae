@@ -1,0 +1,170 @@
+---
+// Article pages (client designer pointers, 2026-11-20: "design the blog detail page, matching the
+// new look"). The content is imported from the live WordPress blogs (tools/blog/import.mjs) and
+// shown as published; the site's own chrome follows the regional spelling. Header (tint) with the
+// cover beside the title, the article (white) with an "On this page" sidebar, related reading
+// (tint), then the contact form.
+import Site from "../../layouts/Site.astro";
+import { BRAND, PRIMARY_CTA, asset } from "../../brand/brand";
+import { REGION } from "../../brand/regions";
+import { INDEX_POSTS, POST_META, getPost, hasPage, postImage } from "../../data/blog";
+import { POST_CONTENT } from "../../data/blog-content";
+import { SERVICE_PAGES } from "../../data/services";
+import { Button } from "../../components/ui/Button";
+import { Posts } from "../../components/service/blocks/Posts";
+import { CTA } from "../../components/site/CTA";
+import sec from "../../components/service/Section.module.css";
+import s from "../../components/blog/Article.module.css";
+
+export function getStaticPaths() {
+  return INDEX_POSTS.filter((p) => hasPage(p.slug)).map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params as { slug: string };
+const post = getPost(slug);
+const body = POST_CONTENT[slug];
+// The blog page's contact copy.
+const CONTACT = {
+  heading: "Put these ideas to work in your business.",
+  lead: "Tell us what you are working on. We will show where AI and modernisation would pay off first, proven on your data.",
+};
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const abs = (path: string) => new URL(`${base}${path}`, Astro.site).href;
+const pageUrl = abs(`/blog/${slug}/`);
+
+// Links into the live site point at this site's own pages where one exists; other sites open in a new tab.
+const regionPrefix = REGION.base; // "" | "/au" | "/in" | "/uae"
+const pages = new Set(SERVICE_PAGES.map((p) => p.slug));
+const html = body.html
+  .replace(/href="https?:\/\/(?:www\.)?aptacloud\.com(\/[^"#?]*)?([^"]*)"/g, (m, path = "/", rest) => {
+    let p = path.replace(/\/+$/, "");
+    if (regionPrefix && p.startsWith(regionPrefix)) p = p.slice(regionPrefix.length);
+    const article = p.match(/^\/blogs?\/([^/]+)$/)?.[1];
+    if (article && hasPage(article)) return `href="${asset(`/blog/${article}/`)}${rest}"`;
+    if (/^\/(contact|contact-us|get-in-touch)$/.test(p)) return 'href="#contact"';
+    if (p === "") return `href="${asset("/")}"`;
+    if (pages.has(p.slice(1))) return `href="${asset(`${p}/`)}${rest}"`;
+    return m;
+  })
+  .replace(/href="(https?:\/\/(?!(?:www\.)?aptacloud\.com)[^"]+)"/g, 'href="$1" target="_blank" rel="noopener"')
+  .replace(/src="\/images\//g, `src="${asset("/images/")}`);
+
+const date = (iso: string) => new Date(`${iso}T00:00:00`).toLocaleDateString(REGION.lang, { day: "numeric", month: "long", year: "numeric" });
+
+// Related reading: the same category first, then the newest posts.
+const others = INDEX_POSTS.filter((p) => p.slug !== slug && hasPage(p.slug));
+const related = [...others.filter((p) => p.category === post.category), ...others.filter((p) => p.category !== post.category)].slice(0, 3);
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: abs("/") },
+      { "@type": "ListItem", position: 2, name: "Blog", item: abs("/blog/") },
+      { "@type": "ListItem", position: 3, name: post.title, item: pageUrl },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: body.excerpt,
+    image: abs(postImage(slug)),
+    datePublished: body.date,
+    dateModified: body.modified,
+    wordCount: body.words,
+    articleSection: post.category,
+    mainEntityOfPage: pageUrl,
+    author: { "@type": "Organization", name: BRAND.name, url: `https://${BRAND.contact.website}` },
+    publisher: { "@type": "Organization", name: BRAND.name, url: `https://${BRAND.contact.website}` },
+  },
+  ...(body.faqs.length
+    ? [{ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: body.faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }]
+    : []),
+];
+---
+
+<Site title={`${post.title} | ${BRAND.name} Blog`} description={body.excerpt} jsonLd={jsonLd} image={postImage(slug)}>
+  <section class:list={[sec.section, sec.tint, s.header]} data-theme="light">
+    <div class={s.headerInner}>
+      <div class={s.headerCopy}>
+        <nav class={s.crumbs} aria-label="Breadcrumb">
+          <a href={asset("/")}>Home</a>
+          <span aria-hidden="true">/</span>
+          <a href={asset("/blog/")}>Blog</a>
+          <span aria-hidden="true">/</span>
+          <span>{post.category}</span>
+        </nav>
+        <h1 class={s.title}>{post.title}</h1>
+        <p class={s.lead}>{body.excerpt}</p>
+        <p class={s.meta}>
+          <time datetime={body.date}>{date(body.date)}</time>
+          <span aria-hidden="true">·</span>
+          <span>{body.minutes} min read</span>
+        </p>
+      </div>
+      <div class={s.cover}>
+        <img src={asset(postImage(slug))} alt="" width="1200" height="800" fetchpriority="high" />
+      </div>
+    </div>
+  </section>
+
+  <section class:list={[sec.section, sec.light, s.bodySection]} data-theme="light">
+    <div class={s.layout}>
+      <div class={s.main}>
+        {
+          body.toc.length > 1 && (
+            <details class={s.tocMobile}>
+              <summary>On this page</summary>
+              <ol>
+                {body.toc.map((t) => (
+                  <li>
+                    <a href={`#${t.id}`}>{t.text}</a>
+                  </li>
+                ))}
+              </ol>
+            </details>
+          )
+        }
+        <article class={s.prose} set:html={html} />
+      </div>
+      <aside class={s.aside}>
+        <div class={s.sticky}>
+          {
+            body.toc.length > 1 && (
+              <nav class={s.toc} aria-label="On this page">
+                <p class={s.asideTitle}>On this page</p>
+                <ol>
+                  {body.toc.map((t) => (
+                    <li>
+                      <a href={`#${t.id}`}>{t.text}</a>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            )
+          }
+          <div class={s.ctaCard}>
+            <p class={s.ctaTitle}>See it work on your data.</p>
+            <p class={s.ctaText}>We find where AI pays off first in your business, then prove it on your own data.</p>
+            <Button label={PRIMARY_CTA.label} shortLabel={PRIMARY_CTA.short} href="#contact" />
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  {
+    related.length > 0 && (
+      <Posts
+        client:visible
+        block={{ kind: "posts", id: "related", tag: "Keep reading", icon: "doc", heading: "More from the blog.", items: related.map((p) => ({ slug: p.slug, summary: POST_META[p.slug]?.excerpt ?? "" })) }}
+        tone="tint"
+      />
+    )
+  }
+
+  <CTA client:idle heading={CONTACT.heading} lead={CONTACT.lead} submit={PRIMARY_CTA.label} submitShort={PRIMARY_CTA.short} topic={`Blog: ${post.title}`} />
+</Site>

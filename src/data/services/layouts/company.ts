@@ -5,7 +5,7 @@
 // mismatched highlights, an out-of-vertical healthcare event).
 
 import { asset } from "@/brand/brand";
-import type { Block, ServiceLayout } from "../types";
+import type { Block, CompanyEvent, ServiceLayout } from "../types";
 import { COMPANY_STATS } from "./shared";
 
 const C = "/images/photos/company";
@@ -16,18 +16,68 @@ const OFFICES: Extract<Block, { kind: "offices" }>["items"] = [
   { country: "India", flag: "in", city: "Gurugram", address: "Platinum Tower, Unit 1024, Gurugram, Haryana 122018", timeZone: "Asia/Kolkata" },
   { country: "India", flag: "in", city: "Pune", address: "Almonte IT Park, Sprint Coworks, 6th Floor, Unit 622, Kharadi, Pune, Maharashtra 411014", timeZone: "Asia/Kolkata" },
   { country: "Mexico", flag: "mx", city: "Mexico City", timeZone: "America/Mexico_City" },
+  // Client, 2026-11-20: Colombia on the About and Locations sections only (not the US home). City to confirm.
+  { country: "Colombia", flag: "co", city: "Delivery team", timeZone: "America/Bogota" },
 ];
 
-const NEXT_EVENT: Extract<Block, { kind: "events" }>["next"] = {
-  name: "Connected Claims USA 2026",
-  start: "2026-11-03",
-  end: "2026-11-04",
-  venue: "Signia by Hilton Orlando Bonnet Creek, 14100 Bonnet Creek Resort Lane, Orlando, FL 32821",
-  text: "AptaCloud will be at Connected Claims USA 2026 in Orlando, where claims leaders meet to discuss AI, ecosystem integration, and the future of claims operations. We would like to talk with you about how carriers are using AI for claims triage and connected claims data.",
-  href: "https://aptacloud.com/event/connected-claims-usa-2026/",
-  register: "https://resources.reutersevents.com/connected-claims-usa-2026-experience",
-  photo: { src: `${C}/events-next.jpg`, alt: "A panel discussion on stage in front of a conference audience", position: "50% 45%" },
-};
+const EV = "/images/photos/company/events";
+
+/** Every event, newest first. Each has its own page (/events/<slug>/) and its own image, taken from the
+ *  event's page on the live site; Convergence AI Dallas has only a 317px image there, so a conference
+ *  photo stands in (client, 2026-11-20). */
+export const EVENTS: CompanyEvent[] = [
+  {
+    slug: "connected-claims-usa-2026",
+    name: "Connected Claims USA 2026",
+    start: "2026-11-03",
+    end: "2026-11-04",
+    venue: "Signia by Hilton Orlando Bonnet Creek, 14100 Bonnet Creek Resort Lane, Orlando, FL 32821",
+    city: "Orlando, FL",
+    text: "Claims leaders met in Orlando to discuss AI, ecosystem integration, and the future of claims operations. AptaCloud's team talked with carriers about using AI for claims triage, and about connecting claims data across their systems.",
+    register: "https://resources.reutersevents.com/connected-claims-usa-2026-experience",
+    photo: { src: `${EV}/connected-claims-usa-2026.jpg`, alt: "Connected Claims USA 2026, 3 to 4 November 2026, Orlando", position: "50% 50%" },
+  },
+  {
+    slug: "insurtech-america",
+    name: "Insurtech America",
+    start: "2026-05-13",
+    end: "2026-05-14",
+    venue: "Connecticut Convention Center, Hartford, CT",
+    city: "Hartford, CT",
+    text: "Insurers and insurtech teams met in Hartford to discuss new AI regulation, data privacy, compliant claims processing, and automated underwriting. AptaCloud was there to talk about adopting AI on a foundation of data insurers can trust.",
+    photo: { src: `${EV}/insurtech-america.jpg`, alt: "Attendees talking in front of the Insurtech Hartford Symposium sponsor wall", position: "50% 50%" },
+  },
+  {
+    slug: "midsize-enterprise-summit",
+    name: "Midsize Enterprise Summit",
+    start: "2026-04-26",
+    end: "2026-04-28",
+    venue: "Marriott Marquis Houston, Houston, TX",
+    city: "Houston, TX",
+    text: "Technology leaders from mid-sized businesses met in Houston to compare notes on AI, cloud, and security. AptaCloud talked with them about putting AI to work on the systems they already run.",
+    photo: { src: `${EV}/midsize-enterprise-summit.jpg`, alt: "A speaker presenting to a seated audience at the Midsize Enterprise Summit", position: "50% 50%" },
+  },
+  {
+    slug: "ai-in-oil-gas",
+    name: "AI in Oil & Gas",
+    start: "2026-04-08",
+    end: "2026-04-09",
+    venue: "Hyatt Regency Houston West, Houston, TX",
+    city: "Houston, TX",
+    text: "Operators and service companies met in Houston to discuss AI for predictive maintenance, production, and field operations. AptaCloud joined the conversation on turning sensor and maintenance data into work orders and decisions.",
+    photo: { src: `${EV}/ai-in-oil-gas.jpg`, alt: "A speaker on stage at the AI in Oil & Gas conference in front of a full room", position: "50% 50%" },
+  },
+  {
+    slug: "convergence-ai-dallas",
+    name: "Convergence AI Dallas",
+    start: "2026-03-30",
+    end: "2026-03-31",
+    venue: "Irving Convention Center, Irving, TX",
+    city: "Irving, TX",
+    text: "AI leaders met in Irving for talks, panels, and live demonstrations on where AI goes next in business. AptaCloud attended to meet teams taking AI from pilots into production.",
+    photo: { src: `${EV}/convergence-ai-dallas.jpg`, alt: "An audience watching talks under blue stage light at a technology conference", position: "50% 50%" },
+  },
+];
 
 export const COMPANY_LAYOUTS: Record<string, ServiceLayout> = {
   /* ─────────────────────────── About Us ─────────────────────────── */
@@ -42,9 +92,9 @@ export const COMPANY_LAYOUTS: Record<string, ServiceLayout> = {
         icon: "team",
         heading: "Your team has already started. We take it to production.",
         body: [
-          "AptaCloud works with mid-sized businesses in insurance, oil and gas, and engineering and construction. We modernise the systems they run on, connect them, and put AI to work on top of them.",
+          "AptaCloud works with mid-sized businesses in insurance, oil and gas, and engineering and construction. We help their teams move work faster with AI, and we modernise and connect the systems that AI depends on.",
           "Most of our clients come to us with something already under way: an AI pilot, a modernisation plan, or a cloud migration. We prove the value on their data with a proof of concept, then deliver in clear phases with senior, Microsoft-certified AI and cloud specialists, on the systems they already run.",
-          "Our engineers work from the United States, India, and Mexico, so delivery and support carry on around the clock.",
+          "Our engineers work from the United States, India, Mexico, and Colombia, so delivery and support carry on around the clock.",
         ],
         photo: { src: `${C}/about-story.jpg`, alt: "Three colleagues discussing a project around a computer in the office", position: "55% 50%" },
       },
@@ -70,7 +120,7 @@ export const COMPANY_LAYOUTS: Record<string, ServiceLayout> = {
         tag: "Leadership",
         icon: "team",
         heading: "Meet our leadership team.",
-        lead: "Executive guidance and technical leadership across our United States, India, and Mexico engineering practices.",
+        lead: "Executive guidance and technical leadership across our United States, India, Mexico, and Colombia engineering practices.",
         items: [
           {
             name: "Hemant Madaan",
@@ -101,6 +151,15 @@ export const COMPANY_LAYOUTS: Record<string, ServiceLayout> = {
               position: "50% 18%",
             },
           },
+          {
+            name: "Ketki Naidu",
+            role: "Human Resources",
+            photo: {
+              src: `${C}/ketki-naidu.jpg`,
+              alt: "Ketki Naidu, Human Resources at AptaCloud",
+              position: "50% 22%",
+            },
+          },
         ],
       },
       {
@@ -114,7 +173,7 @@ export const COMPANY_LAYOUTS: Record<string, ServiceLayout> = {
         cols: 3,
         items: [
           { title: "Microsoft", text: "Azure, Dynamics 365, Power BI, and Microsoft Fabric are where our senior specialists spend most of their time.", logo: "/images/partners/microsoft.svg" },
-          { title: "Anthropic", text: "Claude models for AI that reads documents, reasons over your data, and works inside your workflows.", logo: "/images/partners/anthropic-wordmark.svg" },
+          { title: "Anthropic", text: "Claude models for AI that reads documents, reasons over your data, and works inside your workflows.", logo: "/images/partners/anthropic.svg" },
           { title: "Amazon Web Services", text: "Amazon Web Services for the workloads that already run there, or are better suited to it.", logo: "/images/partners/aws.svg" },
         ],
       },
@@ -136,8 +195,8 @@ export const COMPANY_LAYOUTS: Record<string, ServiceLayout> = {
         tag: "Events",
         icon: "clock",
         heading: "Where to meet us next.",
-        next: NEXT_EVENT,
-        past: [],
+        next: EVENTS[0],
+        past: EVENTS.slice(1, 3),
         all: asset("/events/"),
       },
       {
@@ -145,7 +204,7 @@ export const COMPANY_LAYOUTS: Record<string, ServiceLayout> = {
         id: "locations",
         tag: "Global presence",
         icon: "target",
-        heading: "Teams in the United States, India, and Mexico.",
+        heading: "Teams in the United States, India, Mexico, and Colombia.",
         lead: "Delivery and support carry on across time zones, wherever you are.",
         items: OFFICES,
       },
@@ -196,7 +255,7 @@ export const COMPANY_LAYOUTS: Record<string, ServiceLayout> = {
         tag: "Where we work",
         icon: "target",
         heading: "Our offices.",
-        lead: "Teams in the United States, India, and Mexico.",
+        lead: "Teams in the United States, India, Mexico, and Colombia.",
         items: OFFICES,
       },
     ],
@@ -256,13 +315,8 @@ export const COMPANY_LAYOUTS: Record<string, ServiceLayout> = {
         icon: "clock",
         heading: "Upcoming and past events.",
         lead: "The conferences where you can meet AptaCloud's leadership.",
-        next: NEXT_EVENT,
-        past: [
-          { name: "Insurtech America", start: "2026-05-13", end: "2026-05-14", venue: "Connecticut Convention Center, Hartford, CT", href: "https://aptacloud.com/event/insurtech-america/" },
-          { name: "Midsize Enterprise Summit", start: "2026-04-26", end: "2026-04-28", venue: "Marriott Marquis Houston, Houston, TX", href: "https://aptacloud.com/event/midsize-enterprise-summit/" },
-          { name: "AI in Oil & Gas", start: "2026-04-08", end: "2026-04-09", venue: "Hyatt Regency Houston West, Houston, TX" },
-          { name: "Convergence AI Dallas", start: "2026-03-30", end: "2026-03-31", venue: "Irving Convention Center, Irving, TX", href: "https://aptacloud.com/event/convergence-ai-dallas/" },
-        ],
+        next: EVENTS[0],
+        past: EVENTS.slice(1),
       },
     ],
   },

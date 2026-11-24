@@ -18,12 +18,8 @@ const ALL_PARTNERS = [
   },
   {
     name: "Anthropic",
-    // Text wordmark until the official Anthropic logo file is supplied.
-    node: (
-      <span className={s.anthropic} role="img" aria-label="Anthropic">
-        Anthropic
-      </span>
-    ),
+    // The official Anthropic wordmark, the same file everywhere on the site (client, 2026-11-20).
+    node: <img className={cn(s.logo, s.anthropic)} src={asset("/images/partners/anthropic.svg")} alt="Anthropic" />,
   },
   {
     name: "AWS",

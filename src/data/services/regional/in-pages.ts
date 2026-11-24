@@ -348,7 +348,7 @@ export const IN_ONLY_LAYOUTS: Record<string, ServiceLayout> = {
           { title: "Cost and performance", text: "Unnecessary cloud spend cut and workloads sized properly.", icon: "cog" },
         ],
       },
-      { kind: "banner", heading: "Plan your Microsoft Fabric strategy.", text: "Start with the data your teams need most.", photo: { src: "/images/photos/live/datacentre-servers.jpg", alt: "Rows of servers in a data centre", position: "50% 50%" } },
+      { kind: "banner", heading: "Plan your Microsoft Fabric strategy.", text: "Start with the data your teams need most.", photo: { src: "/images/photos/regions/in/fabric-servers.jpg", alt: "A server rack with its status lights on in a data centre", position: "50% 50%" } },
       {
         kind: "cards",
         id: "process",

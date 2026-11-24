@@ -17,13 +17,13 @@ export const COMPANY_PAGES: ServicePage[] = [
     name: "About Us",
     summary: "Who we are, the team that leads us, and where we work.",
     seo: {
-      title: "About AptaCloud | Cloud, Data, and AI Consultancy",
-      description: "AptaCloud modernises and connects the systems mid-sized insurance, oil and gas, and construction firms run on, then puts AI to work on top of them.",
+      title: "About AptaCloud | AI, Modernisation, and Data Consultancy",
+      description: "AptaCloud helps insurers quote sooner and field crews in oil & gas and construction stop waiting on the office, with AI built on systems we modernise.",
     },
     hero: {
       title: "We take your plans",
       accent: "from pilot to production.",
-      lead: "AptaCloud modernises the systems mid-sized insurance, oil and gas, and engineering and construction businesses run on, connects them, and puts AI to work on top of them. We prove the value on your data before you commit.",
+      lead: "We help insurers quote and settle claims sooner, and help oil & gas and construction crews get answers in the field instead of waiting on the office. The AI runs on systems we modernise to support it.",
       photo: photo("about-hero", "A team working together at their desks in a bright office", "50% 40%"),
     },
     cta: {
@@ -47,7 +47,7 @@ export const COMPANY_PAGES: ServicePage[] = [
     hero: {
       title: "Work on the systems",
       accent: "businesses run on.",
-      lead: "Join more than 200 engineers in the United States, India, and Mexico who modernise and connect the systems mid-sized businesses depend on, and put AI to work on top of them.",
+      lead: "Join our 200+ engineers helping insurers quote sooner and field crews get answers on the spot, with AI built on systems we modernise.",
       photo: photo("careers-hero", "Developers working at their desks in an open-plan office", "50% 45%"),
     },
     cta: {

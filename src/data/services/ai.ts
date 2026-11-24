@@ -151,7 +151,7 @@ export const AI_PAGES: ServicePage[] = [
       },
       {
         q: "Which AI models do you use?",
-        a: "Most of our AI work runs on Azure OpenAI Service, Microsoft Copilot Studio, and Azure Machine Learning. Where another model suits the task better, such as Anthropic's Claude, Google Gemini, xAI Grok, or Meta Llama, we use it within your cloud environment and security controls.",
+        a: "We build first on Azure OpenAI Service, Microsoft Copilot Studio, and Azure Machine Learning. Where another model suits the task better, such as Anthropic's Claude, Google Gemini, xAI Grok, or Meta Llama, we use it within your cloud environment and security controls.",
       },
       {
         q: "How do you keep our data secure?",
@@ -481,7 +481,7 @@ export const AI_PAGES: ServicePage[] = [
       lead: "AptaCloud builds machine learning (ML) models that forecast demand, flag anomalies, and predict failures from the data your operations already collect. We prove the model on your data, then run it inside the systems your teams use.",
       photo: {
         src: "/images/photos/services/ml-robotics.jpg",
-        alt: "Two engineers training a collaborative robot arm in a lab",
+        alt: "Two engineers training a collaborative robot arm with a laptop in a lab",
         position: "45% 45%",
       },
       chip: { title: "ML model", items: ["Forecasting", "Anomaly detection", "Predictive maintenance"] },

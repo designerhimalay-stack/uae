@@ -162,7 +162,7 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
       },
       {
         q: "Which AI models do you use?",
-        a: "Most of our AI work runs on Azure OpenAI Service, Microsoft Copilot Studio, and Azure Machine Learning. Where another model suits the task better, such as Anthropic's Claude, Google Gemini, Mistral, xAI Grok, or Meta Llama, we use it within your cloud environment and security controls.",
+        a: "We build first on Azure OpenAI Service, Microsoft Copilot Studio, and Azure Machine Learning. Where another model suits the task better, such as Anthropic's Claude, Google Gemini, Mistral, xAI Grok, or Meta Llama, we use it within your cloud environment and security controls.",
       },
     ],
   },
@@ -355,7 +355,7 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
       { kind: "industries" },
       {
         kind: "banner",
-        heading: "Future-proof your business with AI agents.",
+        heading: "Put your first AI agent into production.",
         text: "Our custom agents help mid-sized businesses in regulated industries modernise faster, operate leaner, and scale with confidence.",
         photo: { src: `${P}/people-robot.jpg`, alt: "Two engineers working alongside an industrial robot arm", position: "50% 45%" },
       },
@@ -409,7 +409,7 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
               "Routing customers to the right resources for a better experience.",
             ],
             note: "Automating support can cut response times sharply while keeping the personal touch customers expect.",
-            photo: { src: `${P}/support-desk.jpg`, alt: "A customer service specialist with a headset, supported by an AI assistant", position: "50% 35%" },
+            photo: { src: `/images/photos/people/r/support-desk-2.jpg`, alt: "A specialist working with an AI assistant at his laptop", position: "50% 35%" },
           },
           {
             title: "Marketing and sales enablement",
@@ -431,7 +431,7 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
               "Manual, time-intensive processes turned into automated workflows.",
             ],
             note: "Your business saves time and money, and your teams can focus on strategic work.",
-            photo: { src: `${P}/ops-plans.jpg`, alt: "Two operations managers reviewing plans and documents at a table", position: "50% 45%" },
+            photo: { src: `/images/photos/people/r/ops-plans-2.jpg`, alt: "Operations managers reviewing plans and documents at a table", position: "50% 45%" },
           },
           {
             title: "Knowledge management",
@@ -466,9 +466,10 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
         icon: "spark",
         heading: "Tools and models we use.",
         lead: "A proven AI development ecosystem for secure, dependable generative AI applications.",
-        ids: ["openai", "claude", "gemini", "llama", "mistral", "grok", "transformers", "t5", "bert"],
+        // Current model families only (client, 2026-11-20: Google BERT and T5 removed as outdated).
+        ids: ["openai", "claude", "gemini", "llama", "mistral", "grok", "transformers"],
         groups: [
-          { title: "Large language models", text: "GPT-4, Gemini, and Claude for diverse use cases, chosen for cost and fit.", icon: "spark" },
+          { title: "Large language models", text: "The current GPT, Claude, Gemini, and Llama models, chosen per use case for cost and fit.", icon: "spark" },
           { title: "Development frameworks", text: "LangChain, LlamaIndex, and Haystack for AI pipelines and retrieval-augmented generation (RAG).", icon: "code" },
           { title: "Cloud platforms", text: "Azure OpenAI Service, Amazon Bedrock, and Google Vertex AI for secure, enterprise-grade deployments.", icon: "cloud" },
           { title: "Vector databases", text: "Pinecone, Weaviate, and Chroma for fast knowledge retrieval and semantic search.", icon: "db" },
@@ -531,7 +532,7 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
       },
       {
         q: "Which generative AI models do you use?",
-        a: "We usually start with Azure OpenAI Service, and choose other models such as Claude, Gemini, Llama, or Mistral where they suit the task better, all within your security controls.",
+        a: "We start with Azure OpenAI Service, and choose other models such as Claude, Gemini, Llama, or Mistral where they suit the task better, all within your security controls.",
       },
       {
         q: "Can generative AI use our own documents?",
@@ -553,10 +554,11 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
         tag: "What we do",
         icon: "chart",
         heading: "What we do.",
-        lead: "We develop and deploy custom machine learning solutions that solve your specific business challenges.",
+        lead: "We build, deploy, and run machine learning models that improve one business decision at a time.",
+        // Client designer pointers, 2026-11-20: deeper content, the model types we build, and our stack.
         body: [
-          "Our data scientists and AI engineers work closely with you to understand your needs, then build intelligent systems that deliver measurable results.",
-          "Every project starts with stakeholder interviews and a review of your data sources, so we apply machine learning where it adds the most value.",
+          "Our data scientists and ML engineers start with your data and one decision worth improving, such as which claims need review first or which pump is likely to fail next.",
+          "Every model is trained and deployed on Azure Machine Learning, versioned in MLflow, and monitored in production, so it stays accurate as your data changes.",
         ],
         cols: 3,
         items: [
@@ -566,6 +568,23 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
           { title: "Supply chain optimisation", text: "Optimise inventory, predict disruption, and keep supplies moving.", icon: "migrate" },
           { title: "Intelligent document processing", text: "Natural language processing and computer vision that read complex documents with human-level accuracy.", icon: "doc" },
           { title: "Quality assurance and defect detection", text: "Computer vision quality control that finds defects before products reach the market.", icon: "search" },
+        ],
+      },
+      {
+        kind: "cards",
+        id: "models",
+        tag: "Models we build",
+        icon: "layers",
+        heading: "The machine learning models we build.",
+        lead: "We choose the model for the decision, and start with the simplest one your data supports.",
+        cols: 3,
+        items: [
+          { kicker: "XGBoost, LightGBM, logistic regression", title: "Classification", text: "Sort claims, submissions, and work orders into the right queue, and show the reasons behind each call.", icon: "layers" },
+          { kicker: "Prophet, ARIMA, gradient-boosted regression", title: "Forecasting", text: "Predict production, demand, cash flow, and project cost from your history and current data.", icon: "chart" },
+          { kicker: "Isolation forests, autoencoders", title: "Anomaly detection", text: "Spot unusual claims, payments, and sensor readings before they turn into losses or failures.", icon: "eye" },
+          { kicker: "Transformer models, Azure AI Language", title: "Natural language processing", text: "Read and classify documents, emails, and reports, and pull out the fields your systems need.", icon: "doc" },
+          { kicker: "Azure AI Vision, object detection", title: "Computer vision", text: "Check photos and video for damage, defects, and site safety, from claim photos to drone footage.", icon: "search" },
+          { kicker: "Ranking models, constraint solvers", title: "Optimisation", text: "Rank the next best action, schedule crews, and allocate equipment within your real constraints.", icon: "target" },
         ],
       },
       {
@@ -603,6 +622,22 @@ export const AI_LAYOUTS: Record<string, ServiceLayout> = {
           { title: "Test", text: "We test every model on real scenarios for accuracy, performance, and reliability before go-live." },
           { title: "Integrate", text: "We connect the model to your systems and workflows, with a planned cut-over." },
           { title: "Monitor and improve", text: "We track performance after go-live and retrain models as your data changes." },
+        ],
+      },
+      {
+        kind: "logos",
+        id: "stack",
+        tag: "Technology stack",
+        icon: "code",
+        layout: "board",
+        heading: "The stack behind our models.",
+        lead: "Azure Machine Learning at the core, open-source frameworks for model development, and MLOps that keeps models accurate after go-live.",
+        ids: ["azureML", "fabric", "databricks", "python", "pytorch", "tensorflow", "scikit", "huggingface", "mlflow", "azureDevOps", "githubActions", "docker", "kubernetes", "dataLake", "spark", "pandas", "jupyter", "fastapi"],
+        categories: [
+          { label: "Microsoft ML platform", text: "Where most of our models are trained, deployed, and monitored.", ids: ["azureML", "fabric", "databricks"] },
+          { label: "Frameworks and libraries", ids: ["python", "pytorch", "tensorflow", "scikit", "huggingface"] },
+          { label: "MLOps and deployment", ids: ["mlflow", "azureDevOps", "githubActions", "docker", "kubernetes"] },
+          { label: "Data and model serving", ids: ["dataLake", "spark", "pandas", "jupyter", "fastapi"] },
         ],
       },
       { kind: "industries" },

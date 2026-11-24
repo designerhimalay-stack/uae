@@ -69,9 +69,7 @@ export function UsCredentials() {
               <img className={s.logo} src={asset("/images/partners/microsoft.svg")} alt="Microsoft" />
             </li>
             <li>
-              <span className={s.wordmark} role="img" aria-label="Anthropic">
-                Anthropic
-              </span>
+              <img className={`${s.logo} ${s.anthropic}`} src={asset("/images/partners/anthropic.svg")} alt="Anthropic" />
             </li>
             <li>
               <img className={`${s.logo} ${s.aws}`} src={asset("/images/partners/aws.svg")} alt="AWS" />

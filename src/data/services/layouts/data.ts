@@ -18,27 +18,27 @@ export const DATA_LAYOUTS: Record<string, ServiceLayout> = {
         id: "overview",
         tag: "Why our services",
         icon: "db",
-        heading: "Why choose our data engineering services?",
+        heading: "Why teams choose our data engineering services.",
         body: [
           "AptaCloud helps organisations get the full value from their data with practical engineering.",
           "Whether you want to improve operations, make better decisions, or drive digital transformation, our data engineering consultants guide you at every step.",
         ],
         cta: true,
-        photo: { src: `${P}/data-team.jpg`, alt: "AptaCloud data engineers reviewing a pipeline design with a client on a laptop", position: "50% 40%" },
+        photo: { src: `/images/photos/people/r/data-team-2.jpg`, alt: "Data engineers reviewing a pipeline design with a client", position: "50% 40%" },
       },
       {
         kind: "cards",
         id: "services",
         tag: "What we do",
         icon: "layers",
-        heading: "What data engineering services do we offer?",
+        heading: "Data engineering services we offer.",
         cols: 4,
         items: [
           { title: "Data engineering consulting", text: "Scalable data architectures designed for large-scale analytics and your long-term needs.", icon: "team" },
           { title: "Data collection", text: "Custom extraction from multiple sources, for high-quality data you can analyse.", icon: "search" },
           { title: "Data cleaning and processing", text: "Cleansing and preparation that remove the inconsistencies and errors behind unreliable insight.", icon: "cog" },
           { title: "Data integration", text: "Data from diverse sources brought into one view for deeper analysis.", icon: "link" },
-          { title: "Data pipelines", text: "Efficient, real-time pipelines from extraction through transformation to loading.", icon: "pipe" },
+          { title: "ETL and data pipelines", text: "Extract, transform, and load (ETL) pipelines, batch or real time, from source systems to your warehouse.", icon: "pipe" },
           { title: "Data migration", text: "System moves to Azure and other clouds with minimal downtime, into central stores that improve analytics.", icon: "migrate" },
           { title: "Data management and governance", text: "Governance frameworks for data accuracy, security, and regulatory compliance.", icon: "shield" },
           { title: "Data security", text: "Encryption, continuous monitoring, and proven security measures that prevent breaches.", icon: "eye" },
@@ -64,7 +64,7 @@ export const DATA_LAYOUTS: Record<string, ServiceLayout> = {
       {
         kind: "banner",
         heading: "Improve your data infrastructure.",
-        text: "Partner with AptaCloud to future-proof your data strategy.",
+        text: "Build the data foundation your AI work runs on.",
         photo: { src: `${L}/datacentre-servers.jpg`, alt: "Rows of servers in a data centre", position: "50% 50%" },
       },
       {
@@ -72,7 +72,7 @@ export const DATA_LAYOUTS: Record<string, ServiceLayout> = {
         id: "process",
         tag: "How we work",
         icon: "flow",
-        heading: "What process do we follow?",
+        heading: "The process we follow.",
         lead: "Six steps from the first conversation to a pipeline we monitor in production.",
         steps: [
           { title: "Discovery", text: "We learn your business needs, challenges, and goals to shape a data strategy that fits." },
@@ -101,17 +101,53 @@ export const DATA_LAYOUTS: Record<string, ServiceLayout> = {
         ],
       },
       {
+        // Client designer pointers, 2026-11-20: ETL and EDI were missing.
+        kind: "cards",
+        id: "etl-edi",
+        tag: "ETL and EDI",
+        icon: "pipe",
+        heading: "ETL pipelines and EDI exchanges, built and run.",
+        lead: "Most data engineering work comes down to moving data reliably: inside the business through ETL, and between businesses through EDI.",
+        cols: 2,
+        items: [
+          {
+            title: "ETL and ELT pipelines",
+            text: "Batch and streaming pipelines that extract data from your policy, ERP, and field systems, transform it with tested rules, and load it into Microsoft Fabric, Azure Synapse, or your warehouse, with monitoring and alerts on every run.",
+            icon: "pipe",
+            marks: ["azureDataFactory", "fabric", "databricks", "dbt", "airflow", "informatica"],
+          },
+          {
+            title: "EDI integration",
+            text: "X12 and EDIFACT exchanges with brokers, suppliers, and freight partners, mapped, validated, and acknowledged automatically through Azure Logic Apps, then fed into the same data platform as the rest of your data.",
+            icon: "link",
+            marks: ["logicApps", "apiManagement", "serviceBus"],
+          },
+        ],
+      },
+      {
+        // Client designer pointers, 2026-11-20: a real data engineering toolkit; Power BI (a BI tool) is off this page's toolkit.
         kind: "logos",
         id: "tools",
         tag: "Tools and platforms",
         icon: "db",
+        layout: "board",
         heading: "Tools and platforms we work with.",
-        lead: "Microsoft Fabric and Power BI first, alongside the platforms your data already lives on.",
-        ids: ["fabric", "powerBI", "sqlServer", "snowflake", "bigquery", "redshift", "dataStudio"],
+        lead: "Microsoft Fabric and Azure Data Factory first, alongside the engines and warehouses your data already lives on.",
+        ids: ["fabric", "azureDataFactory", "azureSynapse", "databricks", "spark", "dbt", "airflow", "informatica", "kafka", "eventHubs", "logicApps", "apiManagement", "serviceBus", "dataLake", "sqlServer", "snowflake", "redshift", "bigquery"],
+        categories: [
+          { label: "Microsoft data platform", text: "Where most of our pipelines, lakehouses, and warehouses are built and run.", ids: ["fabric", "azureDataFactory", "azureSynapse"] },
+          { label: "ETL, ELT, and orchestration", ids: ["databricks", "spark", "dbt", "airflow", "informatica"] },
+          { label: "Streaming, APIs, and EDI", ids: ["kafka", "eventHubs", "logicApps", "apiManagement", "serviceBus"] },
+          { label: "Storage and warehouses", ids: ["dataLake", "sqlServer", "snowflake", "redshift", "bigquery"] },
+        ],
       },
       { kind: "faq" },
     ],
     faqs: [
+      {
+        q: "Do you build ETL pipelines and EDI integrations?",
+        a: "Yes. We build ETL and ELT pipelines with Azure Data Factory, Microsoft Fabric, and Databricks, and EDI exchanges in X12 and EDIFACT through Azure Logic Apps, all monitored after go-live.",
+      },
       {
         q: "How do we know which data solution is right for our business?",
         a: "We work closely with you during discovery to understand your challenges and goals, then propose a solution built around your needs.",
@@ -122,7 +158,7 @@ export const DATA_LAYOUTS: Record<string, ServiceLayout> = {
       },
       {
         q: "Can you help with cloud migration?",
-        a: "Yes. We migrate data platforms to Azure, AWS, and Google Cloud with minimal downtime, ready to scale.",
+        a: "Yes. We migrate data platforms to Azure and AWS with minimal downtime, ready to scale.",
       },
       {
         q: "What's the typical timeline for a data engineering project?",
@@ -148,21 +184,21 @@ export const DATA_LAYOUTS: Record<string, ServiceLayout> = {
         id: "overview",
         tag: "Why our services",
         icon: "db",
-        heading: "Why choose our data warehousing services?",
+        heading: "Why teams choose our data warehousing services.",
         body: [
           "AptaCloud's data warehousing services help businesses centralise, analyse, and act on their data.",
           "With us, you improve operational efficiency, make decisions from one trusted source, and keep your data secure and compliant.",
         ],
         cta: true,
         reverse: true,
-        photo: { src: `${P}/consult-present.jpg`, alt: "An AptaCloud data lead presenting warehouse reporting to a client team", position: "55% 50%" },
+        photo: { src: `/images/photos/people/r/consult-present-2.jpg`, alt: "A data lead presenting reporting to a client team", position: "55% 50%" },
       },
       {
         kind: "cards",
         id: "services",
         tag: "What we do",
         icon: "layers",
-        heading: "What services do we offer?",
+        heading: "The services we offer.",
         style: "centered",
         head: "center",
         cols: 2,
@@ -176,7 +212,7 @@ export const DATA_LAYOUTS: Record<string, ServiceLayout> = {
       {
         kind: "banner",
         heading: "Improve your data infrastructure.",
-        text: "Partner with AptaCloud to future-proof your data strategy.",
+        text: "Build the data foundation your AI work runs on.",
         photo: { src: `${L}/servers-cloud.jpg`, alt: "A data centre aisle with a cloud above the server racks", position: "50% 50%" },
       },
       {
@@ -200,7 +236,7 @@ export const DATA_LAYOUTS: Record<string, ServiceLayout> = {
         id: "process",
         tag: "How we work",
         icon: "flow",
-        heading: "What process do we follow?",
+        heading: "The process we follow.",
         lead: "Four stages, from kickoff to ongoing managed support.",
         variant: "curve",
         steps: [
@@ -248,7 +284,7 @@ export const DATA_LAYOUTS: Record<string, ServiceLayout> = {
         id: "overview",
         tag: "Why AptaCloud",
         icon: "chart",
-        heading: "Why choose AptaCloud?",
+        heading: "Why teams choose AptaCloud.",
         body: [
           "We deliver data analytics and visualisation services shaped around your business objectives, with scalability, security, and compliance built in.",
           "Whether you want to streamline reporting, improve decision-making, or run operations more efficiently, our team designs the strategy with you.",
@@ -262,7 +298,7 @@ export const DATA_LAYOUTS: Record<string, ServiceLayout> = {
         id: "services",
         tag: "What we do",
         icon: "layers",
-        heading: "What services do we offer?",
+        heading: "The services we offer.",
         groups: [
           {
             title: "Data analytics services",
@@ -308,7 +344,7 @@ export const DATA_LAYOUTS: Record<string, ServiceLayout> = {
       {
         kind: "banner",
         heading: "Get more from your reporting.",
-        text: "Partner with AptaCloud to future-proof your data strategy.",
+        text: "Build the data foundation your AI work runs on.",
         photo: { src: `${L}/dv-monitors.jpg`, alt: "Monitors showing interactive dashboards with maps and charts", position: "50% 50%" },
       },
       {
@@ -316,7 +352,7 @@ export const DATA_LAYOUTS: Record<string, ServiceLayout> = {
         id: "process",
         tag: "How we work",
         icon: "flow",
-        heading: "What process do we follow?",
+        heading: "The process we follow.",
         lead: "Six steps from understanding your goals to dashboards we monitor in use.",
         variant: "curve",
         steps: [

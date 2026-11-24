@@ -48,7 +48,14 @@ function Column({
 }) {
   return (
     <div className={cn(s.cell, s.column)} {...panelProps}>
-      <p className={s.title}>{column.title}</p>
+      {column.href ? (
+        <a href={column.href} className={cn(s.title, s.titleLink)} onClick={(e) => onLink(e, column.href!)}>
+          {column.title}
+          <Arrow className={s.linkArrow} />
+        </a>
+      ) : (
+        <p className={s.title}>{column.title}</p>
+      )}
       {column.text && <p className={s.text}>{column.text}</p>}
       <ul className={s.links}>
         {column.links.map((l) => (
@@ -73,9 +80,10 @@ function Promo({ promo, onLink }: { promo: NavPromo; onLink: OnLink }) {
   const cta = promoCta(promo, useOnHome());
   return (
     <div className={cn(s.cell, s.promo)}>
-      <div className={s.promoLogo}>
+      {/* The AptaCloud logo sits on the dark card as the transparent white version, with no white box (client, 2026-11-20). */}
+      <div className={cn(s.promoLogo, promo.logo === "mark" && s.promoLogoBare)}>
         {promo.logo === "mark" ? (
-          <Logo height={26} theme="dark" />
+          <Logo height={26} theme="light" />
         ) : (
           <img
             src={asset(promo.logo)}

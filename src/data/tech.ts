@@ -6,7 +6,7 @@
 //  • AI model marks (Claude, GPT, Gemini, Grok, Llama) use their own colour where
 //    they have one; GPT and Grok are black marks, so they follow currentColor.
 //  • logos: product icons cropped from the logo files the live aptacloud.com
-//    pages already show (Power BI, Fabric, SQL Server, Langflow, Flowise, BERT…).
+//    pages already show (Power BI, Fabric, SQL Server, Langflow, Flowise…).
 //  • none:  no mark available (e.g. AutoGen, Haystack) — the chip shows a
 //    small monogram instead of inventing a logo.
 
@@ -35,7 +35,8 @@ export const TECH = {
   appService: { name: "Azure App Service", color: az("app-services") },
   copilot: { name: "Microsoft Copilot", color: ms("copilot") },
   copilotStudio: { name: "Microsoft Copilot Studio", color: ms("copilot") },
-  dynamics: { name: "Dynamics 365", color: ms("dynamics-365") },
+  // Icon only (the lockup file repeats "Microsoft Dynamics 365" in miniature; client, 2026-11-20).
+  dynamics: { name: "Dynamics 365", color: ms("dynamics-365-icon") },
   m365: { name: "Microsoft 365", color: ms("microsoft-365") },
   powerPlatform: { name: "Power Platform", color: ms("power-platform") },
   sharepoint: { name: "Microsoft SharePoint", color: ms("sharepoint") },
@@ -55,7 +56,7 @@ export const TECH = {
   powerApps: { name: "Power Apps", color: "/images/m365/powerapps.png" },
   powerAutomate: { name: "Power Automate", color: "/images/m365/flow.png" },
   powerPages: { name: "Power Pages", color: ms("power-platform") },
-  businessCentral: { name: "Dynamics 365 Business Central", color: ms("dynamics-365") },
+  businessCentral: { name: "Dynamics 365 Business Central", color: ms("dynamics-365-icon") },
   azureVM: { name: "Azure Virtual Machines", color: az("vm") },
   cosmos: { name: "Azure Cosmos DB", color: az("cosmos") },
   blob: { name: "Azure Blob Storage", color: az("storage") },
@@ -181,9 +182,16 @@ export const TECH = {
   zapier: { name: "Zapier", mono: si("zapier") },
   haystack: { name: "Haystack" },
   metagpt: { name: "MetaGPT" },
-  bert: { name: "Google BERT", color: lg("bert") },
-  t5: { name: "Google T5", color: lg("t5") },
   transformers: { name: "Transformers", color: lg("transformers") },
+  // Insurance core policy administration systems (client designer pointers, 2026-11-20; names to be
+  // confirmed against the partner list). No logo files yet: the tiles show monograms.
+  guidewire: { name: "Guidewire" },
+  duckCreek: { name: "Duck Creek" },
+  majesco: { name: "Majesco" },
+  appliedEpic: { name: "Applied Epic" },
+  fastLife: { name: "FAST" },
+  exlLifePro: { name: "EXL LifePRO" },
+  sapiens: { name: "Sapiens" },
   bedrock: { name: "Amazon Bedrock", color: ai("bedrock") },
   vertexai: { name: "Google Vertex AI", color: ai("vertexai") },
   tensorflow: { name: "TensorFlow", mono: si("tensorflow") },

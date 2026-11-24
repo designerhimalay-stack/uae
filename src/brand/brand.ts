@@ -14,7 +14,7 @@ export const BRAND = {
   /** One-line value proposition (Brand Guidelines v2.0, 3.2), Australian spelling. */
   valueProp:
     REGION.valueProp ??
-    "AptaCloud modernises the systems mid-sized insurance, oil & gas, and construction firms run on, and puts AI to work on top of them. We prove it on your data first.",
+    "AptaCloud helps insurers quote sooner and field crews stop waiting on the office, with AI that runs on systems we've modernised to support it.",
   location: REGION.location,
 
   colors: {

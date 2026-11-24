@@ -32,6 +32,11 @@ const ALL_LAYOUTS = { ...LAYOUTS, ...local({ us: {}, in: IN_ONLY_LAYOUTS, uae: U
 
 export { serviceHref } from "./href";
 
+/** Pages built but kept out of search (noindex, left out of the sitemap). India: the 11 US
+ *  insurance, oil and gas, and construction segment pages, which its menu does not link
+ *  (client P0, 2026-11-20). */
+export const isNoindex = (slug: string) => REGION.id === "in" && /^industry\/[^/]+\/[^/]+$/.test(slug);
+
 export const pagesIn = (category: CategoryId) => SERVICE_PAGES.filter((p) => p.category === category);
 
 /** A shared page with this region's SEO, hero, and FAQ copy applied. */

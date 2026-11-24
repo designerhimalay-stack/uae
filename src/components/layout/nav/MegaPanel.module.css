@@ -167,6 +167,26 @@
   color: var(--fg);
 }
 
+/* A column heading that is itself the overview link (Industries menu). */
+.titleLink {
+  align-items: center;
+  display: inline-flex;
+  gap: 8px;
+  text-decoration: none;
+  transition: color 0.35s var(--soft);
+}
+
+.titleLink:hover,
+.titleLink:focus-visible {
+  color: var(--accent-text);
+}
+
+.titleLink:hover .linkArrow,
+.titleLink:focus-visible .linkArrow {
+  opacity: 1;
+  transform: none;
+}
+
 .link:hover .linkArrow,
 .link:focus-visible .linkArrow {
   opacity: 1;
@@ -252,6 +272,11 @@
   padding: 0 16px;
   width: max-content;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.promoLogoBare {
+  background: none;
+  padding: 0;
 }
 
 .promoLogo img {

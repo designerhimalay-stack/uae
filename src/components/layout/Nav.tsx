@@ -348,7 +348,13 @@ export function Nav({ cta = DEFAULT_CTA }: { cta?: NavCta }) {
         )}
         {menu.columns.map((c) => (
           <div key={c.title} className={styles.section}>
-            <p className={styles.sectionTitle}>{c.title}</p>
+            {c.href ? (
+              <a href={c.href} className={styles.sectionTitle} style={{ display: "block", textDecoration: "none" }}>
+                {c.title}
+              </a>
+            ) : (
+              <p className={styles.sectionTitle}>{c.title}</p>
+            )}
             {compactLinks(c.links)}
           </div>
         ))}

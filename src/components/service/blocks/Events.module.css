@@ -117,8 +117,7 @@
   transition: color 0.35s var(--ease-out-quint), text-decoration-color 0.35s var(--ease-out-quint);
 }
 
-.link svg,
-.rowLink svg {
+.link svg {
   height: 14px;
   width: 14px;
 }
@@ -128,11 +127,11 @@
   text-decoration-color: var(--accent);
 }
 
+/* Past events: photo cards (3 across; 2 on tablets; the 2-column rail on phones). */
 .past {
-  background: var(--card);
-  border-radius: 28px;
-  margin-top: 8px;
-  padding: 28px 32px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .pastHead {
@@ -141,55 +140,88 @@
   font-size: 20px;
   font-weight: 600;
   letter-spacing: -0.04em;
-  margin: 0 0 8px;
-}
-
-.rows {
-  list-style: none;
   margin: 0;
-  padding: 0;
 }
 
-.rows li + li {
-  border-top: 1px dashed var(--line-strong);
-}
-
-.row {
-  align-items: center;
-  color: var(--fg);
+.cards {
   display: grid;
-  gap: 24px;
-  grid-template-columns: 260px minmax(0, 1fr) minmax(0, 1fr) 16px;
-  padding: 20px 0;
+  gap: 8px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
 }
 
-.rowDate {
+.cell {
+  display: flex;
+  grid-column: span 2;
+}
+
+.wide {
+  grid-column: span 3;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 24px;
+  color: var(--fg);
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  text-decoration: none;
+  width: 100%;
+}
+
+.thumb {
+  aspect-ratio: 3 / 2;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.cardBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 20px 16px 16px;
+}
+
+.cardDate {
   color: var(--fg-muted);
-  font-size: 15px;
+  font-size: 14px;
   font-variant-numeric: tabular-nums;
   font-weight: 600;
-  letter-spacing: -0.015em;
+  margin: 0;
 }
 
-.rowName {
+.cardName {
   font-family: var(--ff-inter);
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 600;
-  letter-spacing: -0.035em;
-}
-
-.rowVenue {
-  color: var(--fg-muted);
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-}
-
-.rowLink {
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin: 8px 0 0;
   transition: color 0.35s var(--ease-out-quint);
 }
 
-.rowLink:hover {
+.cardCity {
+  color: var(--fg-muted);
+  font-size: 15px;
+  margin: 6px 0 0;
+}
+
+.cardMore {
+  align-items: center;
+  display: inline-flex;
+  font-size: 15px;
+  font-weight: 600;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.cardMore svg {
+  height: 14px;
+  width: 14px;
+}
+
+.card:hover .cardName {
   color: var(--accent-text);
 }
 
@@ -197,7 +229,8 @@
   .next { gap: 28px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .body { padding: 24px 24px 24px 0; }
   .name { font-size: 32px; }
-  .row { gap: 16px; grid-template-columns: 200px minmax(0, 1fr) minmax(0, 1fr) 16px; }
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cell, .wide { grid-column: auto; }
 }
 
 @media (max-width: 809.98px) {
@@ -206,12 +239,14 @@
   .body { padding: 20px 14px 18px; }
   .name { font-size: 26px; }
   .link { min-height: 44px; padding: 8px 0; }
-  .past { border-radius: 22px; padding: 22px 20px 6px; }
-  .row { gap: 4px; grid-template-columns: minmax(0, 1fr) 16px; padding: 16px 0; }
-  .rowDate { grid-column: 1; }
-  .rowName { grid-column: 1; }
-  .rowVenue { grid-column: 1; }
-  .rowLink svg { grid-column: 2; grid-row: 1 / span 3; }
+  .cell, .wide { grid-column: auto; }
+  .card { border-radius: 20px; padding: 6px; }
+  .thumb { border-radius: 14px; }
+  .cardBody { padding: 14px 10px 12px; }
+  .cardDate { font-size: 12px; }
+  .cardName { font-size: 16px; }
+  .cardCity { font-size: 13px; }
+  .cardMore { font-size: 14px; padding-top: 14px; }
   .all { align-self: flex-start; min-height: 44px; padding: 10px 0; }
 }
 

@@ -1,54 +1,50 @@
-// Blog index: every post on the live blog. The newest post leads as a wide
-// feature card; under it, topic filters and a title search narrow the grid of
-// cards (the same cards as the industry pages' Articles row), nine at a time
-// with "Show more". Each card opens the article on the live blog.
-// Topics group the blog's own categories and titles: a post can sit in more
-// than one (an oil and gas AI post is in both).
+// Blog index (client designer pointers, 2026-11-20: "the current design is not working; propose a
+// fresh layout"). The live blog's cover images carry their own text, so the layout leads with type:
+//  • Latest: the newest article large, beside an "Also new" list of the next four.
+//  • All articles: topics and search in a sticky sidebar, beside rows of articles (cover, meta,
+//    title, excerpt, reading time), ten at a time with "Show more". Phones: topics wrap as chips.
+// Each article opens its page on this site (/blog/<slug>/).
 
 import { useMemo, useState } from "react";
 import { Photo } from "@/components/ui/Photo";
 import { Reveal } from "@/components/ui/Reveal";
-import { INDEX_POSTS as POSTS, postImage, postUrl, type Post } from "@/data/blog";
+import { REGION } from "@/brand/regions";
+import { INDEX_POSTS as POSTS, POST_META, postImage, postUrl, type Post } from "@/data/blog";
 import { cn } from "@/lib/utils";
-import { ArrowUpRight, Icon } from "../Icon";
+import { ArrowUpRight } from "../Icon";
 import { toneProps, type Tone } from "../tone";
 import sec from "../Section.module.css";
-import p from "./Posts.module.css";
 import s from "./BlogIndex.module.css";
 
 const TOPICS: { id: string; label: string; test: (x: Post) => boolean }[] = [
-  { id: "insurance", label: "Insurance", test: (x) => /insurance/i.test(x.category) || /insurance/i.test(x.title) },
-  { id: "oilgas", label: "Oil & Gas", test: (x) => /oil/i.test(x.title) },
+  { id: "insurance", label: "Insurance", test: (x) => /insurance/i.test(x.category) || /insurance|insurer|carrier/i.test(x.title) },
+  { id: "oilgas", label: "Oil & Gas", test: (x) => /oil/i.test(x.title) || /oil/i.test(x.category) },
+  { id: "construction", label: "Construction", test: (x) => /construction|contractor/i.test(x.title) || /construction/i.test(x.category) },
   { id: "ai", label: "AI", test: (x) => /\bAI\b|artificial/i.test(x.category) },
   { id: "modernisation", label: "Modernisation", test: (x) => /moderni[sz]ation/i.test(x.category) && !/insurance/i.test(x.category) },
-  { id: "microsoft", label: "Microsoft", test: (x) => /dynamics|sharepoint|microsoft 365/i.test(x.category) },
-  { id: "azure", label: "Azure", test: (x) => /azure/i.test(x.category) },
   { id: "data", label: "Data", test: (x) => /data|power bi/i.test(x.category) },
+  { id: "azure", label: "Azure", test: (x) => /azure/i.test(x.category) },
+  { id: "microsoft", label: "Microsoft", test: (x) => /dynamics|sharepoint|microsoft 365/i.test(x.category) },
 ];
 
-const fmt = (iso: string) => new Date(`${iso}T00:00:00`).toLocaleDateString("en-AU", { day: "numeric", month: "long", year: "numeric" });
-const PAGE = 9;
+const FEATURED = 5;
+const PAGE = 10;
+const fmt = (iso: string) => new Date(`${iso}T00:00:00`).toLocaleDateString(REGION.lang, { day: "numeric", month: "long", year: "numeric" });
 
-function Card({ post, i }: { post: Post; i: number }) {
+function Meta({ post, minutes }: { post: Post; minutes?: boolean }) {
+  const m = POST_META[post.slug]?.minutes;
   return (
-    <Reveal y={24} duration={0.8} delay={(i % 3) * 0.06} className={p.cell}>
-      <a href={postUrl(post.slug)} className={cn(p.card, "photo-host")}>
-        <div className={p.thumb}>
-          <Photo src={postImage(post.slug)} alt="" tone="color" sizes="(min-width: 1200px) 380px, (min-width: 810px) 45vw, 92vw" className={p.photo} />
-        </div>
-        <div className={p.body}>
-          <p className={p.meta}>
-            <span className={p.cat}>{post.category}</span>
-            <span>{fmt(post.date)}</span>
-          </p>
-          <h3 className={p.title}>{post.title}</h3>
-          <span className={p.read}>
-            Read the article
-            <ArrowUpRight />
-          </span>
-        </div>
-      </a>
-    </Reveal>
+    <p className={s.meta}>
+      <span className={s.cat}>{post.category}</span>
+      <span aria-hidden="true">·</span>
+      <span>{fmt(post.date)}</span>
+      {minutes && m ? (
+        <>
+          <span aria-hidden="true">·</span>
+          <span>{m} min read</span>
+        </>
+      ) : null}
+    </p>
   );
 }
 
@@ -57,13 +53,15 @@ export function BlogIndex({ tone }: { tone: Tone }) {
   const [query, setQuery] = useState("");
   const [shown, setShown] = useState(PAGE);
 
-  const [lead, ...rest] = POSTS;
+  const [lead, ...next] = POSTS.slice(0, FEATURED);
   const filtering = topic !== "all" || query.trim() !== "";
+  const counts = useMemo(() => Object.fromEntries(TOPICS.map((t) => [t.id, POSTS.filter(t.test).length])), []);
   const list = useMemo(() => {
     const t = TOPICS.find((x) => x.id === topic);
     const q = query.trim().toLowerCase();
-    return (filtering ? POSTS : rest).filter((x) => (!t || t.test(x)) && (!q || x.title.toLowerCase().includes(q) || x.category.toLowerCase().includes(q)));
-  }, [topic, query, filtering, rest]);
+    // Unfiltered, the archive starts after the five featured articles; a filter searches everything.
+    return (filtering ? POSTS : POSTS.slice(FEATURED)).filter((x) => (!t || t.test(x)) && (!q || x.title.toLowerCase().includes(q) || x.category.toLowerCase().includes(q)));
+  }, [topic, query, filtering]);
 
   const pick = (id: string) => {
     setTopic(id);
@@ -73,83 +71,110 @@ export function BlogIndex({ tone }: { tone: Tone }) {
   return (
     <section id="articles" {...toneProps(tone)}>
       <div className={sec.container}>
-        {/* The newest post, in full width, while nothing is filtered. */}
-        {!filtering && (
-          <Reveal y={32} duration={1.1}>
+        {/* Latest */}
+        <div className={s.latest}>
+          <Reveal y={28} duration={1} className={s.leadCell}>
             <a href={postUrl(lead.slug)} className={cn(s.lead, "photo-host")}>
-              <div className={s.leadThumb}>
-                <Photo src={postImage(lead.slug)} alt="" tone="color" sizes="(min-width: 1200px) 640px, 92vw" priority className={p.photo} />
+              <div className={s.leadCover}>
+                <Photo src={postImage(lead.slug)} alt="" tone="color" priority sizes="(min-width: 1200px) 660px, (min-width: 1024px) 55vw, 92vw" className={s.photo} />
               </div>
-              <div className={s.leadBody}>
-                <p className={s.leadKicker}>Latest article</p>
-                <p className={p.meta}>
-                  <span className={p.cat}>{lead.category}</span>
-                  <span>{fmt(lead.date)}</span>
-                </p>
-                <h2 className={s.leadTitle}>{lead.title}</h2>
-                <span className={cn(p.read, s.leadRead)}>
-                  Read the article
-                  <ArrowUpRight />
-                </span>
-              </div>
+              <p className={s.kicker}>Latest article</p>
+              <Meta post={lead} minutes />
+              <h2 className={s.leadTitle}>{lead.title}</h2>
+              {POST_META[lead.slug]?.excerpt && <p className={s.leadExcerpt}>{POST_META[lead.slug].excerpt}</p>}
+              <span className={s.read}>
+                Read the article
+                <ArrowUpRight />
+              </span>
             </a>
           </Reveal>
-        )}
-
-        <div className={s.bar}>
-          <div className={s.topics} role="group" aria-label="Filter by topic">
-            {[{ id: "all", label: "All" }, ...TOPICS.filter((t) => POSTS.some(t.test))].map((t) => (
-              <button key={t.id} type="button" aria-pressed={topic === t.id} className={cn(s.topic, topic === t.id && s.topicOn)} onClick={() => pick(t.id)}>
-                {t.label}
-              </button>
-            ))}
-          </div>
-          <label className={s.search}>
-            <Icon id="search" />
-            <span className="sr-only">Search articles</span>
-            <input
-              type="search"
-              value={query}
-              placeholder="Search articles"
-              onChange={(e) => {
-                setQuery(e.target.value);
-                setShown(PAGE);
-              }}
-            />
-          </label>
+          <Reveal y={28} duration={1} delay={0.08} className={s.alsoCell}>
+            <p className={s.alsoTitle}>Also new</p>
+            <ul className={s.alsoList}>
+              {next.map((p) => (
+                <li key={p.slug}>
+                  <a href={postUrl(p.slug)} className={cn(s.also, "photo-host")}>
+                    <div className={s.alsoThumb}>
+                      <Photo src={postImage(p.slug)} alt="" tone="color" sizes="120px" className={s.photo} />
+                    </div>
+                    <div>
+                      <Meta post={p} />
+                      <h3 className={s.alsoName}>{p.title}</h3>
+                    </div>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </div>
 
-        <p className={s.count} aria-live="polite">
-          {filtering ? `${list.length} ${list.length === 1 ? "article" : "articles"}` : `${POSTS.length} articles`}
-        </p>
+        {/* All articles */}
+        <div className={s.browse}>
+          <aside className={s.side}>
+            <div className={s.sticky}>
+              <label className={s.search}>
+                <svg viewBox="0 0 16 16" aria-hidden="true">
+                  <circle cx="7" cy="7" r="4.75" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                  <path d="m10.5 10.5 3.25 3.25" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+                <input
+                  type="search"
+                  placeholder="Search articles"
+                  aria-label="Search articles"
+                  value={query}
+                  onChange={(e) => {
+                    setQuery(e.target.value);
+                    setShown(PAGE);
+                  }}
+                />
+              </label>
+              <p className={s.sideTitle}>Topics</p>
+              <div className={s.topics} role="group" aria-label="Filter by topic">
+                <button type="button" className={cn(s.topic, topic === "all" && s.topicOn)} aria-pressed={topic === "all"} onClick={() => pick("all")}>
+                  All articles
+                  <span className={s.count}>{POSTS.length}</span>
+                </button>
+                {TOPICS.filter((t) => counts[t.id] > 0).map((t) => (
+                  <button key={t.id} type="button" className={cn(s.topic, topic === t.id && s.topicOn)} aria-pressed={topic === t.id} onClick={() => pick(t.id)}>
+                    {t.label}
+                    <span className={s.count}>{counts[t.id]}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </aside>
 
-        {list.length > 0 ? (
-          <div className={s.grid}>
-            {list.slice(0, shown).map((post, i) => (
-              <Card key={post.slug} post={post} i={i} />
-            ))}
+          <div className={s.results}>
+            <p className={s.found} aria-live="polite">
+              {filtering ? `${list.length} ${list.length === 1 ? "article" : "articles"}` : "More articles"}
+            </p>
+            {list.length === 0 ? (
+              <p className={s.empty}>No articles match. Try another topic, or a shorter search.</p>
+            ) : (
+              <ul className={s.rows}>
+                {list.slice(0, shown).map((p) => (
+                  <li key={p.slug}>
+                    <a href={postUrl(p.slug)} className={cn(s.row, "photo-host")}>
+                      <div className={s.rowThumb}>
+                        <Photo src={postImage(p.slug)} alt="" tone="color" sizes="(min-width: 810px) 220px, 112px" className={s.photo} />
+                      </div>
+                      <div className={s.rowBody}>
+                        <Meta post={p} minutes />
+                        <h3 className={s.rowTitle}>{p.title}</h3>
+                        {POST_META[p.slug]?.excerpt && <p className={s.rowExcerpt}>{POST_META[p.slug].excerpt}</p>}
+                      </div>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {list.length > shown && (
+              <button type="button" className={s.more} onClick={() => setShown((n) => n + PAGE)}>
+                Show more articles
+              </button>
+            )}
           </div>
-        ) : (
-          <div className={s.empty}>
-            <p>No articles match that search.</p>
-            <button
-              type="button"
-              className={s.more}
-              onClick={() => {
-                setQuery("");
-                pick("all");
-              }}
-            >
-              Show all articles
-            </button>
-          </div>
-        )}
-
-        {list.length > shown && (
-          <button type="button" className={s.more} onClick={() => setShown((n) => n + PAGE)}>
-            Show more articles
-          </button>
-        )}
+        </div>
       </div>
     </section>
   );

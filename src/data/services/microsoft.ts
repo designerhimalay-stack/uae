@@ -273,7 +273,7 @@ export const MS_PAGES: ServicePage[] = [
       title: "Connect finance, operations,",
       accent: "and field teams.",
       lead: "AptaCloud implements Dynamics 365 around the way your business already works. We connect ERP, CRM, and field service, migrate your data, and add Copilot where it removes manual work.",
-      photo: { src: "/images/photos/d365-implementation.jpg", alt: "A delivery team working together on laptops around a shared table", position: "45% 50%" },
+      photo: { src: "/images/photos/people/r/d365-implementation-2.jpg", alt: "A delivery team planning a Dynamics 365 rollout together", position: "45% 50%" },
       chip: { title: "Dynamics 365", items: ["Implementation", "Data migration", "Integration and support"] },
       marks: ["dynamics", "powerPlatform", "copilot"],
     },
@@ -1009,7 +1009,8 @@ export const AZURE_PAGES: ServicePage[] = [
       title: "Connect your apps and data",
       accent: "on Microsoft Azure.",
       lead: "AptaCloud implements Azure integration services, from Logic Apps and API Management to Service Bus, Event Grid, Azure Functions, and Data Factory. We configure workloads, automation, governance, and disaster recovery, so your systems work together.",
-      photo: az("imp-coder", "A developer building an integration across two monitors in a bright office", "50% 40%"),
+      // Client, 2026-11-20: more server and cloud infrastructure imagery on the Azure pages (Pexels 37730212).
+      photo: az("imp-servers", "Server racks with their status lights on in a data centre", "50% 50%"),
       chip: { title: "Azure implementation", items: ["Integration and automation", "Governance and recovery", "Support after go-live"] },
       marks: ["logicApps", "apiManagement", "serviceBus"],
     },

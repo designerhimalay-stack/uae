@@ -1,11 +1,12 @@
-// Events: the next event as a feature card (photo, dates, venue, what we will
-// be there for, and links to the event and its registration), then past events
-// as dated rows on one card. Dates are ISO in the data and shown in Australian
-// order ("3–4 November 2026").
+// Events: the next event as a feature card (photo, dates, venue, what we will be there for, and
+// links to its page and the organiser's registration), then past events as photo cards. Every
+// event links to its own page (/events/<slug>/) (client, 2026-11-20). Dates are ISO in the data.
 
+import { asset } from "@/brand/brand";
+import { REGION } from "@/brand/regions";
 import { Photo } from "@/components/ui/Photo";
 import { Reveal } from "@/components/ui/Reveal";
-import type { Block } from "@/data/services/types";
+import type { Block, CompanyEvent } from "@/data/services/types";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight, Icon } from "../Icon";
 import { SectionHead } from "../SectionHead";
@@ -16,7 +17,7 @@ import s from "./Events.module.css";
 type EventsBlock = Extract<Block, { kind: "events" }>;
 
 const day = (iso: string) => new Date(`${iso}T00:00:00`);
-const month = (d: Date) => d.toLocaleDateString("en-AU", { month: "long" });
+const month = (d: Date) => d.toLocaleDateString(REGION.lang, { month: "long" });
 
 /** "3–4 November 2026", or "30 March – 1 April 2026" across months. */
 export function dateRange(start: string, end: string) {
@@ -27,11 +28,40 @@ export function dateRange(start: string, end: string) {
   return `${a.getDate()} ${month(a)} – ${b.getDate()} ${month(b)} ${b.getFullYear()}`;
 }
 
-export function Events({ block, tone }: { block: EventsBlock; tone: Tone }) {
-  // A finished event moves to the past list on its own.
+export const eventUrl = (e: CompanyEvent) => asset(`/events/${e.slug}/`);
+
+/** Has the event finished (its last day is before today)? */
+export function isPast(e: CompanyEvent) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  const next = block.next && day(block.next.end) >= today ? block.next : undefined;
+  return day(e.end) < today;
+}
+
+/** One past event as a photo card linking to its page. */
+export function EventCard({ e, i = 0, wide = false }: { e: CompanyEvent; i?: number; wide?: boolean }) {
+  return (
+    <Reveal y={24} duration={0.8} delay={(i % 3) * 0.06} className={cn(s.cell, wide && s.wide)}>
+      <a href={eventUrl(e)} className={cn(s.card, "photo-host")}>
+        <div className={s.thumb}>
+          <Photo src={e.photo.src} alt={e.photo.alt} position={e.photo.position} tone="color" sizes="(min-width: 1200px) 380px, (min-width: 810px) 45vw, 46vw" className={s.photo} />
+        </div>
+        <div className={s.cardBody}>
+          <p className={s.cardDate}>{dateRange(e.start, e.end)}</p>
+          <h3 className={s.cardName}>{e.name}</h3>
+          <p className={s.cardCity}>{e.city}</p>
+          <span className={s.cardMore}>
+            View event
+            <ArrowUpRight />
+          </span>
+        </div>
+      </a>
+    </Reveal>
+  );
+}
+
+export function Events({ block, tone }: { block: EventsBlock; tone: Tone }) {
+  // A finished event moves to the past list on its own.
+  const next = block.next && !isPast(block.next) ? block.next : undefined;
   const past = next || !block.next ? block.past : [block.next, ...block.past];
   // With nothing coming up, a forward-looking heading ("Where to meet us next.") would promise an event that is not there.
   const heading = next ? block.heading : "Events we have taken part in.";
@@ -59,7 +89,7 @@ export function Events({ block, tone }: { block: EventsBlock; tone: Tone }) {
                 </p>
                 <p className={s.text}>{next.text}</p>
                 <div className={s.links}>
-                  <a href={next.href} className={s.link}>
+                  <a href={eventUrl(next)} className={s.link}>
                     Event details
                     <ArrowUpRight />
                   </a>
@@ -76,34 +106,15 @@ export function Events({ block, tone }: { block: EventsBlock; tone: Tone }) {
         )}
 
         {past.length > 0 && (
-          <Reveal y={28} duration={1}>
-            <div className={s.past}>
-              <p className={s.pastHead}>Past events</p>
-              <ul className={s.rows}>
-                {past.map((e) => {
-                  const inner = (
-                    <>
-                      <span className={s.rowDate}>{dateRange(e.start, e.end)}</span>
-                      <span className={s.rowName}>{e.name}</span>
-                      <span className={s.rowVenue}>{e.venue}</span>
-                    </>
-                  );
-                  return (
-                    <li key={e.name}>
-                      {e.href ? (
-                        <a href={e.href} className={cn(s.row, s.rowLink)}>
-                          {inner}
-                          <ArrowUpRight />
-                        </a>
-                      ) : (
-                        <div className={s.row}>{inner}</div>
-                      )}
-                    </li>
-                  );
-                })}
-              </ul>
+          <div className={s.past}>
+            {next && <p className={s.pastHead}>Past events</p>}
+            <div className={cn(s.cards, sec.rail)}>
+              {past.map((e, i) => (
+                // Rows of three; when the count leaves a gap, the first cards pair up wider (5 = 2 + 3, 4 = 2 + 2).
+                <EventCard key={e.slug} e={e} i={i} wide={i < (past.length % 3 === 2 ? 2 : past.length % 3 === 1 ? 4 : 0)} />
+              ))}
             </div>
-          </Reveal>
+          </div>
         )}
 
         {block.all && (

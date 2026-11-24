@@ -19,7 +19,8 @@ import { REGION, local } from "@/brand/regions";
 const svc = (label: string, slug: string): NavLink => ({ label, href: asset(`/${slug}/`) });
 
 export type NavLink = { label: string; href: string };
-export type NavColumn = { title: string; text?: string; links: NavLink[] };
+/** `href` makes the column heading a link (the industry overview page, client 2026-11-20). */
+export type NavColumn = { title: string; href?: string; text?: string; links: NavLink[] };
 export type NavPromo = {
   /** Logo image path, or "mark" for the brand mark. */
   logo: string;
@@ -80,13 +81,14 @@ const APPMOD_PROMO: NavPromo = {
   cta: { label: "Explore app modernisation", href: asset("/application-modernization/") },
 };
 
+// Client, 2026-11-20: Dynamics 365 is the core Microsoft service to sell, so it is the highlighted one.
 const MS_PROMO: NavPromo = {
-  logo: "/images/microsoft/microsoft-365.svg",
-  logoAlt: "Microsoft 365",
+  logo: "/images/microsoft/dynamics-365.svg",
+  logoAlt: "Microsoft Dynamics 365",
   eyebrow: "Certified Partner",
-  title: "Full Microsoft Business Suite",
-  text: "The complete Microsoft ecosystem tailored for productivity, collaboration, and security.",
-  cta: { label: "Explore Microsoft 365", href: asset("/services/microsoft/microsoft-365/") },
+  title: "Microsoft Dynamics 365",
+  text: "Finance, operations, sales, and service on one Microsoft platform, connected to the tools your teams already use.",
+  cta: { label: "Explore Dynamics 365", href: asset("/services/microsoft/microsoft-dynamics-365/") },
 };
 
 const AZURE_PROMO: NavPromo = {
@@ -288,11 +290,12 @@ const INDUSTRIES: NavMenu = {
   label: "Industries",
   kind: "columns",
   columns: [
+    // Client, 2026-11-20: no separate "Overview" item; the industry heading links to the overview page.
     {
       title: "Insurance",
+      href: asset("/industry/insurance/"),
       text: "Automate policy processing, claims adjustment, and compliance workflows.",
       links: [
-        svc("Insurance overview", "industry/insurance"),
         svc("Carriers", "industry/insurance/carriers"),
         svc("Managing General Agents (MGA)", "industry/insurance/managing-general-agents"),
         svc("Third-Party Administrators (TPA)", "industry/insurance/third-party-adjusters"),
@@ -301,10 +304,10 @@ const INDUSTRIES: NavMenu = {
     },
     {
       title: "Oil & Gas",
+      href: asset("/industry/oil-gas/"),
       text: "Connect well sites, pipeline maintenance, and refining operations with real-time analytics.",
+      // Major Operators is off the menu (client P0, 2026-11-20); the page stays live, unlinked.
       links: [
-        svc("Oil & Gas overview", "industry/oil-gas"),
-        svc("Major Operators", "industry/oil-gas/major-operators"),
         svc("Drilling & Well Services", "industry/oil-gas/drilling-and-well-services"),
         svc("Pipeline Maintenance", "industry/oil-gas/pipeline-maintenance"),
         svc("Refining & Distribution", "industry/oil-gas/refining-and-distribution"),
@@ -312,9 +315,9 @@ const INDUSTRIES: NavMenu = {
     },
     {
       title: "Engineering & Construction",
+      href: asset("/industry/engineering-and-construction/"),
       text: "Streamline field operations, BIM collaboration, and multi-site project controls.",
       links: [
-        svc("Engineering & Construction overview", "industry/engineering-and-construction"),
         svc("Construction", "industry/engineering-and-construction/construction"),
         svc("Engineering & Design", "industry/engineering-and-construction/engineering-and-design"),
         svc("Field Services", "industry/engineering-and-construction/field-services"),

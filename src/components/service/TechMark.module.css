@@ -9,7 +9,11 @@
 }
 
 .mono {
-  background-color: currentColor;
+  /* Always the ink colour: a container that paints its marks on a white plate (card tool chips)
+     would otherwise turn the silhouette white on white, an empty circle (client, 2026-11-20). */
+  background-color: currentColor !important;
+  mask-origin: content-box;
+  -webkit-mask-origin: content-box;
   mask-position: center;
   mask-repeat: no-repeat;
   mask-size: contain;

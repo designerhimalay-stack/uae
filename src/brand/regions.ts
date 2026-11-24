@@ -36,7 +36,8 @@ export type RegionConfig = {
   location: string;
   /** Hero / footer value proposition, when the region words it for its market. */
   valueProp?: string;
-  contact: { phones: Phone[]; email: string; address: string[]; website: string; whatsapp?: string };
+  /** `note`: a line under the direct contacts (AU business hours, client P0 2026-11-20). */
+  contact: { phones: Phone[]; email: string; address: string[]; website: string; whatsapp?: string; note?: string };
   /** Structured-data postal address for the Organization schema. */
   postal: { streetAddress: string; addressLocality: string; addressRegion: string; postalCode: string; addressCountry: string };
   /** Footer membership badges (only where the membership applies). */
@@ -51,10 +52,8 @@ export type RegionConfig = {
 const EMAIL = "contact@aptacloud.com";
 const HQ_ADDRESS = ["801 E Campbell Rd, Ste 365", "Richardson, TX 75081, USA"];
 const HQ_POSTAL = { streetAddress: "801 E Campbell Rd, Ste 365", addressLocality: "Richardson", addressRegion: "TX", postalCode: "75081", addressCountry: "US" };
-const US_PHONES: Phone[] = [
-  { number: "+1 (972) 928-2341", flag: "us", country: "United States" },
-  { number: "+1 (972) 779-6347", flag: "us", country: "United States" },
-];
+// One US number, the one aptacloud.com shows (client, 2026-11-20).
+const US_PHONES: Phone[] = [{ number: "+1 (972) 928-2341", flag: "us", country: "United States" }];
 const IN_PHONE: Phone = { number: "+91 98180 50070", flag: "in", country: "India" };
 const ALLEN_CHAMBER = { src: "/images/badges/allen-chamber.png", alt: "Proud member: Allen Chamber of Commerce 2026" };
 
@@ -74,7 +73,13 @@ export const REGIONS: Record<RegionId, RegionConfig> = {
     areaServed: ["United States", "Mexico"],
     photos: {
       ...US_PAGE_PHOTOS,
-      "/images/photos/hero-developer.jpg": { src: "/images/photos/regions/us/hero.jpg", alt: "", position: "62% 50%" },
+      // Downtown Dallas with Reunion Tower (client, 2026-11-20: the hero must read as Dallas). Pexels 10482416,
+      // cropped so the tower stands right of the headline; phones centre on it.
+      "/images/photos/hero-developer.jpg": { src: "/images/photos/regions/us/hero-dallas.jpg", alt: "", position: "88% 30%" },
+      // SharePoint page: another real SharePoint intranet page (Microsoft PnP Starter Kit, MIT), cropped to its top.
+      // Data Visualization hero: dashboards across several monitors (Unsplash, SanDisk; chosen by the user, 2026-11-23).
+      "/images/photos/services/dataviz-dashboard.jpg": { src: "/images/photos/regions/us/pages/dataviz-monitors.jpg", alt: "An analyst working across several monitors of charts and dashboards", position: "60% 45%" },
+      "/images/photos/services/sharepoint-intranet.png": { src: "/images/photos/regions/us/pages/sharepoint-portal.png", alt: "A SharePoint portal home page with quick links, company news, and events", position: "50% 0%" },
       "/images/photos/hero-developer-2.jpg": { src: "/images/photos/regions/us/about.jpg", alt: "An AptaCloud specialist working through a plan on her laptop", position: "50% 40%" },
       "/images/photos/d365-implementation.jpg": { src: "/images/photos/regions/us/team.jpg", alt: "A project team reviewing a plan at a flipchart", position: "55% 50%" },
       "/images/photos/d365-optimization.jpg": { src: "/images/photos/regions/us/room.jpg", alt: "", position: "60% 50%" },
@@ -98,10 +103,22 @@ export const REGIONS: Record<RegionId, RegionConfig> = {
     lang: "en-AU",
     spelling: "au",
     location: "Richardson, Texas",
-    contact: { phones: US_PHONES, email: EMAIL, address: HQ_ADDRESS, website: "aptacloud.com/au" },
+    valueProp:
+      "AptaCloud helps Australian insurers quote sooner and site crews stop waiting on the office, with AI that runs on systems we've modernised to support it.",
+    contact: {
+      phones: US_PHONES,
+      email: EMAIL,
+      address: HQ_ADDRESS,
+      website: "aptacloud.com/au",
+      note: "Australian enquiries answered in AWST and AEST business hours.",
+    },
     postal: HQ_POSTAL,
     badges: [ALLEN_CHAMBER],
     areaServed: ["Australia"],
+    photos: {
+      // Sydney Opera House on the harbour (client, 2026-11-20: the AU hero must read as Australian). Pexels 2434267.
+      "/images/photos/hero-developer.jpg": { src: "/images/photos/regions/au/hero-sydney.jpg", alt: "", position: "76% 45%" },
+    },
     card: {
       place: "Across Australia",
       text: "AI, data, and cloud for mid-sized Australian firms.",
@@ -119,7 +136,7 @@ export const REGIONS: Record<RegionId, RegionConfig> = {
     spelling: "au",
     location: "Gurugram, India",
     valueProp:
-      "AptaCloud modernises the systems mid-sized insurance, oil & gas, and construction firms across India run on, and puts AI to work on top of them. We prove it on your data first.",
+      "AptaCloud helps Indian manufacturers and industrial firms cut manual reporting and get AI working in daily operations, on systems we've modernised to support it.",
     contact: {
       phones: [IN_PHONE],
       email: EMAIL,
@@ -184,17 +201,23 @@ export const REGIONS: Record<RegionId, RegionConfig> = {
   },
 };
 
-/** Switcher order: the global site first. */
-export const REGION_ORDER: RegionId[] = ["us", "au", "in", "uae"];
-
 const id = (regionFile as { region: string }).region as RegionId;
 if (!REGIONS[id]) throw new Error(`region.json: unknown region "${id}" (use us, au, in, or uae)`);
+
+/** Regions on hold (client, 2026-11-20): left out of the switcher, Global presence, and hreflang
+ *  on every other site. Remove "uae" here when its hold is lifted. */
+export const REGION_HOLD: RegionId[] = ["uae"];
+
+/** Switcher order (client, 2026-11-20): US, India, Australia, UAE. */
+export const REGION_ORDER: RegionId[] = (["us", "in", "au", "uae"] as RegionId[]).filter(
+  (r) => r === id || !REGION_HOLD.includes(r),
+);
 
 /** The region this build is for. */
 export const REGION = REGIONS[id];
 
-/** The production-preview origin all four sites share (GitHub Pages user site). */
-export const SITE_ORIGIN = "https://designerhimalay-stack.github.io";
+/** The production origin all four sites share (matches `site` in astro.config.mjs). */
+export const SITE_ORIGIN = "https://aptacloud.com";
 
 /** Region-specific content (regulators, laws): this region's value, else the US one. */
 export const local = <T,>(v: { us: T } & Partial<Record<RegionId, T>>): T => v[REGION.id] ?? v.us;
@@ -204,4 +227,6 @@ export const localPhoto = (src: string, alt: string, position?: string): LocalPh
   REGION.photos?.[src] ?? { src, alt, position };
 
 /** A region's home URL (absolute), for the switcher and hreflang. */
-export const regionHome = (r: RegionConfig) => `${SITE_ORIGIN}${r.base}/`;
+// Root-relative: every region shares one origin, on staging and in production alike,
+// so the switcher works on both (hreflang in Base.astro stays absolute).
+export const regionHome = (r: RegionConfig) => `${r.base}/`;

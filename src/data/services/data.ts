@@ -172,9 +172,10 @@ export const DATA_PAGES: ServicePage[] = [
       accent: "can trust.",
       lead: "AptaCloud designs, migrates, and modernises data warehouses on Microsoft Fabric and Azure. Finance, operations, and artificial intelligence (AI) get one governed source of truth, with storage and compute costs you can explain.",
       photo: {
-        src: "/images/photos/services/dwh-rack.jpg",
-        alt: "An engineer working on server equipment in a data centre",
-        position: "45% 55%",
+        // Client, 2026-11-20: the old photo read as networking. Storage servers instead (Pexels 17489160).
+        src: "/images/photos/services/dwh-storage.jpg",
+        alt: "Rows of storage servers with their drive bays lit in a data centre",
+        position: "50% 50%",
       },
       chip: { title: "Data warehouse", items: ["Design and modelling", "Migration to Azure", "Ongoing support"] },
       marks: ["azure", "snowflake", "databricks"],
@@ -310,9 +311,10 @@ export const DATA_PAGES: ServicePage[] = [
       accent: "use to decide.",
       lead: "AptaCloud builds Power BI dashboards and reports on trusted data, designed around the decisions each team makes. Leaders, managers, and frontline staff see the same numbers, at the level of detail they need.",
       photo: {
-        src: "/images/photos/services/dataviz-monitor.jpg",
-        alt: "An analyst points at a dashboard on a vertical monitor while two colleagues look on",
-        position: "60% 45%",
+        // Client, 2026-11-20: dashboards and graphs imagery (Pexels 12969403).
+        src: "/images/photos/services/dataviz-dashboard.jpg",
+        alt: "A laptop showing an analytics dashboard with a headline figure and trend charts",
+        position: "45% 50%",
       },
       chip: { title: "Power BI", items: ["Dashboards and reports", "Self-service analytics", "Performance tuning"] },
       marks: ["azure", "m365", "sharepoint"],

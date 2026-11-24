@@ -5,13 +5,16 @@
 // contacts + "Book AI workshop" in the first column. Fields: name, email address,
 // company name, phone number and "How can we help you?" (company/phone optional).
 //
-// There is no backend: submitting validates the required fields and opens the
-// visitor's mail app with a `mailto:` to BRAND.contact.email, the subject and
-// body pre-filled from the form.
+// Submitting validates the required fields, then POSTs the lead to the CRM / booking
+// tool (LEADS.endpoint in src/brand/integrations.ts), shows a thank-you message, and
+// pushes a generate_lead event for GTM (client P0, 2026-11-20). Until the endpoint is
+// set, it falls back to opening the visitor's mail app with a pre-filled `mailto:`.
 
 import { motion, useScroll, useTransform, type MotionValue } from "@/lib/motion";
 import { Fragment, useRef, useState, type FormEvent } from "react";
 import { BRAND, PRIMARY_CTA, whatsappHref } from "@/brand/brand";
+import { REGION } from "@/brand/regions";
+import { LEADS, track } from "@/brand/integrations";
 import { NEXT_STEPS } from "@/data/services/shared";
 import { Reveal } from "@/components/ui/Reveal";
 import { RollingText } from "@/components/ui/RollingText";
@@ -19,8 +22,9 @@ import { cn } from "@/lib/utils";
 import s from "./CTA.module.css";
 
 // Home defaults; service pages pass their own heading, lead and submit label.
-const HEADING = "Tell us what your team has started. We will help take it to production.";
-const LEAD = "Share the workflow, system, or AI idea you are working on, and we will come back with a clear first step.";
+// AI consulting positioning (client, 2026-11-20): the old line read like custom software development.
+const HEADING = "Bring us a business problem. We will show where AI solves it.";
+const LEAD = "Tell us about the workflow or decision you want to improve. A senior AI consultant will map where AI fits, what it should return, and how to prove it on your data first.";
 const SUBMIT = PRIMARY_CTA.label;
 
 type Field = "name" | "email" | "company" | "phone" | "message";
@@ -143,7 +147,9 @@ function RowArrow() {
 function ContactForm({ submit, submitShort, topic }: { submit: string; submitShort?: string; topic: string }) {
   const [values, setValues] = useState<Record<Field, string>>(EMPTY);
   const [errors, setErrors] = useState<Errors>({});
-  const [sent, setSent] = useState(false);
+  // idle → sending → sent (CRM accepted it) | mailto (no endpoint: mail app opened) | failed
+  const [state, setState] = useState<"idle" | "sending" | "sent" | "mailto" | "failed">("idle");
+  const setSent = (on: boolean) => setState(on ? "sent" : "idle");
   const refs = useRef<Partial<Record<Field, HTMLInputElement | HTMLTextAreaElement | null>>>({});
 
   const update = (field: Field) => (e: { target: { value: string } }) => {
@@ -164,8 +170,26 @@ function ContactForm({ submit, submitShort, topic }: { submit: string; submitSho
       refs.current[first.id]?.focus();
       return;
     }
-    window.location.href = mailtoHref(values, topic);
-    setSent(true);
+    if (!LEADS.endpoint) {
+      window.location.href = mailtoHref(values, topic);
+      track({ event: "generate_lead", form_topic: topic, method: "mailto" });
+      setState("mailto");
+      return;
+    }
+    setState("sending");
+    const lead = Object.fromEntries(Object.entries(values).map(([k, v]) => [k, v.trim()]));
+    fetch(LEADS.endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({ ...lead, topic, page: window.location.href, region: REGION.id }),
+    })
+      .then((r) => {
+        if (!r.ok) throw new Error(String(r.status));
+        track({ event: "generate_lead", form_topic: topic, method: "crm" });
+        setValues(EMPTY);
+        setState("sent");
+      })
+      .catch(() => setState("failed"));
   };
 
   return (
@@ -220,7 +244,7 @@ function ContactForm({ submit, submitShort, topic }: { submit: string; submitSho
         })}
       </div>
 
-      <button type="submit" className={cn("roll-host", s.submit)}>
+      <button type="submit" className={cn("roll-host", s.submit)} disabled={state === "sending"} aria-busy={state === "sending" || undefined}>
         {submitShort ? (
           <>
             <RollingText text={submit} className="max-[519.98px]:!hidden" />
@@ -232,9 +256,16 @@ function ContactForm({ submit, submitShort, topic }: { submit: string; submitSho
       </button>
 
       <p className={s.status} role="status" aria-live="polite">
-        {sent && (
+        {state === "sent" && <>Thank you. Your note is with our team, and a specialist will reply by email.</>}
+        {state === "mailto" && (
           <>
             Your email app should open with the message ready to send. If it doesn’t, write to us at{" "}
+            <a href={`mailto:${BRAND.contact.email}`}>{BRAND.contact.email}</a>.
+          </>
+        )}
+        {state === "failed" && (
+          <>
+            We could not send your message just now. Please try again, or write to us at{" "}
             <a href={`mailto:${BRAND.contact.email}`}>{BRAND.contact.email}</a>.
           </>
         )}
@@ -345,6 +376,7 @@ export function CTA({
                   </span>
                 </li>
               </ul>
+              {BRAND.contact.note && <p className={s.nextText}>{BRAND.contact.note}</p>}
             </div>
           </aside>
 

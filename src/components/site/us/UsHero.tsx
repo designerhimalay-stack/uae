@@ -19,12 +19,13 @@ const US_LEAD = "Put AI to work across your business and take the manual effort 
 
 const PHOTO = localPhoto("/images/photos/hero-developer.jpg", "", "62% 50%");
 
-const PILLARS: { title: string; text: string; href: string; icon: IconId }[] = [
+// `logo`: the product's official icon instead of a line icon (client, 2026-11-20: Azure and Dynamics 365).
+const PILLARS: { title: string; text: string; href: string; icon: IconId; logo?: string }[] = [
   { title: "Artificial intelligence", text: "Find where AI pays off, then prove it on your data.", href: asset("/ai-consulting/"), icon: "spark" },
   // Positioning order: AI, modernisation, Azure, then the Microsoft stack.
   { title: "Modernised applications", text: "Legacy systems turned into software that grows with you.", href: asset("/application-modernization/"), icon: "code" },
-  { title: "Microsoft Azure", text: "Secure, scalable, resilient cloud infrastructure.", href: asset("/azure-hosting/"), icon: "cloud" },
-  { title: "Dynamics 365", text: "Finance, operations, and field teams on one platform.", href: asset("/services/microsoft/microsoft-dynamics-365/"), icon: "layers" },
+  { title: "Microsoft Azure", text: "Secure, scalable, resilient cloud infrastructure.", href: asset("/azure-hosting/"), icon: "cloud", logo: "/images/microsoft/azure.svg" },
+  { title: "Dynamics 365", text: "Finance, operations, and field teams on one platform.", href: asset("/services/microsoft/microsoft-dynamics-365/"), icon: "layers", logo: "/images/microsoft/dynamics-365-icon.svg" },
 ];
 
 function Arrow() {
@@ -81,8 +82,8 @@ export function UsHero() {
           {PILLARS.map((p, i) => (
             <Reveal key={p.title} trigger="mount" delay={0.25 + i * 0.06} duration={0.8} className={s.cell}>
               <a className={s.pillar} href={p.href}>
-                <span className={s.icon}>
-                  <Icon id={p.icon} />
+                <span className={p.logo ? `${s.icon} ${s.iconLogo}` : s.icon}>
+                  {p.logo ? <img src={asset(p.logo)} alt="" width={24} height={24} /> : <Icon id={p.icon} />}
                 </span>
                 <span className={s.pillarTitle}>{p.title}</span>
                 <span className={s.pillarText}>{p.text}</span>

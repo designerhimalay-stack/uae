@@ -1,7 +1,9 @@
 // sitemap.xml, built from the page registry so every new page is listed
 // automatically. Absolute URLs come from `site` + `base` (astro.config.mjs).
 import type { APIRoute } from "astro";
-import { SERVICE_PAGES } from "../data/services";
+import { SERVICE_PAGES, isNoindex } from "../data/services";
+import { INDEX_POSTS, hasPage } from "../data/blog";
+import { EVENTS } from "../data/services/layouts/company";
 
 const BUILT = new Date().toISOString().slice(0, 10);
 
@@ -11,10 +13,12 @@ export const GET: APIRoute = ({ site }) => {
   // Home first, then service, industry, and company pages, then the privacy policy.
   const entries = [
     { loc: url("/"), priority: "1.0" },
-    ...SERVICE_PAGES.map((p) => ({
+    ...SERVICE_PAGES.filter((p) => !isNoindex(p.slug)).map((p) => ({
       loc: url(`/${p.slug}/`),
       priority: p.category === "industries" ? "0.9" : p.category === "company" ? "0.6" : "0.8",
     })),
+    ...INDEX_POSTS.filter((p) => hasPage(p.slug)).map((p) => ({ loc: url(`/blog/${p.slug}/`), priority: "0.5" })),
+    ...EVENTS.map((e) => ({ loc: url(`/events/${e.slug}/`), priority: "0.4" })),
     { loc: url("/privacy/"), priority: "0.3" },
   ];
   const body = `<?xml version="1.0" encoding="UTF-8"?>

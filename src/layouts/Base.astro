@@ -6,6 +6,9 @@
 import "../styles/globals.css";
 import { BRAND, asset, brandCssVars } from "../brand/brand";
 import { REGION, REGIONS, REGION_ORDER, SITE_ORIGIN } from "../brand/regions";
+import { ANALYTICS } from "../brand/integrations";
+
+const gtm = ANALYTICS.gtmId;
 
 interface Props {
   title: string;
@@ -63,6 +66,14 @@ const alternates = noindex
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {/* Google Tag Manager (GA4 runs inside it), once ANALYTICS.gtmId is set (client P0, 2026-11-20). */}
+    {gtm && (
+      <script is:inline define:vars={{ gtm }}>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer',gtm);
+      </script>
+    )}
+    {/* Phone, email, and WhatsApp clicks go to the dataLayer as events (picked up by GTM when installed). */}
+    <script is:inline>document.addEventListener("click",function(e){var a=e.target&&e.target.closest&&e.target.closest("a[href]");if(!a)return;var h=a.getAttribute("href")||"",ev=h.indexOf("tel:")===0?"phone_click":h.indexOf("mailto:")===0?"email_click":h.indexOf("wa.me/")>-1?"whatsapp_click":"";if(ev){(window.dataLayer=window.dataLayer||[]).push({event:ev,link_url:h})}},true);</script>
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
@@ -98,6 +109,9 @@ const alternates = noindex
     <style is:inline>html:not([data-motion]) [style*="opacity:0.001"]{opacity:1!important;transform:none!important;filter:none!important}@media print{[style*="opacity:0.001"]{opacity:1!important;transform:none!important;filter:none!important}}</style>
   </head>
   <body>
+    {gtm && (
+      <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${gtm}`} height="0" width="0" style="display:none;visibility:hidden" /></noscript>
+    )}
     <a href="#main" class="skip-link">Skip to content</a>
     <slot />
   </body>

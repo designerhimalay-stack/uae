@@ -14,7 +14,10 @@ import { cn } from "@/lib/utils";
 import { HomeHead } from "./HomeHead";
 import s from "./GlobalPresence.module.css";
 
-const HEADING = "Headquartered in Texas. Working across four regions.";
+// Client P0, 2026-11-20 (US row 5): the UAE is on hold (its card drops out via REGION_HOLD).
+// Add Australia to the heading when /au/ launches. Note: the US home no longer shows this
+// section (client, 2026-11-20: the US site stays US-focused).
+const HEADING = "Headquartered in Texas. Working across the US and India.";
 const LEAD =
   "One team and one way of working, led by senior AI and cloud specialists. Delivery runs from the United States, Mexico, and India, with a dedicated site for each region we serve.";
 

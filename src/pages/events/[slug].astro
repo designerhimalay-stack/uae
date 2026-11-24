@@ -1,0 +1,103 @@
+---
+// Event pages (client designer pointers, 2026-11-20: "each event in the listing needs its own link
+// and an image"). Header (tint): status, name, what the event was about, dates and venue, the
+// event's image; then the other events, and the contact form.
+import Site from "../../layouts/Site.astro";
+import { BRAND, PRIMARY_CTA, asset } from "../../brand/brand";
+import { EVENTS } from "../../data/services/layouts/company";
+import { Events, dateRange, isPast } from "../../components/service/blocks/Events";
+import { CTA } from "../../components/site/CTA";
+import sec from "../../components/service/Section.module.css";
+import s from "../../components/blog/Article.module.css";
+import e from "../../components/blog/Event.module.css";
+
+export function getStaticPaths() {
+  return EVENTS.map((ev) => ({ params: { slug: ev.slug } }));
+}
+
+const { slug } = Astro.params as { slug: string };
+const ev = EVENTS.find((x) => x.slug === slug)!;
+const past = isPast(ev);
+const others = EVENTS.filter((x) => x.slug !== slug);
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const abs = (path: string) => new URL(`${base}${path}`, Astro.site).href;
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: abs("/") },
+      { "@type": "ListItem", position: 2, name: "Events", item: abs("/events/") },
+      { "@type": "ListItem", position: 3, name: ev.name, item: abs(`/events/${slug}/`) },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: ev.name,
+    description: ev.text,
+    startDate: ev.start,
+    endDate: ev.end,
+    eventStatus: "https://schema.org/EventScheduled",
+    eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+    location: { "@type": "Place", name: ev.venue.split(",")[0], address: ev.venue },
+    image: abs(ev.photo.src),
+    url: abs(`/events/${slug}/`),
+  },
+];
+---
+
+<Site title={`${ev.name} | ${BRAND.name} Events`} description={ev.text} jsonLd={jsonLd} image={ev.photo.src}>
+  <section class:list={[sec.section, sec.tint, s.header]} data-theme="light">
+    <div class={s.headerInner}>
+      <div>
+        <nav class={s.crumbs} aria-label="Breadcrumb">
+          <a href={asset("/")}>Home</a>
+          <span aria-hidden="true">/</span>
+          <a href={asset("/events/")}>Events</a>
+          <span aria-hidden="true">/</span>
+          <span>{ev.name}</span>
+        </nav>
+        <p class:list={[e.status, !past && e.upcoming]}>{past ? "Past event" : "Upcoming event"}</p>
+        <h1 class={s.title}>{ev.name}</h1>
+        <p class={s.lead}>{ev.text}</p>
+        <dl class={e.facts}>
+          <div>
+            <dt>Dates</dt>
+            <dd>{dateRange(ev.start, ev.end)}</dd>
+          </div>
+          <div>
+            <dt>Venue</dt>
+            <dd>{ev.venue}</dd>
+          </div>
+        </dl>
+        <div class={e.links}>
+          {
+            !past && ev.register && (
+              <a href={ev.register} target="_blank" rel="noopener noreferrer">
+                Register with the organiser ↗
+              </a>
+            )
+          }
+          <a href="#contact">Let's talk ↗</a>
+        </div>
+      </div>
+      <div class={s.cover}>
+        <img src={asset(ev.photo.src)} alt={ev.photo.alt} width="1500" height="1000" fetchpriority="high" style={ev.photo.position ? `object-position: ${ev.photo.position}` : undefined} />
+      </div>
+    </div>
+  </section>
+
+  {others.length > 0 && <Events client:visible block={{ kind: "events", id: "more-events", tag: "Events", icon: "clock", heading: "More events.", past: others }} tone="white" />}
+
+  <CTA
+    client:idle
+    heading="Talk with the team you met at the event."
+    lead="Tell us what you are working on, and a specialist will come back with a clear first step, proven on your data."
+    submit={PRIMARY_CTA.label}
+    submitShort={PRIMARY_CTA.short}
+    topic={`Event: ${ev.name}`}
+  />
+</Site>

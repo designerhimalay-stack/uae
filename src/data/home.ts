@@ -37,9 +37,9 @@ const AU_ABOUT: HomeAbout = {
 /* ───────────────────────────── India ───────────────────────────── */
 
 const IN_HERO: HomeHero = {
-  lines: ["Cloud and AI", "transformation for"],
+  lines: ["AI and cloud", "transformation for"],
   accent: "Indian businesses.",
-  lead: "Modernise with SharePoint, AI, and cloud services sized to your budget, so your teams can innovate and scale. We prove it on your data first.",
+  lead: "Get AI working in your daily operations, with cloud services sized to your budget and delivered by our teams in Gurugram and Pune.",
   link: { label: "See how we work", href: "#process" },
 };
 
@@ -345,6 +345,72 @@ export const US_PLATFORM: Block = {
       ],
     },
   ],
+};
+
+// Two AI sections on agentic AI (client designer pointers, 2026-11-20: "add one or two more
+// sections on AI, with a focus on agentic AI and AI agents; the designer proposes the content").
+// Outcomes per vertical, no figures, no client names (proof rules); POC-led.
+
+/** What an AI agent does in each of the three verticals. */
+export const US_AGENTS: Block = {
+  kind: "cards",
+  id: "ai-agents",
+  style: "icon",
+  tone: "dark",
+  tag: "AI agents",
+  icon: "agent",
+  heading: "AI agents that move the work forward.",
+  lead: "An AI agent does more than answer a question. It reads the request, checks your systems, takes the next step, and hands off to a person when judgment is needed.",
+  cols: 4,
+  items: [
+    { title: "Claims intake agent", text: "Reads first notice of loss emails, forms, and photos, opens the claim, and routes it to the right adjuster.", icon: "doc" },
+    { title: "Submission triage agent", text: "Pulls broker submissions into your rating workflow, flags missing details, and prepares the file for an underwriter.", icon: "flow" },
+    { title: "Field answers agent", text: "Gives site crews answers from drawings, specifications, and safety documents, without a call to the office.", icon: "search" },
+    { title: "Maintenance agent", text: "Turns inspection notes and equipment readings into work orders and daily reports your supervisors can approve.", icon: "cog" },
+  ],
+};
+
+/** How we build agents that hold up in production. */
+export const US_AGENT_BUILD: Block = {
+  kind: "split",
+  id: "agentic-ai",
+  tone: "tint",
+  tag: "Agentic AI",
+  icon: "shield",
+  heading: "Agents your team can trust in production.",
+  body: [
+    "We build agents with Azure AI Foundry and Microsoft Copilot Studio, inside your Microsoft environment and security controls. Each agent starts as a proof of concept on your own data.",
+  ],
+  // Unsplash, Vitaly Gariev (chosen by the user, 2026-11-23; US home only).
+  photo: { src: "/images/photos/regions/us/agentic-ai.jpg", alt: "A team reviewing an AI agent's work together on a desktop monitor", position: "62% 50%" },
+  list: "divided",
+  items: [
+    { title: "Grounded in your data", text: "Agents answer from your policies, documents, and systems, and show the source for each answer.", icon: "db" },
+    { title: "A person approves what matters", text: "Any step that commits money, coverage, or a safety decision waits for a person to sign off.", icon: "team" },
+    { title: "Only the access you grant", text: "Agents work through Microsoft Entra ID permissions, and every action they take is logged.", icon: "shield" },
+    { title: "Tested before and after go-live", text: "We score each agent against real cases before launch, then keep measuring it in production.", icon: "gauge" },
+  ],
+  chips: { heading: "Built with", items: ["Azure AI Foundry", "Microsoft Copilot Studio", "Azure OpenAI Service", "Semantic Kernel", "Power Automate"] },
+};
+
+/** Focus industries on the US home: the three verticals, reusing the industry cards and pages. */
+export const US_INDUSTRIES: NonNullable<ServicePage["industries"]> = {
+  heading: "Three industries we know from the inside.",
+  lead: "We work with mid-sized insurance, oil and gas, and engineering and construction firms, so every project starts with the systems and rules you already work under.",
+  items: {
+    insurance: {
+      useCase: "Quote sooner and settle claims faster.",
+      outcome: "AI reads submissions and first notice of loss, on the policy and claims systems we connect.",
+    },
+    oilgas: {
+      useCase: "Answers for field crews, without waiting on the office.",
+      outcome: "Maintenance, inspection, and production data in one place, with AI that turns readings into work orders.",
+    },
+    construction: {
+      useCase: "Project data from site to office in one view.",
+      outcome: "Drawings, RFIs, and daily reports your site teams can search with AI, on the spot.",
+    },
+  },
 };
 
 /* ───────────────────────────── By region ───────────────────────────── */

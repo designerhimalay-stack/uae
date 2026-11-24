@@ -3,7 +3,12 @@
 // itself stays on the live blog (https://aptacloud.com/blog/<slug>/).
 // Titles are the published titles, kept as written.
 
-import { local } from "@/brand/regions";
+import { REGION, local } from "@/brand/regions";
+import { asset } from "@/brand/brand";
+import postMeta from "./blog/meta.json";
+// The AU build's trade terms (carrier → insurer, general contractor → head contractor) also apply to imported
+// article text, which the build-time pass over source modules does not reach.
+import { toAuTerms } from "../../tools/region/au-terms.mjs";
 
 export type Post = { slug: string; title: string; category: string; date: string };
 
@@ -99,12 +104,24 @@ export const UAE_POSTS: Post[] = [
 /** The posts the blog index lists on this region's site. */
 export const INDEX_POSTS: Post[] = local({ us: POSTS, in: IN_POSTS, uae: UAE_POSTS });
 
+/** Excerpt and reading time per post (written by tools/blog/import.mjs). */
+type Meta = Record<string, { excerpt: string; minutes: number }>;
+export const POST_META: Meta =
+  REGION.id === "au"
+    ? Object.fromEntries(Object.entries(postMeta as Meta).map(([k, v]) => [k, { ...v, excerpt: toAuTerms(v.excerpt) }]))
+    : (postMeta as Meta);
+
+/** This site's own article pages (`/blog/<slug>/`) cover its index posts; anything else stays on the live blog. */
+export const hasPage = (slug: string) => INDEX_POSTS.some((p) => p.slug === slug) && slug in POST_META;
+
 export const postUrl = (slug: string) =>
-  IN_POSTS.some((p) => p.slug === slug)
-    ? `https://aptacloud.com/in/blogs/${slug}/`
-    : UAE_POSTS.some((p) => p.slug === slug)
-      ? `https://aptacloud.com/uae/blogs/${slug}/`
-      : `https://aptacloud.com/blog/${slug}/`;
+  hasPage(slug)
+    ? asset(`/blog/${slug}/`)
+    : IN_POSTS.some((p) => p.slug === slug)
+      ? `https://aptacloud.com/in/blogs/${slug}/`
+      : UAE_POSTS.some((p) => p.slug === slug)
+        ? `https://aptacloud.com/uae/blogs/${slug}/`
+        : `https://aptacloud.com/blog/${slug}/`;
 export const postImage = (slug: string) => `/images/blog/posts/${slug}.jpg`;
 export const getPost = (slug: string) => {
   const p = POSTS.find((x) => x.slug === slug) ?? IN_POSTS.find((x) => x.slug === slug) ?? UAE_POSTS.find((x) => x.slug === slug);

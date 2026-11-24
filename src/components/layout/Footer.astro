@@ -1,14 +1,14 @@
 ---
 // Footer — static Astro, ships no JavaScript. Dark:
 // a brand card (logo + tagline) | link columns over a call-to-action row, then
-// the giant wordmark and the copyright / privacy line. No newsletter signup:
+// the copyright / privacy line (the giant wordmark went, client 2026-11-20). No newsletter signup:
 // there is no backend to subscribe anyone to. Phone, email, and address live in
 // the contact section right above the footer, so the footer does not repeat them.
 import styles from "./Footer.module.css";
 import { BRAND, asset, home } from "../../brand/brand";
 import { SOCIAL_PATHS } from "../../brand/social";
 import { local } from "../../brand/regions";
-import { Logo, Wordmark } from "../../brand/Logo";
+import { Logo } from "../../brand/Logo";
 import { Button } from "../ui/Button";
 
 
@@ -107,10 +107,6 @@ const COLUMNS: { title: string; links: FooterLink[] }[] = [
           <Button label="Back to top" href="#top" variant="outline" className={styles.ctaButton} />
         </div>
       </div>
-    </div>
-
-    <div class={styles.giant} aria-hidden="true">
-      <Wordmark className={styles.giantWord} />
     </div>
 
     <div class={styles.bottom}>

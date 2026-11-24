@@ -53,12 +53,12 @@ export function AgentConsole({ className }: { className?: string }) {
 
   return (
     <div ref={ref} className={cn(s.root, className)}>
-      {/* (b) AI-first solutions */}
+      {/* (b) Platform strip: "Built on the Microsoft stack" (client P0, 2026-11-20, All sites row 11) */}
       <Reveal trigger="mount" delay={1.05} className={cn(s.slot, s.slotStack)}>
         <div className={cn(s.chip, s.chipStack)} style={{ ["--depth" as string]: "6px" }}>
           <div className={s.stackHead}>
             <Pulse size={6} color={ACCENT} />
-            <p className={cn("t-micro", s.nowrap, s.chipTitle)}>AI-first solutions</p>
+            <p className={cn("t-micro", s.nowrap, s.chipTitle)}>Built on the Microsoft stack</p>
           </div>
           <div className={s.tags}>
             {STACK.map((t) => (

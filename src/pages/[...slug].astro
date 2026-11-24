@@ -9,7 +9,7 @@
 import Site from "../layouts/Site.astro";
 import { BRAND } from "../brand/brand";
 import { REGION } from "../brand/regions";
-import { SERVICE_PAGES, getService } from "../data/services";
+import { SERVICE_PAGES, getService, isNoindex } from "../data/services";
 import type { Block } from "../data/services/types";
 import { TECH } from "../data/tech";
 import { ServiceHero } from "../components/service/ServiceHero";
@@ -197,6 +197,7 @@ const jsonLd = [
   jsonLd={jsonLd}
   navCta={{ label: "Let's talk", href: "#contact" }}
   image={page.hero.photo.src}
+  noindex={isNoindex(page.slug)}
 >
   <ServiceHero client:load page={page} category={category} howHref={howHref} ticker={!layout} />
   {

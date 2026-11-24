@@ -197,15 +197,10 @@
   width: auto;
 }
 
-/* Anthropic: text wordmark (white, cap-matched) until the official logo file
-   is supplied; swap for an <img> with the same .logo treatment then. */
+/* anthropic.svg 1024×115: the capitals fill the whole box, so its height is the cap height. */
 .anthropic {
-  color: #ffffff;
-  font-family: var(--ff-inter);
-  font-size: calc(var(--cap) * 1.3);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1;
+  height: var(--cap);
+  width: auto;
 }
 
 /* aws.svg 304×182: the lowercase "aws" is 94/182 of the box; size its
