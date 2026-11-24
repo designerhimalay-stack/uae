@@ -206,7 +206,8 @@ if (!REGIONS[id]) throw new Error(`region.json: unknown region "${id}" (use us, 
 
 /** Regions on hold (client, 2026-11-20): left out of the switcher, Global presence, and hreflang
  *  on every other site. Remove "uae" here when its hold is lifted. */
-export const REGION_HOLD: RegionId[] = ["uae"];
+// UAE hold lifted for the switcher (user, 2026-11-24).
+export const REGION_HOLD: RegionId[] = [];
 
 /** Switcher order (client, 2026-11-20): US, India, Australia, UAE. */
 export const REGION_ORDER: RegionId[] = (["us", "in", "au", "uae"] as RegionId[]).filter(

@@ -50,7 +50,7 @@ row("A19", 'Microsoft 365: "Microsoft Viva Engage", no "Yammer"', none(/Yammer/)
 row("A20", 'Azure menu button "Explore Azure optimization"', /Explore Azure optimi[sz]ation/.test(readFileSync(new URL("../../src/components/layout/nav/menus.ts", import.meta.url), "utf8")) && !/Get your cloud cost review", href: asset\("\/azure-optimization/.test(readFileSync(new URL("../../src/components/layout/nav/menus.ts", import.meta.url), "utf8")));
 row("A21", '"Third-Party Administrators", not "Third Party Adjusters"', none(/third[\s-]party adjusters?/i) && has("Third-Party Administrators"));
 row("A22", "Major Operators off the Oil & Gas menu", !/svc\("Major Operators"/.test(readFileSync(new URL("../../src/components/layout/nav/menus.ts", import.meta.url), "utf8")));
-row("A23", "UAE hidden (switcher, hreflang)", REGION === "uae" ? "N/A" : !/hreflang="[^"]*"\s+href="[^"]*\/uae\//.test(page("/")) && !/href="\/uae\/"/.test(page("/")));
+row("A23", "UAE in the switcher (hold lifted, 2026-11-24)", REGION === "uae" ? "N/A" : /href="\/uae\/"/.test(page("/")));
 
 // 2. US
 only(["us"], "US1", 'Home title "AptaCloud | AI Consulting, Modernization, and Data"', () => title("/") === "AptaCloud | AI Consulting, Modernization, and Data");
