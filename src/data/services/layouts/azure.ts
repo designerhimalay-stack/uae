@@ -423,8 +423,8 @@ export const AZURE_LAYOUTS: Record<string, ServiceLayout> = {
               { label: "Emergency support by ticket", values: ["Yes", "Yes", "Yes"] },
               { label: "Support hours a month (no rollover)", values: ["15 hours", "30 hours", "No cap"] },
               { label: "Contract", values: ["6 months", "12 months", "12 months"] },
-              // The US$ rate is US-only; AU and India quote it (client P0, 2026-11-20).
-              { label: "Extra hours", values: local({ us: ["US$35 an hour", "US$35 an hour", "Not needed"], au: ["Quoted on request", "Quoted on request", "Not needed"], in: ["Quoted on request", "Quoted on request", "Not needed"] }) },
+              // The US$ rate is US-only; AU, India, and the UAE quote it (client P0, 2026-11-20).
+              { label: "Extra hours", values: local({ us: ["US$35 an hour", "US$35 an hour", "Not needed"], au: ["Quoted on request", "Quoted on request", "Not needed"], in: ["Quoted on request", "Quoted on request", "Not needed"], uae: ["Quoted on request", "Quoted on request", "Not needed"] }) },
               { label: "Billing", values: ["Monthly, or 10% off when paid in advance", "Monthly, or 10% off when paid in advance", "Monthly"] },
               { label: "Account manager", values: ["Part-time, in business hours", "Dedicated, Monday to Friday", "Dedicated, Monday to Friday"] },
               { label: "Cost optimisation and audit", values: ["Cost forecasts, budgets, spending alerts, and optimisation advice", "Cost forecasts, budgets, spending alerts, optimisation advice, and a monthly infrastructure audit", "Cost forecasts, budgets, spending alerts, optimisation advice, and a monthly infrastructure audit"] },
