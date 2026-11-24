@@ -173,7 +173,7 @@ export const REGIONS: Record<RegionId, RegionConfig> = {
     spelling: "au",
     location: "United Arab Emirates",
     valueProp:
-      "AptaCloud modernises the systems mid-sized insurance, oil & gas, and construction firms across the UAE run on, and puts AI to work on top of them. We prove it on your data first.",
+      "AptaCloud helps UAE businesses cut manual work and get AI working in daily operations, on systems we've modernised to support it.",
     contact: {
       phones: [IN_PHONE],
       email: EMAIL,

@@ -83,6 +83,7 @@ only(["in"], "IN6", "US segment pages noindex and out of the sitemap", () => {
 const VP = {
   us: "AptaCloud helps insurers quote sooner and field crews stop waiting on the office, with AI that runs on systems we've modernized to support it.",
   au: "AptaCloud helps Australian insurers quote sooner and site crews stop waiting on the office, with AI that runs on systems we've modernised to support it.",
+  uae: "AptaCloud helps UAE businesses cut manual work and get AI working in daily operations, on systems we've modernised to support it.",
   in: "AptaCloud helps Indian manufacturers and industrial firms cut manual reporting and get AI working in daily operations, on systems we've modernised to support it.",
 };
 if (VP[REGION]) row("VP1-3", "Value line (footer)", has(VP[REGION]));
