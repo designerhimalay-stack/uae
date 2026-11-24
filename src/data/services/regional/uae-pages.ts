@@ -24,7 +24,7 @@ export const UAE_ONLY_PAGES: ServicePage[] = [
       title: "Release and automate",
       accent: "with Azure DevOps.",
       lead: "Streamline your development lifecycle with enterprise-grade Azure DevOps, from infrastructure as code to secure, automated releases.",
-      photo: { src: `${P}/devops-code.jpg`, alt: "Developers reviewing pipeline code together on a tablet", position: "50% 50%" },
+      photo: { src: `${P}/devops-code.jpg`, alt: "Two developers reviewing pipeline code on a large screen", position: "70% 40%" },
       chip: { title: "DevOps setup", items: ["Infrastructure as code", "GitOps for AKS", "CI/CD pipelines"] },
       marks: ["azureDevOps", "terraform", "aks"],
     },
