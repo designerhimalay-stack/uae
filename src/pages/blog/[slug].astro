@@ -87,7 +87,7 @@ const jsonLd = [
 ---
 
 <Site title={`${post.title} | ${BRAND.name} Blog`} description={body.excerpt} jsonLd={jsonLd} image={postImage(slug)}>
-  <section class:list={[sec.section, sec.tint, s.header]} data-theme="light">
+  <section id="top" class:list={[sec.section, sec.tint, s.header]} data-theme="light">
     <div class={s.headerInner}>
       <div class={s.headerCopy}>
         <nav class={s.crumbs} aria-label="Breadcrumb">
